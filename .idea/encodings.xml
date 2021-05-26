@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="windows-1251">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/App.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/config/SpringConfig.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/config/WebSecurityConfig.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/controllers/ErrorPageController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/controllers/MainController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/PostRepository.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/UserRepository.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Contract.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Host.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Owner.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Pet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Post.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/exceptions/GlobalExceptionHandlingControllerAdvice.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/exceptions/InvalidDataException.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/services/AuthenticationService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/services/AuthenticationServiceInterface.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/services/HostService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/services/OwnerService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/services/PaginationService.java" charset="UTF-8" />
+    <file url="PROJECT" charset="windows-1251" />
+  </component>
+</project>
