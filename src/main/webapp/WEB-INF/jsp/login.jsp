@@ -21,9 +21,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <a href="#" class="navbar-brand">Take<b>My</b>Pet</a>
-</nav>
+<%@ include file="/WEB-INF/jspf/simple-nav.jspf" %>
 
 <div class=" pt-5 d-flex justify-content-center">
   <form role="form" name="login_form"

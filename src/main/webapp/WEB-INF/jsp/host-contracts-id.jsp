@@ -9,19 +9,7 @@
     
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a href="#" class="navbar-brand">Take<b>My</b>Pet</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-            <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link">Profile</a>
-                <a href="#" class="nav-item nav-link">Posts</a>
-                <a href="#" class="nav-item nav-link">Contracts</a>
-            </div>
-        </div>
-    </nav>
+<%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
 
     <div class="container">
         <div class="row gutters d-flex justify-content-center">
@@ -76,9 +64,9 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-success mx-1 mt-1">Accept</button></a>
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-danger mx-1 mt-1">Reject</button></a>
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>
+                                    <a href="#"><button type="button" id="submit1" name="submit" class="btn btn-success mx-1 mt-1">Accept</button></a>
+                                    <a href="#"><button type="button" id="submit2" name="submit" class="btn btn-danger mx-1 mt-1">Reject</button></a>
+                                    <a href="#"><button type="button" id="submit3" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>
                                 </div>
                             </div>
                         </div>
@@ -134,9 +122,9 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-danger mx-1 mt-1">Reject</button></a>
+                                    <a href="#"><button type="button" id="submit4" name="submit" class="btn btn-danger mx-1 mt-1">Reject</button></a>
                                   
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>
+                                    <a href="#"><button type="button" id="submit5" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +180,7 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>
+                                    <a href="#"><button type="button" id="submit6" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +224,7 @@
                                 <div class="form-col">
                                     <div class="form-group">
                                         <label for="rating"><b>Rated: 3,3/-</b></label>
-                                        <div class="form-control-static">
+                                        <div class="form-control-static" id="rating">
                                             <i class="text-warning fa fa-star"></i>
                                             <i class="text-warning fa fa-star"></i>
                                             <i class="text-warning fa fa-star"></i>

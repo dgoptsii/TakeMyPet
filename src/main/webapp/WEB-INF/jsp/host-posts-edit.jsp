@@ -11,19 +11,7 @@
     
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a href="#" class="navbar-brand">Take<b>My</b>Pet</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-            <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link">Profile</a>
-                <a href="#" class="nav-item nav-link">Posts</a>
-                <a href="#" class="nav-item nav-link">Contracts</a>
-            </div>
-        </div>
-    </nav>
+<%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
 
     <div class="container">
         <div class="row gutters d-flex justify-content-center">

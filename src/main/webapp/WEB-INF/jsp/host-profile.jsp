@@ -8,19 +8,7 @@
     <%@ include file="/WEB-INF/jspf/head.jspf" %>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a href="#" class="navbar-brand">Take<b>My</b>Pet</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-            <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link active">Profile</a>
-                <a href="#" class="nav-item nav-link">Posts</a>
-                <a href="#" class="nav-item nav-link">Contracts</a>
-            </div>
-        </div>
-    </nav>
+<%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
 
     <div class="container">
         <div class="row gutters d-flex justify-content-center">
@@ -51,7 +39,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="phome"><b>Phone</b></label>
+                            <label for="phone"><b>Phone</b></label>
                             <p class="form-control-static" id="phone">000-000-000</p>
                         </div>
                     </div>
