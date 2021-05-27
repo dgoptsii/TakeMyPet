@@ -27,9 +27,9 @@ public class WebSecurityConfig
   @Override
   public void configure(AuthenticationManagerBuilder auth) throws Exception {
 //    auth.inMemoryAuthentication()
-//            .withUser("owner").password(passwordEncoder().encode("ownerPass")).roles("OWNER")
+//            .withUser("owner").password(passwordEncoder().encode("ownerPass")).authorities("OWNER")
 //            .and()
-//            .withUser("host").password(passwordEncoder().encode("hostPass")).roles("HOST");
+//            .withUser("host").password(passwordEncoder().encode("hostPass")).authorities("HOST");
     auth.jdbcAuthentication()
             .dataSource(dataSource)
             .usersByUsernameQuery(
