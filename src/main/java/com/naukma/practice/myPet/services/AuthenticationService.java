@@ -1,8 +1,11 @@
 package com.naukma.practice.myPet.services;
 
+import com.naukma.practice.myPet.db.UserRepository;
 import com.naukma.practice.myPet.db.entity.User;
 import com.naukma.practice.myPet.exceptions.InvalidDataException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.naming.AuthenticationException;
@@ -15,11 +18,11 @@ import java.util.regex.Pattern;
 @Slf4j
 public class AuthenticationService implements AuthenticationServiceInterface {
 //
-//    @Autowired
-//    private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-//    @Autowired
-//    private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     private static final String LOGIN_PATTERN =
             "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$";
@@ -31,9 +34,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
                             HttpServletRequest request) throws Exception {
 
         String forward = null;
-
         HttpSession session = request.getSession();
-
         HttpSession checkSession = request.getSession(false);
         String checkUserRole = (String) checkSession.getAttribute("userRole");
 
@@ -43,22 +44,21 @@ public class AuthenticationService implements AuthenticationServiceInterface {
 
         log.info("Request parameter: login --> " + login);
 
-//        User user;
-//        if (userRepository.findUserByLogin(login).isPresent()) {
-//            user = userRepository.findUserByLogin(login).get();
-//            log.trace("Found in DB: user --> " + user);
-//        } else {
-//            throw new InvalidDataException("Cannot find user with such login");
-//        }
+        User user;
+        if (userRepository.findUserByLogin(login).isPresent()) {
+            user = userRepository.findUserByLogin(login).get();
+            log.trace("Found in DB: user --> " + user);
+        } else {
+            throw new InvalidDataException("Cannot find user with such login");
+        }
 
-//        String userRole = user.getRole();
-//
-//        if (userRole.equals("ADMIN")) {
-//            forward = "/admin/listAccounts";
-//        } else if (userRole.equals("USER")) {
-//            forward = "/user/userActivities";
-//        }
-//        setUserToSession(session, user, userRole);
+        String userRole = user.getRole();
+        if (userRole.equals("HOST")) {
+            forward = "/host/info";
+        } else if (userRole.equals("OWNER")) {
+            forward = "/owner/info";
+        }
+        setUserToSession(session, user, userRole);
 
         return request.getContextPath() + forward;
     }
@@ -79,30 +79,30 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         log.trace("Request parameter: email --> " + email);
         log.trace("Request parameter: password_confirm --> " + password_confirm);
 
-        if (!validateData(login, password, email, password_confirm))
-            throw new InvalidDataException("Input data is invalid or empty");
+//        if (!validateData(login, password, email, password_confirm))
+//            throw new InvalidDataException("Input data is invalid or empty");
 
+        User user;
+        if (userRepository.findUserByLogin(login).isPresent()) {
+            user = userRepository.findUserByLogin(login).get();
+            log.trace("Found in DB: user --> " + user);
+        }else{
+            user = null;
+        }
 
-//        User user;
-//        if (userRepository.findUserByLogin(login).isPresent()) {
-//            user = userRepository.findUserByLogin(login).get();
-//            log.trace("Found in DB: user --> " + user);
-//        } else {
-//            throw new InvalidDataException("Cannot find user with such login");
-//        }
-
-//        if (!user.getEmail().equals(email)) {
-//            throw new InvalidDataException("User with this login is already registered");
-//        } else {
-//
-//            String bcryptHashString = passwordEncoder.encode(password);
-//            User insertUser = User.createUser(login, email, bcryptHashString);
-//            User result = userRepository.save(insertUser);
-//            System.out.println("result ->" + result);
-//        }
+        if (user != null && !user.getEmail().equals(email)) {
+            throw new InvalidDataException("User with this login is already registered");
+        } else {
+            String bcryptHashString = passwordEncoder.encode(password);
+            User insertUser = User.createUser(login, email, bcryptHashString);
+            User result = userRepository.save(insertUser);
+            //TODO - add new owner or host to table
+            System.out.println("result ->" + result);
+        }
     }
 
     static void setUserToSession(HttpSession session, User insertUser, String userRole) {
+        //TODO - save only user id in session (for next queries)
         session.setAttribute("user", insertUser);
         session.setAttribute("userRole", userRole);
         log.info("User " + insertUser + " logged as " + userRole.toLowerCase());

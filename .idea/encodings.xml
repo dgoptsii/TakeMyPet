@@ -22,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/services/HostService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/services/OwnerService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/services/PaginationService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1251" />
   </component>
 </project>
