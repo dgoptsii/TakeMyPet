@@ -19,25 +19,25 @@ public class WebSecurityConfig
   private DataSource dataSource;
 
   @Bean
-  public BCryptPasswordEncoder bpasswordEncoder() {
+  public BCryptPasswordEncoder passwordEncoder() {
 
     return new BCryptPasswordEncoder();
   }
 
   @Override
   public void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication()
-            .withUser("owner").password(bpasswordEncoder().encode("ownerPass")).roles("OWNER")
-            .and()
-            .withUser("host").password(bpasswordEncoder().encode("hostPass")).roles("HOST");
-//    auth.jdbcAuthentication()
-//            .dataSource(dataSource)
-//            .usersByUsernameQuery(
-//                    "select login, password, 'true' from user " +
-//                            "where login=?")
-//            .authoritiesByUsernameQuery(
-//                    "select login, role from user " +
-//                            "where login=?");
+//    auth.inMemoryAuthentication()
+//            .withUser("owner").password(passwordEncoder().encode("ownerPass")).roles("OWNER")
+//            .and()
+//            .withUser("host").password(passwordEncoder().encode("hostPass")).roles("HOST");
+    auth.jdbcAuthentication()
+            .dataSource(dataSource)
+            .usersByUsernameQuery(
+                    "select login, password, 'true' from user " +
+                            "where login=?")
+            .authoritiesByUsernameQuery(
+                    "select login, role from user " +
+                            "where login=?");
   }
 
   @Override
@@ -45,13 +45,13 @@ public class WebSecurityConfig
     http
             .csrf().disable()
             .authorizeRequests()
-//            .antMatchers("/owner/**").hasRole("OWNER")
-//            .antMatchers("/host/**").hasRole("HOST")
+            .antMatchers("/owner/**").hasAuthority("OWNER")
+            .antMatchers("/host/**").hasAuthority("HOST")
             .antMatchers("/**").permitAll()
             .and()
             .formLogin()
             .loginPage("/login")
-            .defaultSuccessUrl("/hello")
+            .defaultSuccessUrl("/redirect_after_login")
             .permitAll();
 
   }

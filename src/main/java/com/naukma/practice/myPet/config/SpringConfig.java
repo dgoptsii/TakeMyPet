@@ -20,17 +20,6 @@ public class SpringConfig implements WebMvcConfigurer {
 //        return lci;
 //    }
 
-    @Bean
-    public DataSource getDataSource()
-    {
-        DriverManagerDataSource dataSourceBuilder = new DriverManagerDataSource();
-        dataSourceBuilder.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSourceBuilder.setUrl("jdbc:mysql://localhost:3306/myPet?serverTimezone=UTC");
-        dataSourceBuilder.setUsername("root");
-        dataSourceBuilder.setPassword("password");
-        return dataSourceBuilder;
-    }
-
 //    @Override
 //    public void addInterceptors(InterceptorRegistry registry) {
 //        registry.addInterceptor(localChangeInterceptor());
