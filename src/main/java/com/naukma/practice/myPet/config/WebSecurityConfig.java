@@ -45,8 +45,8 @@ public class WebSecurityConfig
     http
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/owner/**").hasRole("OWNER")
-            .antMatchers("/host/**").hasRole("HOST")
+//            .antMatchers("/owner/**").hasRole("OWNER")
+//            .antMatchers("/host/**").hasRole("HOST")
             .antMatchers("/**").permitAll()
             .and()
             .formLogin()
