@@ -21,13 +21,18 @@
         <div class="form-outline mb-4">
             <h3 class="d-flex justify-content-center">Log in</h3>
         </div>
-        <div class="form-group">
-            <input type="text" name="username" id="form1Example1" class="form-control" placeholder="Login" required/>
-        </div>
-        <div class="form-group">
-            <input type="password" name="password" id="form1Example2" class="form-control" placeholder="Password"
-                   required/>
-        </div>
+
+            <div class="form-group">
+                <input type="text" name="username" id="form1Example1" class="form-control" placeholder="Login"
+                       required/>
+            </div>
+
+
+            <div class="form-group">
+                <input type="password" name="password" id="form1Example2" class="form-control" placeholder="Password"
+                       required/>
+            </div>
+
         <%--    <div class="row mb-4">--%>
         <%--      <div class="col d-flex justify-content-center">--%>
         <%--        <div class="form-check">--%>
