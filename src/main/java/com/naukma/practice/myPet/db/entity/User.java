@@ -13,7 +13,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String login;
-    private String password;
+    private String pass;
     private String role;
     private String email;
 
@@ -22,11 +22,11 @@ public class User {
 
 
 
-    public static User createUser(String login, String email, String password) {
+    public static User createUser(String login, String email, String pass) {
         User user = new User();
         user.setLogin(login);
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPass(pass);
         user.setRole("USER");
 //        user.setAccess("disable");
         return user;
