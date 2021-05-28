@@ -22,6 +22,8 @@ public class Post {
     @JoinColumn(name = "animal_id")
     private Animal animal;
 
+
+    @Column(name="post_status_id")
     @Enumerated(EnumType.ORDINAL)
     private PostStatus status;
 

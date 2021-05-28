@@ -30,6 +30,8 @@ public class Contract {
     @JoinColumn(name = "animal_id")
     private Animal animal;
 
+
+    @Column(name="contract_status_id")
     @Enumerated(EnumType.ORDINAL)
     private UserStatus status;
 

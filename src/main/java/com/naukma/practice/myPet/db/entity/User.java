@@ -13,20 +13,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String login;
-    private String pass;
+    private String password;
     private String role;
     private String email;
 
+
+    @Column(name="user_status_id")
     @Enumerated(EnumType.ORDINAL)
     private UserStatus status;
 
 
 
-    public static User createUser(String login, String email, String pass) {
+    public static User createUser(String login, String email, String password) {
         User user = new User();
         user.setLogin(login);
         user.setEmail(email);
-        user.setPass(pass);
+        user.setPassword(password);
         user.setRole("USER");
 //        user.setAccess("disable");
         return user;
