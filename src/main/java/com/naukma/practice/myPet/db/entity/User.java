@@ -17,6 +17,11 @@ public class User {
     private String role;
     private String email;
 
+    @Enumerated(EnumType.ORDINAL)
+    private UserStatus status;
+
+
+
     public static User createUser(String login, String email, String password) {
         User user = new User();
         user.setLogin(login);

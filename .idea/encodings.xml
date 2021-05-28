@@ -8,10 +8,10 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/controllers/ErrorPageController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/controllers/MainController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/UserRepository.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Animal.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Contract.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Host.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Owner.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Pet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/Post.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/db/entity/User.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/naukma/practice/myPet/exceptions/GlobalExceptionHandlingControllerAdvice.java" charset="UTF-8" />

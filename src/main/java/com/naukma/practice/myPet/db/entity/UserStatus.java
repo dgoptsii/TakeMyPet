@@ -1,4 +1,5 @@
 package com.naukma.practice.myPet.db.entity;
 
-public class Pet {
+public enum UserStatus {
+    ACTIVE, BLOCKED
 }
