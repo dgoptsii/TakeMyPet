@@ -13,7 +13,17 @@
         <div class="form-outline mb-4">
             <h3 class="d-flex justify-content-center">Register</h3>
         </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <input type="text" name="login" id="lastname" class="form-control input-sm"
+                       placeholder="Last name" required>
 
+            </div>
+            <div class="form-group col-md-6">
+                <input type="text" name="login" id="firstname" class="form-control input-sm"
+                       placeholder="First name" required>
+            </div>
+        </div>
         <div class="form-group">
             <input type="text" name="login" id="login" class="form-control input-sm"
                    placeholder="Login" required>
@@ -24,20 +34,25 @@
                    placeholder="Email" required>
         </div>
             <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radios" id="exampleRadios1" value="host" checked>
-                    <label class="form-check-label">
-                        Host
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radios" id="exampleRadios2" value="owner">
-                    <label class="form-check-label">
-                        Owner
-                    </label>
-                </div>
+                <input type="email" name="address" id="address" class="form-control input-sm"
+                       placeholder="Address" required>
             </div>
+
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radios" id="exampleRadios1" value="host" checked>
+                <label class="form-check-label">
+                    Host
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radios" id="exampleRadios2" value="owner">
+                <label class="form-check-label">
+                    Owner
+                </label>
+            </div>
+        </div>
 
         <div class="row">
             <div class="form-group col-md-6">
