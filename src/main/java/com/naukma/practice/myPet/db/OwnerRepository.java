@@ -1,7 +1,6 @@
 package com.naukma.practice.myPet.db;
 
 import com.naukma.practice.myPet.db.entity.Owner;
-import com.naukma.practice.myPet.db.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public interface OwnerRepository extends JpaRepository<Owner, Long> {
     @Override
     Optional<Owner> findById(Long id);
 
-    Optional<Owner> findUserByLogin(String login);
+    Optional<Owner> findByLogin(String login);
 
     @Override
     List<Owner> findAll();

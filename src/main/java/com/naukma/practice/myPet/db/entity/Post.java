@@ -23,8 +23,8 @@ public class Post {
     private Animal animal;
 
 
-    @Column(name="post_status_id")
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name="post_status")
+    @Enumerated(EnumType.STRING)
     private PostStatus status;
 
 

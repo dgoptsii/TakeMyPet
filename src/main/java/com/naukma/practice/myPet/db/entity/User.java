@@ -18,8 +18,8 @@ public class User {
     private String email;
 
 
-    @Column(name="user_status_id")
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name="user_status")
+    @Enumerated(EnumType.STRING)
     private UserStatus status;
 
 
