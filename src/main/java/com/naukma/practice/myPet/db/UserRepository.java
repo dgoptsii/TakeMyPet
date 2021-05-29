@@ -2,6 +2,7 @@ package com.naukma.practice.myPet.db;
 
 
 import com.naukma.practice.myPet.db.entity.User;
+import com.naukma.practice.myPet.db.entity.UserStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -24,6 +25,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Override
     List<User> findAll();
+
+    Optional<User> findDistinctByIdAndStatus(Long id, UserStatus status);
 
 //    Integer countById();
 

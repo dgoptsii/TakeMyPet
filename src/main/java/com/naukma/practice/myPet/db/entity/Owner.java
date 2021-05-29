@@ -18,6 +18,18 @@ public class Owner {
     private String surname;
     private String phone;
 
+    private String city;
+    private String country;
+
+    public static Owner createOwner(String login, String name, String surname, String phone) {
+        Owner owner = new Owner();
+        owner.setLogin(login);
+        owner.setName(name);
+        owner.setSurname(surname);
+        owner.setPhone(phone);
+        return owner;
+    }
+
 
 
 }

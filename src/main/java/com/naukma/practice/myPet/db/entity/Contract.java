@@ -31,8 +31,8 @@ public class Contract {
     private Animal animal;
 
 
-    @Column(name="contract_status_id")
-    @Enumerated(EnumType.ORDINAL)
-    private UserStatus status;
+    @Column(name="contract_status")
+    @Enumerated(EnumType.STRING)
+    private ContractStatus status;
 
 }
