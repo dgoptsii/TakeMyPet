@@ -11,7 +11,7 @@
           action="${pageContext.request.contextPath}/registration" method="post" class=" pt-5">
         <%--    onsubmit="return validate(this);">--%>
         <div class="form-outline mb-4">
-            <h3 class="d-flex justify-content-center">Register</h3>
+            <h3 class="d-flex justify-content-center">Registration</h3>
         </div>
         <div class="row">
             <div class="form-group col-md-6">
@@ -30,30 +30,43 @@
         </div>
 
         <div class="form-group">
+            <input type="text" name="telephone" id="telephone" class="form-control input-sm"
+                   placeholder="Telephone" required>
+        </div>
+        <div class="form-group">
             <input type="email" name="email" id="email" class="form-control input-sm"
                    placeholder="Email" required>
         </div>
-            <div class="form-group">
-                <input type="email" name="address" id="address" class="form-control input-sm"
-                       placeholder="Address" required>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <input type="text" name="country" id="country" class="form-control input-sm"
+                       placeholder="Country" required>
             </div>
-
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="radios" id="exampleRadios1" value="host" checked>
-                <label class="form-check-label">
-                    Host
-                </label>
-            </div>
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="radios" id="exampleRadios2" value="owner">
-                <label class="form-check-label">
-                    Owner
-                </label>
+            <div class="form-group col-md-6">
+                <input type="text" name="city" id="city" class="form-control input-sm"
+                       placeholder="City" required>
             </div>
         </div>
 
+        <div class="row">
+            <div class="form-group col-md-6 text-right">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radios" id="exampleRadios1" value="host" checked>
+                    <label class="form-check-label">
+                        Host
+                    </label>
+
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radios" id="exampleRadios2" value="owner">
+                    <label class="form-check-label">
+                        Owner
+                    </label>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="form-group col-md-6">
                 <input type="password" name="password" id="password" class="form-control input-sm"
