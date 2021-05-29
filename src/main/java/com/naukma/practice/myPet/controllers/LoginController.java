@@ -35,11 +35,6 @@ public class LoginController {
         response.sendRedirect(route);
     }
 
-    @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
-    public String hello() {
-        return "registration";
-    }
-
     @GetMapping(path = {"/login"})
     public String loginPage() {
         return "login";
