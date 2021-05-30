@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +17,11 @@
                 <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <h6 class="mt-2 mb-2 text-primary">List of contracts</h6>
                 </div>
+                <div>
+                    <c:forEach var="item" items="${contractsList}">
+                        <option value="${item.id}" ${ (animal==item.id) ? 'selected' : ''} >${item.name}</option>
+                    </c:forEach>
+                </div>
                 <div class="card">
                     <div class="card-header">
                         <h6 class="mb-2 text-primary">Contract</h6>
@@ -26,8 +31,9 @@
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                 <div class="form-col">
                                     <p><b>Owner:</b> Name Surname</p>
-                                    <p><b>Pet:</b><span> dog</span></p>
+                                    <p><b>Pet:</b><span>dog</span></p>
                                     <p><b>Status:</b>
+
                                         <span class="badge bg-info text-wrap" style="width: 5rem;">
                                             new
                                         </span>
@@ -36,6 +42,9 @@
                                         </span>
                                         <span class="badge bg-success text-wrap" style="width: 5rem;">
                                             in process
+                                        </span>
+                                        <span class="badge bg-success text-wrap" style="width: 5rem;">
+                                            waiting
                                         </span>
                                         <span class="badge bg-secondary text-wrap" style="width: 5rem;">
                                             ended
