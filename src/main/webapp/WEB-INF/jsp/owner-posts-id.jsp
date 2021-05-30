@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="mb-2 text-right">
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-primary mx-1 mt-1">Reserve</button></a>
+                                    <a href="/owner/createContract/${post.id}"><button type="button" id="submit" name="submit" class="btn btn-primary mx-1 mt-1">Reserve</button></a>
                                 </div>
                             </div>
                         </div>
