@@ -1,6 +1,8 @@
 package com.naukma.practice.myPet.db;
 
 import com.naukma.practice.myPet.db.entity.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -13,6 +15,14 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Override
     Optional<Post> findById(Long id);
 
+    @Override
+    Page<Post> findAll(Pageable pageable);
+
+    Page<Post> findDistinctByAnimalId(Long animal_id, Pageable pageable);
+
+    Page<Post> findDistinctByAnimalIdAndMaxDaysGreaterThanEqual(Long animal_id, Integer maxDays, Pageable pageable);
+
+    Page<Post> findByMaxDaysGreaterThanEqual(Integer maxDays, Pageable pageable);
 
     List<Post> findAllPostsByAnimal(Animal animal);
 
@@ -20,6 +30,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findAllDistinctByStatus(PostStatus status);
 
-    @Override
+//    @Override
     List<Post> findAll();
 }

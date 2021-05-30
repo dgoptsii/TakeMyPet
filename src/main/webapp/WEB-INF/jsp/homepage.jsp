@@ -198,14 +198,14 @@ p{
             <div class="row text-center">
                 <div class="col" >
                     <p class="text-muted d-flex justify-content-center" >New here?</p>
-                    <button  id="register" type="submit" class="btn btn-success" style="width:50%;
-                     min-width:100px; min-height:25px; height:70%; "><i class="fa fa-user-plus"></i> Register</button>
+                    <a href="/registration">   <button  id="register" type="submit" class="btn btn-success" style="width:50%;
+                     min-width:100px; min-height:25px; height:70%; "><i class="fa fa-user-plus"></i> Register</button></a>
 
                 </div>
                 <div class="col">
                     <p class="text-muted d-flex justify-content-center" >Already have an account?</p>
-                    <button  id="login" type="submit" class="btn btn-success" style="width:50%;
-                     min-width:100px; min-height:25px; height:70%; "><i class="fa fa-user"></i> Login</button>
+                  <a href="/login"> <button  id="login" type="submit" class="btn btn-success" style="width:50%;
+                     min-width:100px; min-height:25px; height:70%; "><i class="fa fa-user"></i> Login</button></a>
                 </div>
             </div>
         </div>
