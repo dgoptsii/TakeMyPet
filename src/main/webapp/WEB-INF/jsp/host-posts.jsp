@@ -18,41 +18,55 @@
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3 mt-3">
                         <div class="text-center">
-                            <button type="button" id="submit" name="submit" class="btn btn-primary">+ Add post</button>
+                            <button type="button" id="submit" name="submit" class="btn btn-success">+ Add post</button>
                         </div>
                     </div>
                     <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h6 class="mt-2 mb-2 text-primary">List of posts</h6>
+                     <b> <h6 class="mt-2 mb-2 text-success">List of posts</h6></b>
                     </div>
                 </div>
 <%--              =====================================.--%>
+                <c:set var="count1" value="0" scope="page" />
+                <c:set var="count2" value="0" scope="page" />
                 <c:forEach var="item" items="${postsList}">
                 <div class="card">
 
                     <div class="card-header">
-                        <h6 class="mb-2 text-primary">Post</h6>
+                        <b>    <h6 class="mb-2 text-success">Post</h6></b>
                     </div>
                     <div class="card-body">
                         <div class="row g-2">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <span>Pet: cat</span>
+                                <p><b>Pet:</b><span> <c:out value="${item.animal.name}"/></span></p>
                             </div>
                             <div class="text-right col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-outline-success active">
-                                      <input type="radio" name="options" id="option1" autocomplete="off" checked>Active
-                                    </label>
-                                    <label class="btn btn-outline-danger">
-                                      <input type="radio" name="options" id="option2" autocomplete="off">Passive
-                                    </label>
-                                </div>
-                            </div>
+
+    <c:choose>
+        <c:when test="${item.status =='ACTIVE'}">
+        <input class="btn btn btn-success actionUser"
+               type="button"
+               data-toggle="modal" data-target="#edit-file-modal"
+               id="delete_button"
+               name="${item.id}"
+               value="Active">
+
+        </c:when>
+        <c:otherwise>
+            <input class="btn btn-secondary actionUser"
+                   type="button"
+                   data-toggle="modal" data-target="#edit-file-modal"
+                   id="delete_button"
+                   name="${item.id}"
+                   value="Blocked">
+        </c:otherwise>
+    </c:choose>
+                        </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <span>Term: 5 days</span>
+                                <p><b>Term:</b><span> <c:out value="${item.maxDays}"/> days</span></p>
                             </div>
                             <div class="text-right col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <a href="#"><button type="button" id="edit_b" name="submit" class="btn btn-primary mx-1 mt-1">Edit</button></a>
-                                <a href="#"><button type="button" id="delete_b" name="submit" class="btn btn-danger mx-1 mt-1">Delete</button></a>
+                                <a href="#"><button type="button" id="edit_b" name="submit" class="btn btn-warning mr-1 mt-1">Edit</button></a>
+                                <a href="#"><button type="button" id="delete_b" name="submit" class="btn btn-danger mt-1">Delete</button></a>
                             </div>
                         </div>
                     </div>
