@@ -1,9 +1,13 @@
 package com.naukma.practice.myPet.controllers;
 
+import com.naukma.practice.myPet.db.ContractRepository;
 import com.naukma.practice.myPet.db.DTO.HostDTO;
 import com.naukma.practice.myPet.db.HostRepository;
+import com.naukma.practice.myPet.db.PostRepository;
 import com.naukma.practice.myPet.db.UserRepository;
+import com.naukma.practice.myPet.db.entity.Contract;
 import com.naukma.practice.myPet.db.entity.Host;
+import com.naukma.practice.myPet.db.entity.Post;
 import com.naukma.practice.myPet.db.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @Controller
@@ -26,6 +31,12 @@ public class HostController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
+
+    @Autowired
+    private ContractRepository contractRepository;
 
     @GetMapping(path = {"/profile"})
     public String hostProfilePage(Model model,  HttpServletRequest request){
@@ -45,9 +56,16 @@ public class HostController {
         return "host-profile-edit";
     }
 
+
     @GetMapping(path = {"/posts"})
-    public String hostPostsPage(){
-        log.info("host posts");
+    public String hostPostsPage(Model model){
+       List<Post> posts = postRepository.findAll();
+        System.out.println(posts.toString());
+        if(posts.size()==0){
+            model.addAttribute("message","Oops. No posts...");
+        }else{
+            model.addAttribute("postsList",posts);
+        }
         return "host-posts";
     }
 
@@ -64,10 +82,18 @@ public class HostController {
     }
 
     @GetMapping(path = {"/contracts"})
-    public String hostContractsPage(){
+    public String hostContractsPage(Model model){
         log.info("host contracts");
+        List<Contract> contracts = contractRepository.findAll();
+        System.out.println(contracts.toString());
+        if(contracts.size()==0){
+            model.addAttribute("message","Oops. No contracts...");
+        }else{
+            model.addAttribute("contractsList",contracts);
+        }
         return "host-contracts";
     }
+
 
     @GetMapping(path = {"/contracts/{id}"})
     public String hostContractsIdPage(@PathVariable Long id){
