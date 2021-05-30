@@ -23,6 +23,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findUserByLogin(String login);
 
+    Optional<User> findUserByEmail(String email);
+
     @Override
     List<User> findAll();
 

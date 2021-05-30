@@ -21,25 +21,28 @@ public class Host {
     private String city;
     private String country;
     private String address;
-    private Double rating;
+    private Double rating = 0.0;
 
     @Column(name="max_animals")
-    private Integer maxAnimals;
+    private Integer maxAnimals = 1;
     private String phone;
 
 
-    public static Host createHost(String login, String name, String surname, String address, String country, String city,
-                                  Double rating, Integer maxAnimals, String phone) {
+    public static Host createHost(String login, String name, String surname,
+                                  String country, String city,
+                                  String phone
+//                                  Double rating, Integer maxAnimals, String address,
+                                  ) {
         Host host = new Host();
         host.setLogin(login);
         host.setName(name);
         host.setSurname(surname);
         host.setCountry(country);
         host.setCity(city);
-        host.setAddress(address);
 
-        host.setRating(rating);
-        host.setMaxAnimals(maxAnimals);
+//        host.setAddress(address);
+//        host.setRating(rating);
+//        host.setMaxAnimals(maxAnimals);
         host.setPhone(phone);
         return host;
     }

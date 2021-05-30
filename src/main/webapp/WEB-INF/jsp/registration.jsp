@@ -8,19 +8,19 @@
 <%@ include file="/WEB-INF/jspf/simple-nav.jspf" %>
 <div class=" pt-5 d-flex justify-content-center">
     <form role="form" id="registration_form" name="registration_form"
-          action="${pageContext.request.contextPath}/registration" method="post" class=" pt-5">
+          action="${pageContext.request.contextPath}/registration" method="POST" class=" pt-5">
         <%--    onsubmit="return validate(this);">--%>
         <div class="form-outline mb-4">
             <h3 class="d-flex justify-content-center">Registration</h3>
         </div>
         <div class="row">
             <div class="form-group col-md-6">
-                <input type="text" name="login" id="lastname" class="form-control input-sm"
+                <input type="text" name="surname" id="lastname" class="form-control input-sm"
                        placeholder="Last name" required>
 
             </div>
             <div class="form-group col-md-6">
-                <input type="text" name="login" id="firstname" class="form-control input-sm"
+                <input type="text" name="name" id="firstname" class="form-control input-sm"
                        placeholder="First name" required>
             </div>
         </div>
@@ -51,7 +51,7 @@
         <div class="row">
             <div class="form-group col-md-6 text-right">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radios" id="exampleRadios1" value="host" checked>
+                    <input class="form-check-input" type="radio" name="radios" id="exampleRadios1" value="HOST" checked>
                     <label class="form-check-label">
                         Host
                     </label>
@@ -60,7 +60,7 @@
             </div>
             <div class="form-group col-md-6">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radios" id="exampleRadios2" value="owner">
+                    <input class="form-check-input" type="radio" name="radios" id="exampleRadios2" value="OWNER">
                     <label class="form-check-label">
                         Owner
                     </label>

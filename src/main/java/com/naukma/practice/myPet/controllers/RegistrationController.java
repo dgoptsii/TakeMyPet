@@ -38,15 +38,26 @@ public class RegistrationController {
                                @RequestParam(name = "password") String password,
                                @RequestParam(name = "email") String email,
                                @RequestParam(name = "password_confirmation") String password_confirm,
+
+                               @RequestParam(name = "name") String name,
+                               @RequestParam(name = "surname") String surname,
+                               @RequestParam(name = "telephone") String telephone,
+                               @RequestParam(name = "country") String country,
+                               @RequestParam(name = "city") String city,
+                               @RequestParam(name = "radios") String role,
+
                                HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String role = Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication().
-                getAuthorities().stream().
-                findAny().orElse(null)).
-                toString();
+//        String springRole = Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication().
+//                getAuthorities().stream().
+//                findAny().orElse(null)).
+//                toString();
 
-        System.out.println(role);
-        serviceInterface.registrationUser(login, password, email, password_confirm, request);
+//        System.out.println(springRole+" "+role);
+
+        serviceInterface.registrationUser(login, password, email, password_confirm,
+                                                name,surname,telephone,country,city,role,
+                                                      request);
 
         System.out.println("registration done");
         response.sendRedirect(request.getContextPath() + "/login");

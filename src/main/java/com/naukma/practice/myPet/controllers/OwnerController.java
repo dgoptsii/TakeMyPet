@@ -1,19 +1,39 @@
 package com.naukma.practice.myPet.controllers;
 
+import com.naukma.practice.myPet.db.DTO.OwnerDTO;
+import com.naukma.practice.myPet.db.OwnerRepository;
+import com.naukma.practice.myPet.db.UserRepository;
+import com.naukma.practice.myPet.db.entity.Owner;
+import com.naukma.practice.myPet.db.entity.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Slf4j
 @RequestMapping("owner")
 public class OwnerController {
 
+    @Autowired
+    private OwnerRepository ownerRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping(path = {"/profile"})
-    public String ownerProfilePage(){
-        log.info("owner profile");
+    public String ownerProfilePage(Model model, HttpServletRequest request){
+
+        String login = (String) request.getSession().getAttribute("userLogin");
+//        System.out.println(login);
+        Owner owner = ownerRepository.findOwnerByLogin(login).get();
+        User user = userRepository.findUserByLogin(login).get();
+        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner,user));
         return "owner-profile";
     }
 

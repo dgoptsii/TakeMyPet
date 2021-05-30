@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +10,8 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/owner-profile-nav.jspf" %>
+
+<c:set var="owner" value="${ownerInfo}"/>
 
     <div class="container">
         <div class="row gutters d-flex justify-content-center">
@@ -22,31 +25,31 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="name"><b>Name</b></label>
-                            <p class="form-control-static" id="name">name</p>
+                            <p class="form-control-static" id="name"><c:out value="${owner.name}"/></p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="surname"><b>Surname</b></label>
-                            <p class="form-control-static" id="surname">surname</p>
+                            <p class="form-control-static" id="surname"><c:out value="${owner.surname}"/></p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="email"><b>E-mail</b></label>
-                            <p class="form-control-static" id="email">example@gmail.com</p>
+                            <p class="form-control-static" id="email"><c:out value="${owner.email}"/></p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="phome"><b>Phone</b></label>
-                            <p class="form-control-static" id="phone">000-000-000</p>
+                            <label for="phone"><b>Phone</b></label>
+                            <p class="form-control-static" id="phone"><c:out value="${owner.phone}"/></p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="login"><b>Address</b></label>
-                            <p class="form-control-static" id="login">address</p>
+                            <label for="address"><b>Address</b></label>
+                            <p class="form-control-static" id="address"><c:out value="${owner.city}"/>, <c:out value="${owner.country}"/></p>
                         </div>
                     </div>
                 </div>

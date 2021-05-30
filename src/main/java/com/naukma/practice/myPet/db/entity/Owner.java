@@ -21,12 +21,16 @@ public class Owner {
     private String city;
     private String country;
 
-    public static Owner createOwner(String login, String name, String surname, String phone) {
+    public static Owner createOwner(String login, String name, String surname,
+                                   String country, String city,
+                                   String phone) {
         Owner owner = new Owner();
         owner.setLogin(login);
         owner.setName(name);
         owner.setSurname(surname);
         owner.setPhone(phone);
+        owner.setCountry(country);
+        owner.setCity(city);
         return owner;
     }
 

@@ -19,18 +19,19 @@ public class User {
 
 
     @Column(name="user_status")
-    @Enumerated(EnumType.STRING)
-    private UserStatus status;
+    private String status = "ACTIVE";
+//    @Enumerated(EnumType.STRING)
+//    private UserStatus status;
 
 
 
-    public static User createUser(String login, String email, String password) {
+    public static User createUser(String login, String email, String password,String role) {
         User user = new User();
         user.setLogin(login);
         user.setEmail(email);
         user.setPassword(password);
-        user.setRole("USER");
-//        user.setAccess("disable");
+        user.setRole(role);
+//        user.setStatus("ACTIVE");
         return user;
     }
 }

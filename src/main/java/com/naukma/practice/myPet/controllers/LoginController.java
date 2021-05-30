@@ -25,12 +25,12 @@ public class LoginController {
 
         String name = Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getName();
 
-        String role = Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication().
-                getAuthorities().stream().
-                findAny().orElse(null)).
-                toString();
-
-        System.out.println(role);
+//        String role = Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication().
+//                getAuthorities().stream().
+//                findAny().orElse(null)).
+//                toString();
+//
+//        System.out.println(role);
         String route = service.loginUser(name, request);
         response.sendRedirect(route);
     }

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +10,8 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
+
+    <c:set var="host" value="${hostInfo}"/>
 
     <div class="container">
         <div class="row gutters d-flex justify-content-center">
@@ -22,37 +25,37 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="name"><b>Name</b></label>
-                            <p class="form-control-static" id="name">name</p>
+                            <p class="form-control-static" id="name"><c:out value="${host.name}"/> </p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="surname"><b>Surname</b></label>
-                            <p class="form-control-static" id="surname">surname</p>
+                            <p class="form-control-static" id="surname"><c:out value="${host.surname}"/></p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="email"><b>E-mail</b></label>
-                            <p class="form-control-static" id="email">example@gmail.com</p>
+                            <p class="form-control-static" id="email"><c:out value="${host.email}"/></p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="phone"><b>Phone</b></label>
-                            <p class="form-control-static" id="phone">000-000-000</p>
+                            <p class="form-control-static" id="phone"><c:out value="${host.phone}"/></p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="login"><b>Login</b></label>
-                            <p class="form-control-static" id="login">login</p>
+                            <p class="form-control-static" id="login"><c:out value="${host.login}"/></p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="address"><b>Address</b></label>
-                            <p class="form-control-static" id="address">Kyiv, Ukraine</p>
+                            <p class="form-control-static" id="address"><c:out value="${host.city}"/>, <c:out value="${host.country}"/></p>
                         </div>
                     </div>
                 </div>
@@ -63,12 +66,12 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="numPets"><b>Max number of pets hosted together</b></label>
-                            <p class="form-control-static" id="numPets">3</p>
+                            <p class="form-control-static" id="numPets"><c:out value="${host.maxAnimals}"/></p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="rating"><b>Rating: 3,3</b></label>
+                            <label for="rating"><b>Rating: <c:out value="${host.rating}"/></b></label>
                             <div class="form-control-static">
                                 <i class="text-warning fa fa-star"></i>
                                 <i class="text-warning fa fa-star"></i>
