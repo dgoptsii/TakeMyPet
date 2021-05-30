@@ -13,7 +13,6 @@
 
 <div class="container">
 
-
     <div class="row gutters d-flex justify-content-center">
 
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
@@ -21,7 +20,6 @@
             <form id="request"
                   action="${pageContext.request.contextPath}/owner/posts?page=${currentPage}&animal=${animal}&maxDays=${maxDays}">
                 <div class="row gutters row row-cols-1 row-cols-sm-2 row-cols-md-4">
-
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="petCategory">Pet</label>
@@ -123,7 +121,6 @@
                                     </div>
                                 </div>
                             </c:forEach>
-
                             <nav aria-label="Navigation for admin">
                                 <ul class="pagination">
                                     <c:if test="${currentPage != 1}">

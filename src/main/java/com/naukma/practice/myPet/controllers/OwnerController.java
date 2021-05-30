@@ -182,6 +182,7 @@ public class OwnerController {
         return true;
     }
 
+    //TODO CORRECT RETURN TYPE,ADD STATUS WINDOW
     @SneakyThrows
     @PostMapping(path = {"/createContract/{id}"})
     public void ownerCreateContractAction(@RequestParam(name = "startDate") String startDate,
@@ -221,13 +222,33 @@ public class OwnerController {
 
 
     @GetMapping(path = {"/contracts"})
-    public String ownerContractsPage(Model model) {
-        List<Contract> contracts = contractRepository.findAll();
-        System.out.println(contracts.toString());
-        if (contracts.size() == 0) {
-            model.addAttribute("message", "Oops. No contracts...");
-        } else {
-            model.addAttribute("contractsList", contracts);
+    public String ownerContractsPage(@RequestParam(defaultValue = "0") int page,
+                                     @RequestParam(defaultValue = "3") int size,
+                                     Model model, HttpServletRequest request) throws Exception {
+        String login = (String) request.getSession().getAttribute("userLogin");
+        if (page > 0) {
+            page -= 1;
+        }
+        try {
+            List<Contract> contracts;
+            Pageable paging = PageRequest.of(page, size);
+
+            Page<Contract> pageContracts = null;
+            pageContracts = contractRepository.findAllByOwnerLogin(login,paging);
+
+            contracts = pageContracts.getContent();
+            if (contracts.size() == 0) {
+                model.addAttribute("message", "Oops. No contracts...");
+            } else {
+                model.addAttribute("contractsList", contracts);
+            }
+            model.addAttribute("currentPage", page + 1);
+            model.addAttribute("totalItems", pageContracts.getTotalElements());
+            model.addAttribute("totalPages", pageContracts.getTotalPages());
+
+        } catch (Exception e) {
+            //TODO add custom exception
+            throw new Exception("ERROR");
         }
         return "owner-contracts";
     }
