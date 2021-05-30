@@ -12,14 +12,26 @@ import com.naukma.practice.myPet.db.entity.User;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -55,14 +67,58 @@ public class OwnerController {
     }
 
     @GetMapping(path = {"/posts"})
-    public String ownerPostsPage(Model model){
-        List<Post> posts = postRepository.findAll();
-        System.out.println(posts.toString());
-        if(posts.size()==0){
-            model.addAttribute("message","Oops. No posts...");
-        }else{
-            model.addAttribute("postsList",posts);
+    public String ownerPostsPage(@RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(defaultValue = "3") int size,
+                                 @RequestParam(defaultValue = "0", name = "animal") String animal,
+                                 @RequestParam(defaultValue = "0", name = "maxDays") String maxDaysId,
+                                 Model model) throws Exception {
+        if (page > 0) {
+            page -= 1;
         }
+        long animalId = Long.parseLong(animal);
+        int maxDays = Integer.parseInt(maxDaysId);
+
+        System.out.println("maxDays " + maxDays);
+        try {
+            List<Post> posts;
+            Pageable paging = PageRequest.of(page, size);
+
+            Page<Post> pagePosts;
+
+            if (animalId != 0 && maxDays != 0) {
+                pagePosts = postRepository.findDistinctByAnimalIdAndMaxDaysGreaterThanEqual(animalId, maxDays, paging);
+            } else if (animalId != 0){
+                pagePosts = postRepository.findDistinctByAnimalId(animalId, paging);
+            } else if (maxDays != 0) {
+                pagePosts = postRepository.findByMaxDaysGreaterThanEqual(maxDays, paging);
+            } else {
+                pagePosts = postRepository.findAll(paging);
+            }
+
+            posts = pagePosts.getContent();
+            if (posts.size() == 0) {
+                model.addAttribute("message", "Oops. No results founded ...");
+            } else {
+                model.addAttribute("posts", posts);
+            }
+            model.addAttribute("currentPage", page + 1);
+            model.addAttribute("animal", animal);
+            model.addAttribute("maxDays", maxDays);
+            model.addAttribute("totalItems", pagePosts.getTotalElements());
+            model.addAttribute("totalPages", pagePosts.getTotalPages());
+
+        } catch (Exception e) {
+            //TODO add custom exception
+            throw new Exception("ERROR");
+        }
+
+//        List<Post> posts = postRepository.findAll();
+//        System.out.println(posts.toString());
+//        if(posts.size()==0){
+//            model.addAttribute("message","Oops. No posts...");
+//        }else{
+//            model.addAttribute("postsList",posts);
+//        }
         return "owner-posts";
     }
 
