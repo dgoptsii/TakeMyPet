@@ -1,14 +1,8 @@
 package com.naukma.practice.myPet.controllers;
 
-import com.naukma.practice.myPet.db.ContractRepository;
+import com.naukma.practice.myPet.db.*;
 import com.naukma.practice.myPet.db.DTO.OwnerDTO;
-import com.naukma.practice.myPet.db.OwnerRepository;
-import com.naukma.practice.myPet.db.PostRepository;
-import com.naukma.practice.myPet.db.UserRepository;
-import com.naukma.practice.myPet.db.entity.Contract;
-import com.naukma.practice.myPet.db.entity.Owner;
-import com.naukma.practice.myPet.db.entity.Post;
-import com.naukma.practice.myPet.db.entity.User;
+import com.naukma.practice.myPet.db.entity.*;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -40,6 +35,9 @@ public class OwnerController {
 
     @Autowired
     private OwnerRepository ownerRepository;
+
+    @Autowired
+    private AnimalRepository animalRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -70,24 +68,30 @@ public class OwnerController {
     public String ownerPostsPage(@RequestParam(defaultValue = "0") int page,
                                  @RequestParam(defaultValue = "3") int size,
                                  @RequestParam(defaultValue = "0", name = "animal") String animal,
-                                 @RequestParam(defaultValue = "0", name = "maxDays") String maxDaysId,
-                                 Model model) throws Exception {
+                                 @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId,
+                                 Model model, HttpServletRequest request) throws Exception {
+
+        String login = (String) request.getSession().getAttribute("userLogin");
+        Owner owner = ownerRepository.findOwnerByLogin(login).get();
+
+        String city = owner.getCity();
+        String country = owner.getCountry();
+
         if (page > 0) {
             page -= 1;
         }
         long animalId = Long.parseLong(animal);
         int maxDays = Integer.parseInt(maxDaysId);
-
-        System.out.println("maxDays " + maxDays);
+//        System.out.println("maxDays " + maxDays);
         try {
             List<Post> posts;
             Pageable paging = PageRequest.of(page, size);
 
-            Page<Post> pagePosts;
+            Page<Post> pagePosts = null;
 
             if (animalId != 0 && maxDays != 0) {
-                pagePosts = postRepository.findDistinctByAnimalIdAndMaxDaysGreaterThanEqual(animalId, maxDays, paging);
-            } else if (animalId != 0){
+//                pagePosts = postRepository.findDistinctByAnimalIdAndMaxDaysGreaterThanEqual(animalId, maxDays, paging);
+            } else if (animalId != 0) {
                 pagePosts = postRepository.findDistinctByAnimalId(animalId, paging);
             } else if (maxDays != 0) {
                 pagePosts = postRepository.findByMaxDaysGreaterThanEqual(maxDays, paging);
@@ -95,17 +99,25 @@ public class OwnerController {
                 pagePosts = postRepository.findAll(paging);
             }
 
-            posts = pagePosts.getContent();
-            if (posts.size() == 0) {
-                model.addAttribute("message", "Oops. No results founded ...");
-            } else {
-                model.addAttribute("posts", posts);
-            }
-            model.addAttribute("currentPage", page + 1);
-            model.addAttribute("animal", animal);
-            model.addAttribute("maxDays", maxDays);
-            model.addAttribute("totalItems", pagePosts.getTotalElements());
-            model.addAttribute("totalPages", pagePosts.getTotalPages());
+                posts = pagePosts.getContent();
+
+                if (posts.size() == 0) {
+                    model.addAttribute("message", "Oops. No results founded ...");
+                } else {
+                    posts = posts
+                            .stream()
+                            .filter(p -> p.getHost().getCity().equals(city)
+                                    && p.getHost().getCountry().equals(country))
+                            .collect(Collectors.toList());
+                    model.addAttribute("posts", posts);
+                }
+
+                model.addAttribute("currentPage", page + 1);
+                model.addAttribute("animals", animalRepository.findAll());
+                model.addAttribute("animal", animal);
+                model.addAttribute("maxDays", maxDays);
+                model.addAttribute("totalItems", pagePosts.getTotalElements());
+                model.addAttribute("totalPages", pagePosts.getTotalPages());
 
         } catch (Exception e) {
             //TODO add custom exception
