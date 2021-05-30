@@ -2,11 +2,9 @@ package com.naukma.practice.myPet.controllers;
 
 import com.naukma.practice.myPet.db.*;
 import com.naukma.practice.myPet.db.DTO.OwnerDTO;
-import com.naukma.practice.myPet.db.entity.Contract;
-import com.naukma.practice.myPet.db.entity.Owner;
-import com.naukma.practice.myPet.db.entity.Post;
-import com.naukma.practice.myPet.db.entity.User;
+import com.naukma.practice.myPet.db.entity.*;
 import javassist.NotFoundException;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -77,7 +75,7 @@ public class OwnerController {
         }
         long animalId = Long.parseLong(animal);
         int maxDays = Integer.parseInt(maxDaysId);
-//        System.out.println("maxDays " + maxDays);
+
         try {
             List<Post> posts;
             Pageable paging = PageRequest.of(page, size);
@@ -123,7 +121,6 @@ public class OwnerController {
     }
 
 
-
     @GetMapping(path = {"/posts/{id}"})
     public String ownerPostsIdPage(@PathVariable Long id, Model model) throws NotFoundException {
         Post post;
@@ -138,8 +135,6 @@ public class OwnerController {
     }
 
 
-
-
     @GetMapping(path = {"/createContract/{id}"})
     public String ownerCreateContractPage(@PathVariable Long id, Model model) throws NotFoundException {
         log.info("owner create contract " + id);
@@ -152,26 +147,6 @@ public class OwnerController {
         }
         model.addAttribute("postInfo", post);
         return "owner-create-contract";
-    }
-
-    @PostMapping(path = {"/createContract/{id}"})
-    public void ownerCreateContractAction(@RequestParam(name = "startDate") String startDate,
-                                          @RequestParam(name = "endDate") String endDate,
-                                          @PathVariable Long id, Model model) throws NotFoundException {
-        log.info("test");
-        log.info("owner YRSY contract " + id);
-        log.info(startDate + " - " + endDate);
-        log.info(Date.valueOf(dateToFormat(startDate)) + " - " + Date.valueOf(dateToFormat(endDate)));
-        Post post;
-        if (postRepository.findById(id).isPresent()) {
-            post = postRepository.findById(id).get();
-        } else {
-            //TODO add custom exception
-            throw new NotFoundException("Error. Contract for not existing post! ");
-        }
-
-        model.addAttribute("postInfo", post);
-//        return "owner-create-contract";
     }
 
     private String dateToFormat(String date) {
@@ -190,6 +165,60 @@ public class OwnerController {
 
         return new StringBuilder(year).append('-').append(day).append('-').append(month).toString();
     }
+
+    private boolean countInter(List<Contract> list, Date start, Date end, int maxInter) {
+        int i = 0;
+        for (Contract c : list) {
+            if ((c.getStartDate().compareTo(start) <= 0 && c.getEndDate().compareTo(start) >= 0) ||
+                    (c.getStartDate().compareTo(end) <= 0 && c.getEndDate().compareTo(end) >= 0) ||
+                    (c.getStartDate().compareTo(start) >= 0 && c.getStartDate().compareTo(end) <= 0)) i++;
+
+            if (i > maxInter - 1) {
+                System.out.println("i: " + i);
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+    @SneakyThrows
+    @PostMapping(path = {"/createContract/{id}"})
+    public void ownerCreateContractAction(@RequestParam(name = "startDate") String startDate,
+                                          @RequestParam(name = "endDate") String endDate,
+                                          @PathVariable Long id,
+                                          Model model,HttpServletRequest request) throws NotFoundException {
+        log.info(Date.valueOf(dateToFormat(startDate)) + " - " + Date.valueOf(dateToFormat(endDate)));
+        Post post;
+        if (postRepository.findById(id).isPresent()) {
+            post = postRepository.findById(id).get();
+        } else {
+            //TODO add custom exception
+            throw new NotFoundException("Error. Contract for not existing post! ");
+        }
+
+        Date start = Date.valueOf(dateToFormat(startDate));
+        Date end = Date.valueOf(dateToFormat(endDate));
+        Host host = post.getHost();
+        //TODO check days number
+        List<Contract> list = contractRepository.findAllDistinctByHostAndEndDateAfterOrStartDateBefore(host, start, end);
+        System.out.println(list.toString());
+
+        if (countInter(list, start, end, host.getMaxAnimals())) {
+            String login = (String) request.getSession().getAttribute("userLogin");
+            Owner owner = ownerRepository.findOwnerByLogin(login).get();
+            Contract contract = Contract.createContract(post,owner,start, end);
+            Contract result = contractRepository.save(contract);
+            System.out.println(result);
+        } else{
+            //TODO add custom exception (errorSchedule)
+            throw new Exception("Maximum number of animals for this host. Please, select other dates.");
+        }
+
+        //model.addAttribute("postInfo", post);
+//        return "owner-create-contract";
+    }
+
 
     @GetMapping(path = {"/contracts"})
     public String ownerContractsPage(Model model) {
