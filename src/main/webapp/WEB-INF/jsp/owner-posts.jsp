@@ -72,8 +72,9 @@
 
             <div>
 
+
                 <c:choose>
-                    <c:when test="${(empty message)}">
+                    <c:when test="${(not empty message)}">
                         <p> ${message} </p>
                     </c:when>
 
