@@ -2,27 +2,25 @@ package com.naukma.practice.myPet.controllers;
 
 import com.naukma.practice.myPet.db.*;
 import com.naukma.practice.myPet.db.DTO.OwnerDTO;
-import com.naukma.practice.myPet.db.entity.*;
+import com.naukma.practice.myPet.db.entity.Contract;
+import com.naukma.practice.myPet.db.entity.Owner;
+import com.naukma.practice.myPet.db.entity.Post;
+import com.naukma.practice.myPet.db.entity.User;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.sql.Date;
 import java.util.List;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Controller
@@ -46,17 +44,17 @@ public class OwnerController {
     private ContractRepository contractRepository;
 
     @GetMapping(path = {"/profile"})
-    public String ownerProfilePage(Model model, HttpServletRequest request){
+    public String ownerProfilePage(Model model, HttpServletRequest request) {
 
         String login = (String) request.getSession().getAttribute("userLogin");
         Owner owner = ownerRepository.findOwnerByLogin(login).get();
         User user = userRepository.findUserByLogin(login).get();
-        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner,user));
+        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
         return "owner-profile";
     }
 
     @GetMapping(path = {"/profile/edit"})
-    public String ownerProfileEditPage(){
+    public String ownerProfileEditPage() {
         log.info("owner profile edit");
         return "owner-profile-edit";
     }
@@ -109,12 +107,12 @@ public class OwnerController {
                 model.addAttribute("posts", posts);
             }
 
-                model.addAttribute("currentPage", page + 1);
-                model.addAttribute("animals", animalRepository.findAll());
-                model.addAttribute("animal", animal);
-                model.addAttribute("maxDays", maxDays);
-                model.addAttribute("totalItems", pagePosts.getTotalElements());
-                model.addAttribute("totalPages", pagePosts.getTotalPages());
+            model.addAttribute("currentPage", page + 1);
+            model.addAttribute("animals", animalRepository.findAll());
+            model.addAttribute("animal", animal);
+            model.addAttribute("maxDays", maxDays);
+            model.addAttribute("totalItems", pagePosts.getTotalElements());
+            model.addAttribute("totalPages", pagePosts.getTotalPages());
 
         } catch (Exception e) {
             //TODO add custom exception
@@ -124,67 +122,90 @@ public class OwnerController {
         return "owner-posts";
     }
 
+
+
     @GetMapping(path = {"/posts/{id}"})
     public String ownerPostsIdPage(@PathVariable Long id, Model model) throws NotFoundException {
         Post post;
-        if(postRepository.findById(id).isPresent()){
+        if (postRepository.findById(id).isPresent()) {
             post = postRepository.findById(id).get();
-        }else{
+        } else {
             //TODO add custom exception
             throw new NotFoundException("Post with this id doesn't exist");
         }
-        model.addAttribute("postInfo",post);
+        model.addAttribute("postInfo", post);
         return "owner-posts-id";
     }
 
+
+
+
     @GetMapping(path = {"/createContract/{id}"})
-    public String ownerCreateContractPage(@PathVariable Long id,Model model) throws NotFoundException {
-        log.info("owner create contract "+id);
+    public String ownerCreateContractPage(@PathVariable Long id, Model model) throws NotFoundException {
+        log.info("owner create contract " + id);
         Post post;
-        if(postRepository.findById(id).isPresent()){
+        if (postRepository.findById(id).isPresent()) {
             post = postRepository.findById(id).get();
-        }else{
+        } else {
             //TODO add custom exception
             throw new NotFoundException("Error. Contract for not existing post! ");
         }
-        model.addAttribute("postInfo",post);
+        model.addAttribute("postInfo", post);
         return "owner-create-contract";
     }
 
     @PostMapping(path = {"/createContract/{id}"})
     public void ownerCreateContractAction(@RequestParam(name = "startDate") String startDate,
-                                            @RequestParam(name = "endDate") String endDate,
-                                            @PathVariable Long id,Model model) throws NotFoundException {
+                                          @RequestParam(name = "endDate") String endDate,
+                                          @PathVariable Long id, Model model) throws NotFoundException {
         log.info("test");
-        log.info("owner YRSY contract "+id);
-        log.info(startDate+" - "+endDate);
+        log.info("owner YRSY contract " + id);
+        log.info(startDate + " - " + endDate);
+        log.info(Date.valueOf(dateToFormat(startDate)) + " - " + Date.valueOf(dateToFormat(endDate)));
         Post post;
-        if(postRepository.findById(id).isPresent()){
+        if (postRepository.findById(id).isPresent()) {
             post = postRepository.findById(id).get();
-        }else{
+        } else {
             //TODO add custom exception
             throw new NotFoundException("Error. Contract for not existing post! ");
         }
 
-        model.addAttribute("postInfo",post);
+        model.addAttribute("postInfo", post);
 //        return "owner-create-contract";
     }
 
+    private String dateToFormat(String date) {
+
+        //05/31/2021
+        //2019-01-26
+        Pattern pattern = Pattern.compile("\\d{2,}");
+        Matcher matcher = pattern.matcher(date);
+
+        matcher.find();
+        String day = matcher.group();
+        matcher.find();
+        String month = matcher.group();
+        matcher.find();
+        String year = matcher.group();
+
+        return new StringBuilder(year).append('-').append(day).append('-').append(month).toString();
+    }
+
     @GetMapping(path = {"/contracts"})
-    public String ownerContractsPage(Model model){
+    public String ownerContractsPage(Model model) {
         List<Contract> contracts = contractRepository.findAll();
         System.out.println(contracts.toString());
-        if(contracts.size()==0){
-            model.addAttribute("message","Oops. No contracts...");
-        }else{
-            model.addAttribute("contractsList",contracts);
+        if (contracts.size() == 0) {
+            model.addAttribute("message", "Oops. No contracts...");
+        } else {
+            model.addAttribute("contractsList", contracts);
         }
         return "owner-contracts";
     }
 
     @GetMapping(path = {"/contracts/{id}"})
-    public String ownerContractsIdPage(@PathVariable int id){
-        log.info("owner contracts "+id);
+    public String ownerContractsIdPage(@PathVariable int id) {
+        log.info("owner contracts " + id);
         return "owner-contracts-id";
     }
 

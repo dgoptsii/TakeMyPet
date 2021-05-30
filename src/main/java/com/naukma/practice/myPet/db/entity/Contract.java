@@ -39,4 +39,20 @@ public class Contract {
     @Column(name="contract_status")
     private String status;
 
+    public static Contract createContract(Host host, Owner owner, Date startDate, Date endDate,
+                                          Integer days, Double rating, Animal animal){
+        Contract contract = new Contract();
+        contract.setOwner(owner);
+        contract.setHost(host);
+        contract.setStartDate(startDate);
+        contract.setEndDate(endDate);
+        contract.setDays(days);
+        contract.setRating(rating);
+        contract.setAnimal(animal);
+
+        return contract;
+
+
+    }
+
 }
