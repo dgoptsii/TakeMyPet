@@ -151,11 +151,11 @@ public class OwnerController {
         return "owner-create-contract";
     }
 
-    @GetMapping(path = {"/createNewContract/{id}"})
-    public String ownerCreateContractAction(@RequestParam(name = "startDate") String startDate,
+    @PostMapping(path = {"/createContract/{id}"})
+    public void ownerCreateContractAction(@RequestParam(name = "startDate") String startDate,
                                             @RequestParam(name = "endDate") String endDate,
                                             @PathVariable Long id,Model model) throws NotFoundException {
-        log.info("etest");
+        log.info("test");
         log.info("owner YRSY contract "+id);
         log.info(startDate+" - "+endDate);
         Post post;
@@ -166,9 +166,8 @@ public class OwnerController {
             throw new NotFoundException("Error. Contract for not existing post! ");
         }
 
-
         model.addAttribute("postInfo",post);
-        return "owner-create-contract";
+//        return "owner-create-contract";
     }
 
     @GetMapping(path = {"/contracts"})

@@ -21,7 +21,7 @@
         <div class="row gutters d-flex justify-content-center">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
                 <form id="request"
-                      action="${pageContext.request.contextPath}/createNewContract/${post.id}">
+                      action="${pageContext.request.contextPath}/owner/createContract/${post.id}" method="post">
                     <div class="card">
                         <div class="card-header">
                             <h6 class="mb-2 text-primary">Contract</h6>
@@ -81,6 +81,9 @@
                                 </script>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="my-2 text-right">
+<%--                                        <button  class="btn btn-primary mx-1 mt-1" id="confirm-button">--%>
+<%--                                            Submit--%>
+<%--                                        </button>--%>
                                         <input type="submit" class="btn btn-primary mx-1 mt-1" value='Submit'/>
                                     </div>
                                 </div>
@@ -88,10 +91,33 @@
                         </div>
                     </div>
                 </form>
-
         </div>
     </div>
     </div>
+<script type="text/javascript">
 
+    function myFunction() {
+        // Declare variables
+        // var input, filter, table, tr, td, i, txtValue;
+        // var input = document.getElementById("myInput");
+
+        $('#confirm-button').on("click", function () {
+            var input = document.getElementById("startDate").value;
+            echo(input);
+            $('<input>', {
+                // type: 'hidden',
+                name: 'startDate',
+                value: input
+            }).appendTo('#request');
+            // $('<input>', {
+            //     // type: 'hidden',
+            //     name: 'update',
+            //     value: 'update'
+            // }).appendTo('#request');
+            // $("#request").submit();
+        });
+    }
+
+</script>
 </body>
 </html>
