@@ -16,7 +16,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Override
     Optional<Post> findById(Long id);
 
-    @Override
+
+
+    Page<Post> findAllByHostLogin(String login, Pageable pageable);
     Page<Post> findAll(Pageable pageable);
 
     Page<Post> findDistinctByAnimalId(Long animal_id, Pageable pageable);

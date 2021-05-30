@@ -17,9 +17,9 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
     @Override
     Optional<Contract> findById(Long id);
 
-    Optional<Contract> findAllByOwner(Owner owner);
+    List<Contract> findAllByOwnerLogin(String login);
 
-    List<Contract> findAllByHost(Host host);
+    List<Contract> findAllByHostLogin(String login);
 
     List<Contract> findAllDistinctByHostAndStatus(Host host, String status);
 
