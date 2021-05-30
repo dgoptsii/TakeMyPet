@@ -22,12 +22,10 @@
                         </div>
                     </div>
                     <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                     <b> <h6 class="mt-2 mb-2 text-success">List of posts</h6></b>
+                     <b> <h5 class="mt-2 mb-2 text-success">List of posts</h5></b>
                     </div>
                 </div>
-<%--              =====================================.--%>
-                <c:set var="count1" value="0" scope="page" />
-                <c:set var="count2" value="0" scope="page" />
+
                 <c:forEach var="item" items="${postsList}">
                 <div class="card">
 
