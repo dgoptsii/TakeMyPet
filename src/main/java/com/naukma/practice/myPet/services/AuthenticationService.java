@@ -107,7 +107,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
                 || userRepository.findUserByEmail(email).isPresent()
                 || hostRepository.findHostByPhone(telephone).isPresent()
                 || ownerRepository.findOwnerByLogin(telephone).isPresent()
-        ) {
+        ){
             throw new InvalidDataException("User with this login or e-mail is already registered");
         } else {
             String bcryptHashString = passwordEncoder.encode(password);

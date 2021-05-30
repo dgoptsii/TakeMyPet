@@ -31,9 +31,10 @@ public class HostController {
     public String hostProfilePage(Model model,  HttpServletRequest request){
 
         String login = (String) request.getSession().getAttribute("userLogin");
-//        System.out.println(login);
+
         Host host = hostRepository.findHostByLogin(login).get();
         User user = userRepository.findUserByLogin(login).get();
+
         model.addAttribute("hostInfo", HostDTO.createHost(host,user));
         return "host-profile";
     }
@@ -69,7 +70,7 @@ public class HostController {
     }
 
     @GetMapping(path = {"/contracts/{id}"})
-    public String hostContractsIdPage(@PathVariable int id){
+    public String hostContractsIdPage(@PathVariable Long id){
         log.info("host contracts "+id);
         return "host-contracts-id";
     }

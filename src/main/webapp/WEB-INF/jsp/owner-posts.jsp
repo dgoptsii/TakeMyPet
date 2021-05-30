@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,42 +56,48 @@
                 <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <h6 class="pt-5 mb-2 text-primary">Search results</h6>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row g-2">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mb-2 text-primary">Post</h6>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                <div class="form-col">
-                                    <p><b>Host:</b> Name Surname</p>
-                                    <p><b>Pet:</b><span> dog</span></p>
-                                    <p><b>Term:</b><span> 5 days</span></p>
 
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                <div class="form-col text-right">
-                                    <div class="form-group">
-                                        <label for="rating"><b>Rating: 3,3</b></label>
-                                        <div class="form-control-static">
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-secondary fa fa-star"></i>
-                                            <i class="text-secondary fa fa-star"></i>
+                <div>
+                    <c:forEach var="item" items="${postsList}">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row g-2">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <h6 class="mb-2 text-primary">Post</h6>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                        <div class="form-col">
+                                            <p><b>Host:</b> <c:out value="${item.host.name} ${item.host.surname}"/></p>
+                                            <p><b>Pet:</b><span> <c:out value="${item.animal.name}"/></span></p>
+                                            <p><b>Term:</b><span> <c:out value="${item.maxDays}"/> days</span></p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                        <div class="form-col text-right">
+                                            <div class="form-group">
+                                                <label for="rating"><b>Rating: <c:out value="${item.host.rating}"/></b></label>
+                                                <div class="form-control-static">
+                                                    <i class="text-warning fa fa-star"></i>
+                                                    <i class="text-warning fa fa-star"></i>
+                                                    <i class="text-warning fa fa-star"></i>
+                                                    <i class="text-secondary fa fa-star"></i>
+                                                    <i class="text-secondary fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 my-auto">
+                                        <div class="form-col text-right">
+                                            <a href="${pageContext.request.contextPath}/owner/posts/${item.id}"><button type="button" id="submit" name="submit" class="btn btn-primary mx-1 mt-1">See-></button></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 my-auto">
-                                <div class="form-col text-right">
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-primary mx-1 mt-1">See-></button></a>
-                                </div>
-                            </div>
                         </div>
-                    </div>
+                    </c:forEach>
                 </div>
+
             </div>
         </div>
     </div>

@@ -24,10 +24,12 @@ public class Post {
 
 
     @Column(name="post_status")
-    @Enumerated(EnumType.STRING)
-    private PostStatus status;
+//    @Enumerated(EnumType.STRING)
+//    private PostStatus status;
+    private String status;
 
     private String description;
 
-
+    @Column(name="max_days")
+    private Integer maxDays;
 }

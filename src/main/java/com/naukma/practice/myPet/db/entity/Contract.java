@@ -32,7 +32,7 @@ public class Contract {
 
 
     @Column(name="contract_status")
-    @Enumerated(EnumType.STRING)
-    private ContractStatus status;
+//    @Enumerated(EnumType.STRING)
+    private String status;
 
 }
