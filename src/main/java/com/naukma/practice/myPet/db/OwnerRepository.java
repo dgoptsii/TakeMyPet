@@ -1,6 +1,5 @@
 package com.naukma.practice.myPet.db;
 
-import com.naukma.practice.myPet.db.entity.Host;
 import com.naukma.practice.myPet.db.entity.Owner;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -18,6 +17,7 @@ public interface OwnerRepository extends JpaRepository<Owner, Long> {
     Optional<Owner> findOwnerByLogin(String login);
 
     Optional<Owner> findOwnerByPhone(String phone);
+
     @Override
     List<Owner> findAll();
 }
