@@ -45,13 +45,11 @@ public class Contract {
         contract.setHost(post.getHost());
         contract.setStartDate(startDate);
         contract.setEndDate(endDate);
-        contract.setDays(days);
-        contract.setRating(rating);
-        contract.setAnimal(animal);
-
+        contract.setDays(0);
+        contract.setRating(post.getHost().getRating());
+        contract.setAnimal(post.getAnimal());
+        contract.setStatus("WAITING");
         return contract;
-
-
     }
 
 }

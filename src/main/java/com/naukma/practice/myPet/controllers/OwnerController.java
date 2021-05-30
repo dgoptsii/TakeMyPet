@@ -4,6 +4,7 @@ import com.naukma.practice.myPet.db.*;
 import com.naukma.practice.myPet.db.DTO.OwnerDTO;
 import com.naukma.practice.myPet.db.entity.*;
 import javassist.NotFoundException;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -74,7 +75,7 @@ public class OwnerController {
         }
         long animalId = Long.parseLong(animal);
         int maxDays = Integer.parseInt(maxDaysId);
-//        System.out.println("maxDays " + maxDays);
+
         try {
             List<Post> posts;
             Pageable paging = PageRequest.of(page, size);
