@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +25,10 @@
                         <h6 class="mt-2 mb-2 text-primary">List of posts</h6>
                     </div>
                 </div>
+<%--              =====================================.--%>
+                <c:forEach var="item" items="${postsList}">
                 <div class="card">
+
                     <div class="card-header">
                         <h6 class="mb-2 text-primary">Post</h6>
                     </div>
@@ -54,6 +57,7 @@
                         </div>
                     </div>
                 </div>
+                </c:forEach>
             </div>
         </div>
     </div>
