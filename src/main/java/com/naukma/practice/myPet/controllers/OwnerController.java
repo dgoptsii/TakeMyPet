@@ -95,7 +95,7 @@ public class OwnerController {
             posts = pagePosts.getContent();
             posts = posts
                     .stream()
-                    .filter(p -> p.getHost().getCity().equals(region))
+                    .filter(p -> p.getHost().getRegion().equals(region))
                     .collect(Collectors.toList());
 
             if (posts.size() == 0) {
