@@ -17,7 +17,7 @@
             <div class="card-body">
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h6 class="mb-2 text-primary">Personal Details</h6>
+                        <h6 class="mb-2 text-success">Personal Details</h6>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
@@ -58,11 +58,11 @@
                 </div>
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h6 class="mt-3 mb-2 text-primary">Pet details</h6>
+                        <h6 class="mt-3 mb-2 text-success">Pet details</h6>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="numPets">Max number of pets hosted together</label>
+                            <label id="textInput" for="numPets" value="">Max num of pets: </label>
                             <input type="range" class="form-range form-control" min="1" max="20" step="1.0" id="numPets">
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
-                            <a href="#"><button type="button" id="submit" name="submit" class="btn btn-primary">Save</button></a>
+                            <a href="/host/profile"><button type="submit" id="submit" name="submit" class="btn btn-success">Save</button></a>
                         </div>
                     </div>
                 </div>

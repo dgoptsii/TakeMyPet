@@ -64,8 +64,8 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-danger mx-1 mt-1">Cancel</button></a>
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>
+                                    <a href="#"><button type="button" id="submit1" name="submit" class="btn btn-danger mx-1 mt-1">Cancel</button></a>
+                                    <a href="#"><button type="button" id="submit2" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <a href="#"><button type="button" id="submit" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>
+                                    <a href="#"><button type="button" id="submit3" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>
                                 </div>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                                 <div class="form-col">
                                     <div class="form-group">
                                         <label for="rating"><b>Rated: 3,3/-</b></label>
-                                        <div class="form-control-static">
+                                        <div id="rating" class="form-control-static">
                                             <i class="text-warning fa fa-star"></i>
                                             <i class="text-warning fa fa-star"></i>
                                             <i class="text-warning fa fa-star"></i>

@@ -72,12 +72,13 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="rating"><b>Rating: <c:out value="${host.rating}"/></b></label>
-                            <div class="form-control-static">
+                            <div id="rating" class="form-control-static">
                                 <i class="text-warning fa fa-star"></i>
                                 <i class="text-warning fa fa-star"></i>
                                 <i class="text-warning fa fa-star"></i>
                                 <i class="text-secondary fa fa-star"></i>
                                 <i class="text-secondary fa fa-star"></i>
+
                             </div>
                         </div>
                     </div>
@@ -85,7 +86,7 @@
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
-                            <a href="#"><button type="button" id="submit" name="submit" class="btn btn-success" style="width:25%; min-width:80px"> Edit </button></a>
+                            <a href="/host/profile/edit"><button type="button" id="submit" name="submit" class="btn btn-success" style="width:25%; min-width:80px"> Edit </button></a>
                         </div>
                     </div>
                 </div>
