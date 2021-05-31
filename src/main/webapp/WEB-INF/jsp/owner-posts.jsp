@@ -24,9 +24,8 @@
 
     <div class="row gutters d-flex justify-content-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-5">
-                <div class="row gutters d-flex justify-content-center">
-                    <div class="card pt-3">
-                        <div class="card-body">
+            <div class="card pt-3">
+                <div class="card-body">
             <form id="request"
                   action="${pageContext.request.contextPath}/owner/posts?page=${currentPage}&animal=${animal}&maxDays=${maxDays}">
                 <div class="row gutters row row-cols-1 row-cols-sm-2 row-cols-md-4">
@@ -74,10 +73,10 @@
                     </div>
                 </div>
             </form>
-                    </div>
                 </div>
-                </div>
-        </div>
+            </div>
+<%--                    </div>--%>
+<%--                </div>--%>
 
             <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                <b> <h5 class="pt-5 mb-2 text-success">Search results</h5></b>
