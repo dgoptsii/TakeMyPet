@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h6 class="mb-2 text-primary">Personal Details</h6>
+                       <b> <h5 class="mb-2 text-success">Personal Details</h5></b>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h6 class="mt-3 mb-2 text-primary">Pet details</h6>
+                        <b><h5 class="mt-3 mb-2 text-success" >Pet details</h5></b>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
@@ -85,7 +85,7 @@
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
-                            <a href="#"><button type="button" id="submit" name="submit" class="btn btn-primary">Edit</button></a>
+                            <a href="#"><button type="button" id="submit" name="submit" class="btn btn-success" style="width:25%; min-width:80px"> Edit </button></a>
                         </div>
                     </div>
                 </div>

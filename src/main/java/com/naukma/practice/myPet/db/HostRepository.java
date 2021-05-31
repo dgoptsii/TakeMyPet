@@ -16,6 +16,7 @@ public interface HostRepository extends JpaRepository<Host, Long> {
     Optional<Host> findHostByLogin(String login);
 
     Optional<Host> findHostByPhone(String phone);
+
     @Override
     List<Host> findAll();
 }

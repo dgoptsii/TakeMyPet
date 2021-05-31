@@ -3,6 +3,7 @@ package com.naukma.practice.myPet.db.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Data
@@ -13,14 +14,19 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
-    private Host owner;
+    private Owner owner;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "host_id")
     private Host host;
+
+    @Column(name = "start_date")
+    private Date startDate;
+
+    @Column(name = "end_date")
+    private Date endDate;
 
     private Integer days;
 
@@ -30,9 +36,20 @@ public class Contract {
     @JoinColumn(name = "animal_id")
     private Animal animal;
 
-
     @Column(name="contract_status")
-//    @Enumerated(EnumType.STRING)
     private String status;
+
+    public static Contract createContract(Post post,Owner owner, Date startDate, Date endDate){
+        Contract contract = new Contract();
+        contract.setOwner(owner);
+        contract.setHost(post.getHost());
+        contract.setStartDate(startDate);
+        contract.setEndDate(endDate);
+        contract.setDays(0);
+        contract.setRating(post.getHost().getRating());
+        contract.setAnimal(post.getAnimal());
+        contract.setStatus("WAITING");
+        return contract;
+    }
 
 }
