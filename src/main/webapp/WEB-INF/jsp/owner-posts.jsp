@@ -24,15 +24,14 @@
 
     <div class="row gutters d-flex justify-content-center">
 
-        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-5">
 
             <form id="request"
                   action="${pageContext.request.contextPath}/owner/posts?page=${currentPage}&animal=${animal}&maxDays=${maxDays}">
                 <div class="row gutters row row-cols-1 row-cols-sm-2 row-cols-md-4">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4  col-12">
                         <div class="form-group">
-                            <label for="petCategory">Pet</label>
-                            <select class="form-control" id="petCategory" name="animal">
+                            <select class="form-control text-center" id="petCategory" name="animal">
                                 <option value="0" ${ (animal=='0') ? 'selected' : ''} ></option>
                                 <c:forEach var="item" items="${animals}">
                                     <option value="${item.id}" ${ (animal==item.id) ? 'selected' : ''} >${item.name}</option>
@@ -40,11 +39,9 @@
                             </select>
                         </div>
                     </div>
-
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4  col-12">
                         <div class="form-group">
-                            <label for="term">Term</label>
-                            <select class="form-control" id="term">
+                            <select class="form-control text-center" id="term">
                                 <option>1 day</option>
                                 <option>up to 3 days</option>
                                 <option>up to 5 days</option>
@@ -53,13 +50,9 @@
                               </select>
                         </div>
                     </div>
-
-
-
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                         <div class="form-group">
-                            <label></label>
-                            <div class="text-right">
+                            <div class="text-center" id="searchB">
                                 <input type="submit" class="btn btn-success" value='Search'/>
                             </div>
                         </div>
