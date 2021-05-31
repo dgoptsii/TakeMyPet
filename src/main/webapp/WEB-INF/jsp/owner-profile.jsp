@@ -42,6 +42,12 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
+                            <label for="login"><b>Login</b></label>
+                            <p class="form-control-static" id="login"><c:out value="${owner.login}"/></p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
                             <label for="email"><b>E-mail</b></label>
                             <p class="form-control-static" id="email"><c:out value="${owner.email}"/></p>
                         </div>
@@ -75,5 +81,6 @@
         </div>
         </div>
         </div>
+</div>
 </body>
 </html>

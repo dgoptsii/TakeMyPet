@@ -43,6 +43,12 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
+                                    <label for="login"><b>Login</b></label>
+                                    <p class="form-control-static" id="login"><c:out value="${host.login}"/></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
                                     <label for="email"><b>E-mail</b></label>
                                     <p class="form-control-static" id="email"><c:out value="${host.email}"/></p>
                                 </div>
@@ -51,12 +57,6 @@
                                 <div class="form-group">
                                     <label for="phone"><b>Phone</b></label>
                                     <p class="form-control-static" id="phone"><c:out value="${host.phone}"/></p>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="login"><b>Login</b></label>
-                                    <p class="form-control-static" id="login"><c:out value="${host.login}"/></p>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">

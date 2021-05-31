@@ -17,7 +17,7 @@
             <div class="card-body">
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h6 class="mb-2 text-success">Personal Details</h6>
+                        <h5 class="mb-2 text-success">Personal Details</h5>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
@@ -50,15 +50,24 @@
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <%--         empty            --%>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="inputCity">Address</label>
-                            <input type="text" class="form-control" id="inputCity" placeholder="Enter address">
+                            <label for="inputCountry">Country</label>
+                            <input type="text" class="form-control" id="inputCountry" placeholder="Enter country">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="inputCity">City</label>
+                            <input type="text" class="form-control" id="inputCity" placeholder="Enter city">
                         </div>
                     </div>
                 </div>
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h6 class="mt-3 mb-2 text-success">Pet details</h6>
+                        <h5 class="mt-3 mb-2 text-success">Pet details</h5>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">

@@ -17,7 +17,7 @@
             <div class="card-body">
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h6 class="mb-2 text-primary">Personal Details</h6>
+                        <h5 class="mb-2 text-success">Personal Details</h5>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
@@ -27,8 +27,8 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="surame">Surname</label>
-                            <input type="text" class="form-control" id="surame" placeholder="Enter surname">
+                            <label for="surname">Surname</label>
+                            <input type="text" class="form-control" id="surname" placeholder="Enter surname">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -45,15 +45,30 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="inputLogin">Address</label>
-                            <input type="text" class="form-control" id="inputLogin" placeholder="Enter address">
+                            <label for="inputLogin">Login</label>
+                            <input type="text" class="form-control" id="inputLogin" placeholder="Enter login">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <%--         empty            --%>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="inputCountry">Country</label>
+                            <input type="text" class="form-control" id="inputCountry" placeholder="Enter country">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="inputCity">City</label>
+                            <input type="text" class="form-control" id="inputCity" placeholder="Enter city">
                         </div>
                     </div>
                 </div>
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
-                            <a href="#"><button type="button" id="submit" name="submit" class="btn btn-primary">Save</button></a>
+                            <a href="/owner/profile"><button type="submit" id="submitB" name="submitB" class="btn btn-success">Save</button></a>
                         </div>
                     </div>
                 </div>

@@ -29,7 +29,7 @@
             <form id="request"
                   action="${pageContext.request.contextPath}/owner/posts?page=${currentPage}&animal=${animal}&maxDays=${maxDays}">
                 <div class="row gutters row row-cols-1 row-cols-sm-2 row-cols-md-4">
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                         <div class="form-group">
                             <label for="petCategory">Pet</label>
                             <select class="form-control" id="petCategory" name="animal">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                         <div class="form-group">
                             <label for="term">Term</label>
                             <select class="form-control" id="term">
@@ -56,10 +56,10 @@
 
 
 
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                         <div class="form-group">
                             <label></label>
-                            <div class="text-center">
+                            <div class="text-right">
                                 <input type="submit" class="btn btn-success" value='Search'/>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                                                     <div class="form-group">
                                                         <label for="rating"><b>Rating: <c:out
                                                                 value="${item.host.rating}"/></b></label>
-                                                        <div class="form-control-static">
+                                                        <div id="rating" class="form-control-static">
                                                             <i class="text-warning fa fa-star"></i>
                                                             <i class="text-warning fa fa-star"></i>
                                                             <i class="text-warning fa fa-star"></i>
