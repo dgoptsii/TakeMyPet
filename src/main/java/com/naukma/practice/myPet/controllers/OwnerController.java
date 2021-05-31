@@ -67,8 +67,8 @@ public class OwnerController {
         String login = (String) request.getSession().getAttribute("userLogin");
         Owner owner = ownerRepository.findOwnerByLogin(login).get();
 
-        String city = owner.getCity();
-        String country = owner.getRegion();
+//        String city = owner.getCity();
+        String region = owner.getRegion();
 
         if (page > 0) {
             page -= 1;
@@ -95,8 +95,7 @@ public class OwnerController {
             posts = pagePosts.getContent();
             posts = posts
                     .stream()
-                    .filter(p -> p.getHost().getCity().equals(city)
-                            && p.getHost().getRegion().equals(country))
+                    .filter(p -> p.getHost().getCity().equals(region))
                     .collect(Collectors.toList());
 
             if (posts.size() == 0) {

@@ -44,8 +44,8 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <input type="text" name="country" id="country" class="form-control input-sm"
-                                   placeholder="Country" required>
+                            <input type="text" name="region" id="country" class="form-control input-sm"
+                                   placeholder="Region" required>
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" name="city" id="city" class="form-control input-sm"
