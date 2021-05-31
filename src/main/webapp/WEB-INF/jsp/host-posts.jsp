@@ -31,93 +31,93 @@
             </div>
 
             <div>
-            <c:choose>
-                <c:when test="${(not empty message)}">
-                    <p> ${message} </p>
-                </c:when>
+                <c:choose>
+                    <c:when test="${(not empty message)}">
+                        <p> ${message} </p>
+                    </c:when>
 
-                <c:otherwise>
+                    <c:otherwise>
 
-                    <c:forEach var="item" items="${postsList}">
-                        <div class="card">
+                        <c:forEach var="item" items="${postsList}">
+                            <div class="card">
 
-                            <div class="card-header">
-                                <b>    <h6 class="mb-2 text-success">Post</h6></b>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-2">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <p><b>Pet:</b><span> <c:out value="${item.animal.name}"/></span></p>
-                                    </div>
-                                    <div class="text-right col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="card-header">
+                                    <b>    <h6 class="mb-2 text-success">Post</h6></b>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-2">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <p><b>Pet:</b><span> <c:out value="${item.animal.name}"/></span></p>
+                                        </div>
+                                        <div class="text-right col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 
-                                        <c:choose>
-                                            <c:when test="${item.status =='ACTIVE'}">
-                                                <input class="btn btn btn-outline-success actionUser"
-                                                       type="button"
-                                                       data-toggle="modal" data-target="#edit-file-modal"
-                                                       id="delete_button"
-                                                       name="${item.id}"
-                                                       value="Active">
+                                            <c:choose>
+                                                <c:when test="${item.status =='ACTIVE'}">
+                                                    <input class="btn btn btn-outline-success actionUser"
+                                                           type="button"
+                                                           data-toggle="modal" data-target="#edit-file-modal"
+                                                           id="delete_button"
+                                                           name="${item.id}"
+                                                           value="Active">
 
-                                            </c:when>
-                                            <c:otherwise>
-                                                <input class="btn btn-outline-secondary actionUser"
-                                                       type="button"
-                                                       data-toggle="modal" data-target="#edit-file-modal"
-                                                       id="delete_button"
-                                                       name="${item.id}"
-                                                       value="Blocked">
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <p><b>Term:</b><span> <c:out value="${item.maxDays}"/> days</span></p>
-                                    </div>
-                                    <div class="text-right col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <a href="#"><button type="button" id="edit_b" name="submit" class="btn btn-outline-warning mr-1 mt-1">Edit</button></a>
-                                        <a href="#"><button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button></a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input class="btn btn-outline-secondary actionUser"
+                                                           type="button"
+                                                           data-toggle="modal" data-target="#edit-file-modal"
+                                                           id="delete_button"
+                                                           name="${item.id}"
+                                                           value="Blocked">
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <p><b>Term:</b><span> <c:out value="${item.maxDays}"/> days</span></p>
+                                        </div>
+                                        <div class="text-right col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <a href="#"><button type="button" id="edit_b" name="submit" class="btn btn-outline-warning mr-1 mt-1">Edit</button></a>
+                                            <a href="#"><button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
 
-                    <nav aria-label="Navigation">
-                        <ul class="pagination">
-                            <c:if test="${currentPage != 1}">
-                                <li class="page-item"><a class="page-link"
-                                                         href="${pageContext.request.contextPath}/owner/posts?page=${currentPage-1}&animal=${animal}&maxDays=${maxDays}">
-                                    Previous</a>
-                                </li>
-                            </c:if>
+                        <nav aria-label="Navigation">
+                            <ul class="pagination">
+                                <c:if test="${currentPage != 1}">
+                                    <li class="page-item"><a class="page-link"
+                                                             href="${pageContext.request.contextPath}/owner/posts?page=${currentPage-1}&animal=${animal}&maxDays=${maxDays}">
+                                        Previous</a>
+                                    </li>
+                                </c:if>
 
-                            <c:forEach begin="1" end="${totalPages}" var="i">
-                                <c:choose>
-                                    <c:when test="${currentPage eq i}">
-                                        <li class="page-item active"><a class="page-link">
-                                                ${i} <span class="sr-only">(current)</span></a>
-                                        </li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li class="page-item"><a class="page-link"
-                                                                 href="${pageContext.request.contextPath}/host/posts?page=${i}&animal=${animal}&maxDays=${maxDays}">${i}</a>
-                                        </li>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
+                                <c:forEach begin="1" end="${totalPages}" var="i">
+                                    <c:choose>
+                                        <c:when test="${currentPage eq i}">
+                                            <li class="page-item active"><a class="page-link">
+                                                    ${i} <span class="sr-only">(current)</span></a>
+                                            </li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="${pageContext.request.contextPath}/host/posts?page=${i}&animal=${animal}&maxDays=${maxDays}">${i}</a>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
 
-                            <c:if test="${currentPage lt totalPages}">
-                                <li class="page-item"><a class="page-link"
-                                                         href="${pageContext.request.contextPath}/host/posts?page=${currentPage+1}&animal=${animal}&maxDays=${maxDays}">
-                                    Next
-                                </a>
-                                </li>
-                            </c:if>
-                        </ul>
-                    </nav>
-                </c:otherwise>
-            </c:choose>
+                                <c:if test="${currentPage lt totalPages}">
+                                    <li class="page-item"><a class="page-link"
+                                                             href="${pageContext.request.contextPath}/host/posts?page=${currentPage+1}&animal=${animal}&maxDays=${maxDays}">
+                                        Next
+                                    </a>
+                                    </li>
+                                </c:if>
+                            </ul>
+                        </nav>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
         </div>

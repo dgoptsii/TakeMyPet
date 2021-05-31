@@ -15,7 +15,7 @@
         <div class="row gutters d-flex justify-content-center">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
                 <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h5 class="mt-2 mb-2 text-primary">List of contracts</h5>
+               <b>  <h5 class="mt-2 mb-2 text-success">List of contracts</h5></b>
                 </div>
 
                 <c:choose>

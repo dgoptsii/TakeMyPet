@@ -12,15 +12,21 @@
 <%@ include file="/WEB-INF/jspf/owner-profile-nav.jspf" %>
 
 <c:set var="owner" value="${ownerInfo}"/>
-
-    <div class="container">
-        <div class="row gutters d-flex justify-content-center">
+<div class="container">
+    <div class="row gutters d-flex justify-content-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
-        <div class="card">
-            <div class="card-body">
+            <div class="row gutters d-flex justify-content-center">
+
+                <div class="card pt-3">
+                    <div class="card-body">
+                        <div class="container text-center pb-3 pt-1">
+                            <img class="rounded-circle "
+                                 src="https://cdn1.savepice.ru/uploads/2021/5/30/67c93a93c80bfeee7030f77fa17d81e1-full.png"
+                                 width="140" height="140">
+                        </div>
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h6 class="mb-2 text-primary">Personal Details</h6>
+                        <b><h5 class="mb-2 text-success">Personal Details</h5></b>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
@@ -56,7 +62,11 @@
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
-                            <a href="#"><button type="button" id="submit" name="submit" class="btn btn-primary">Edit</button></a>
+                            <a href="/owner/profile/edit">
+                                <button type="button" id="submit" name="submit" class="btn btn-success"
+                                        style="width:25%; min-width:80px"> Edit
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -19,17 +19,17 @@ body {
 	padding-right: 50px;
 }
 .navbar .navbar-brand b {
-	color: #59CE41;
+	color: #28a745;
 }
 .navbar a, .navbar a:active {
 	color: #999;
 	background: transparent;
 }
 .navbar .navbar-nav a:hover, .navbar .navbar-nav a:focus {
-	color: #59CE41 !important;
+	color: #28a745 !important;
 }
 .navbar .navbar-nav > a.active, .navbar .navbar-nav.show > a {
-	color: #59CE41 !important;
+	color: #28a745 !important;
 	background: transparent !important;
 }
 .navbar .form-inline .input-group-text {
@@ -45,13 +45,13 @@ body {
 .navbar .form-inline .btn {
 	border-radius: 2px;
 	color: #fff;
-	border-color: #59CE41;
-	background: #59CE41;
+	border-color: #28a745;
+	background: #28a745;
 	outline: none;
 }
 .navbar .form-inline .btn:hover, .navbar .form-inline .btn:focus {
-	border-color: #52BD3C;
-	background: #52BD3C;
+	border-color: #28a745;
+	background: #28a745;
 }
 .navbar .search-form {
 	display: inline-block;

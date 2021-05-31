@@ -11,89 +11,101 @@
 <body>
 <%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
 
-    <c:set var="host" value="${hostInfo}"/>
+<c:set var="host" value="${hostInfo}"/>
 
-    <div class="container">
-        <div class="row gutters d-flex justify-content-center">
+
+<div class="container">
+    <div class="row gutters d-flex justify-content-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="row gutters">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                       <b> <h5 class="mb-2 text-success">Personal Details</h5></b>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label for="name"><b>Name</b></label>
-                            <p class="form-control-static" id="name"><c:out value="${host.name}"/></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label for="surname"><b>Surname</b></label>
-                            <p class="form-control-static" id="surname"><c:out value="${host.surname}"/></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label for="email"><b>E-mail</b></label>
-                            <p class="form-control-static" id="email"><c:out value="${host.email}"/></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label for="phone"><b>Phone</b></label>
-                            <p class="form-control-static" id="phone"><c:out value="${host.phone}"/></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label for="login"><b>Login</b></label>
-                            <p class="form-control-static" id="login"><c:out value="${host.login}"/></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label for="address"><b>Address</b></label>
-                            <p class="form-control-static" id="address"><c:out value="${host.city}"/>, <c:out value="${host.country}"/></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row gutters">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <b><h5 class="mt-3 mb-2 text-success" >Pet details</h5></b>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label for="numPets"><b>Max number of pets hosted together</b></label>
-                            <p class="form-control-static" id="numPets"><c:out value="${host.maxAnimals}"/></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label for="rating"><b>Rating: <c:out value="${host.rating}"/></b></label>
-                            <div id="rating" class="form-control-static">
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-secondary fa fa-star"></i>
-                                <i class="text-secondary fa fa-star"></i>
+            <div class="row gutters d-flex justify-content-center">
 
+                <div class="card pt-3">
+                    <div class="card-body">
+                        <div class="container text-center pb-3 pt-0">
+                            <img class="rounded-circle "
+                                 src="https://cdn1.savepice.ru/uploads/2021/5/30/fbc4b4a1ae5ca8a06640150fdade766b-full.png"
+                                 width="140" height="140">
+                        </div>
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <b><h5 class="mb-2 text-success">Personal Details</h5></b>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="name"><b>Name</b></label>
+                                    <p class="form-control-static" id="name"><c:out value="${host.name}"/></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="surname"><b>Surname</b></label>
+                                    <p class="form-control-static" id="surname"><c:out value="${host.surname}"/></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="email"><b>E-mail</b></label>
+                                    <p class="form-control-static" id="email"><c:out value="${host.email}"/></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="phone"><b>Phone</b></label>
+                                    <p class="form-control-static" id="phone"><c:out value="${host.phone}"/></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="login"><b>Login</b></label>
+                                    <p class="form-control-static" id="login"><c:out value="${host.login}"/></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="address"><b>Address</b></label>
+                                    <p class="form-control-static" id="address"><c:out value="${host.city}"/>, <c:out
+                                            value="${host.country}"/></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row gutters">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="text-right">
-                            <a href="/host/profile/edit"><button type="button" id="submit" name="submit" class="btn btn-success" style="width:25%; min-width:80px"> Edit </button></a>
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <b><h5 class="mt-3 mb-2 text-success">Pet details</h5></b>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="numPets"><b>Max number of pets hosted together</b></label>
+                                    <p class="form-control-static" id="numPets"><c:out value="${host.maxAnimals}"/></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="rating"><b>Rating: <c:out value="${host.rating}"/></b></label>
+                                    <div class="form-control-static">
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-secondary fa fa-star"></i>
+                                        <i class="text-secondary fa fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <a href="/host/profile/edit">
+                                        <button type="button" id="submit" name="submit" class="btn btn-success"
+                                                style="width:25%; min-width:80px"> Edit
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-        </div>
+    </div>
 </body>
 </html>

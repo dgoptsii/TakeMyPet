@@ -7,6 +7,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/jspf/head.jspf" %>
+
+<%--  DO NOT TOUCH! (c) DARIA
+  <style>--%>
+<%-- --%>
+<%--        .form-control:focus {--%>
+<%--            border-color: #ff80ff;--%>
+<%--            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 100, 255, 0.5);--%>
+<%--        }--%>
+<%--    </style>--%>
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/owner-profile-nav.jspf" %>
@@ -45,18 +54,13 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" class="form-range form-control" id="address">
-                        </div>
-                    </div>
+
 
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label></label>
                             <div class="text-center">
-                                <input type="submit" class="btn btn-primary" value='Search'/>
+                                <input type="submit" class="btn btn-success" value='Search'/>
                             </div>
                         </div>
                     </div>
@@ -64,7 +68,7 @@
             </form>
 
             <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <h6 class="pt-5 mb-2 text-primary">Search results</h6>
+               <b> <h5 class="pt-5 mb-2 text-success">Search results</h5></b>
             </div>
 
             <div>
@@ -81,7 +85,7 @@
                                     <div class="card-body">
                                         <div class="row g-2">
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <h6 class="mb-2 text-primary">Post</h6>
+                                                <h6 class="mb-2 text-success">Post</h6>
                                             </div>
                                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                                 <div class="form-col">
@@ -112,7 +116,7 @@
                                                 <div class="form-col text-right">
                                                     <a href="${pageContext.request.contextPath}/owner/posts/${item.id}">
                                                         <button type="button" id="submit" name="submit"
-                                                                class="btn btn-primary mx-1 mt-1">See->
+                                                                class="btn btn-outline-success mx-1 mt-1">See->
                                                         </button>
                                                     </a>
                                                 </div>
