@@ -30,7 +30,7 @@ public class OwnerDTO {
         ownerInfo.setSurname(owner.getSurname());
 
         ownerInfo.setPhone(owner.getPhone());
-        ownerInfo.setCountry(owner.getCountry());
+        ownerInfo.setCountry(owner.getRegion());
         ownerInfo.setCity(owner.getCity());
         return ownerInfo;
     }

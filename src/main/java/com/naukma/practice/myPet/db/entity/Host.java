@@ -19,7 +19,7 @@ public class Host {
 
 
     private String city;
-    private String country;
+    private String region;
     private String address;
     private Double rating = 0.0;
 
@@ -29,7 +29,7 @@ public class Host {
 
 
     public static Host createHost(String login, String name, String surname,
-                                  String country, String city,
+                                  String region, String city,
                                   String phone
 //                                  Double rating, Integer maxAnimals, String address,
                                   ) {
@@ -37,7 +37,7 @@ public class Host {
         host.setLogin(login);
         host.setName(name);
         host.setSurname(surname);
-        host.setCountry(country);
+        host.setRegion(region);
         host.setCity(city);
 
 //        host.setAddress(address);

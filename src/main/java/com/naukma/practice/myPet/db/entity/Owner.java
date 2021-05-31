@@ -19,17 +19,17 @@ public class Owner {
     private String phone;
 
     private String city;
-    private String country;
+    private String region;
 
     public static Owner createOwner(String login, String name, String surname,
-                                   String country, String city,
+                                   String region, String city,
                                    String phone) {
         Owner owner = new Owner();
         owner.setLogin(login);
         owner.setName(name);
         owner.setSurname(surname);
         owner.setPhone(phone);
-        owner.setCountry(country);
+        owner.setRegion(region);
         owner.setCity(city);
         return owner;
     }

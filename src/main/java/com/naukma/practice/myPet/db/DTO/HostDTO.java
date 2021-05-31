@@ -33,7 +33,7 @@ public class HostDTO {
         hostInfo.setName(host.getName());
         hostInfo.setSurname(host.getSurname());
 
-        hostInfo.setCountry(host.getCountry());
+        hostInfo.setCountry(host.getRegion());
         hostInfo.setCity(host.getCity());
         hostInfo.setAddress(host.getAddress());
 
