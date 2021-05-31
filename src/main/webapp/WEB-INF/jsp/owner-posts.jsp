@@ -23,9 +23,10 @@
 <div class="container">
 
     <div class="row gutters d-flex justify-content-center">
-
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-5">
-
+                <div class="row gutters d-flex justify-content-center">
+                    <div class="card pt-3">
+                        <div class="card-body">
             <form id="request"
                   action="${pageContext.request.contextPath}/owner/posts?page=${currentPage}&animal=${animal}&maxDays=${maxDays}">
                 <div class="row gutters row row-cols-1 row-cols-sm-2 row-cols-md-4">
@@ -49,19 +50,19 @@
 <%--                                <option>up to 10 days</option>--%>
 <%--                                <option>up to 15 days</option>--%>
 <%--                              </select>--%>
-    <label id="textInput" for="numPets">Max number of animals: <span id="demo"></span> </label>
-    <div class="slidecontainer">
-        <input type="range" min="1" max="5" value="1" class="slider" id="numPets">
-    </div>
-    <script>
-        var slider = document.getElementById("numPets");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
+                        <label id="textInput" for="nDays">Max number of days: <span id="demo"></span> </label>
+                        <div class="slidecontainer">
+                            <input type="range" min="1" max="14" value="1" class="slider" id="nDays">
+                        </div>
+                        <script>
+                            var slider = document.getElementById("nDays");
+                            var output = document.getElementById("demo");
+                            output.innerHTML = slider.value;
 
-        slider.oninput = function() {
-            output.innerHTML = this.value;
-        }
-        </script>
+                            slider.oninput = function() {
+                                output.innerHTML = this.value;
+                            }
+                            </script>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
@@ -73,6 +74,10 @@
                     </div>
                 </div>
             </form>
+                    </div>
+                </div>
+                </div>
+        </div>
 
             <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                <b> <h5 class="pt-5 mb-2 text-success">Search results</h5></b>
@@ -169,8 +174,6 @@
 
                     </c:otherwise>
                 </c:choose>
-            </div>
-
             </div>
         </div>
     </div>
