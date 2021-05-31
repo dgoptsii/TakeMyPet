@@ -32,7 +32,8 @@
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4  col-12">
                         <div class="form-group">
                             <select class="form-control text-center" id="petCategory" name="animal">
-                                <option value="0" ${ (animal=='0') ? 'selected' : ''} ></option>
+                                <option value="" disabled selected>Animal</option>
+<%--                                <option value="0" ${ (animal=='0') ? 'selected' : ''} ></option>--%>
                                 <c:forEach var="item" items="${animals}">
                                     <option value="${item.id}" ${ (animal==item.id) ? 'selected' : ''} >${item.name}</option>
                                 </c:forEach>
@@ -160,6 +161,6 @@
             </div>
         </div>
     </div>
-
+<%@ include file="/WEB-INF/jspf/footer.jspf" %>
 </body>
 </html>

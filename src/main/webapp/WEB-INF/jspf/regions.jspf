@@ -1,0 +1,31 @@
+<select class="form-control" id="region" name="region"  placeholder="Region" required>
+    <option value="" disabled selected>Region</option>
+    <option>Crimea</option>
+    <option>Cherkasy Region</option>
+    <option>Chernihiv Region</option>
+    <option>Chernivtsi Region</option>
+    <option>Dnipropetrovsk Region</option>
+    <option>Donetsk Region</option>
+    <option>Ivano-Frankivsk Region</option>
+    <option>Kharkiv Region</option>
+    <option>Kherson Region</option>
+    <option>Khmelnytsky Region</option>
+    <option>Kirovograd Region</option>
+    <option>Kyiv Region</option>
+    <option>The City of Kyiv</option>
+    <option>Luhansk Region</option>
+    <option>Lviv Region</option>
+    <option>Mykolayiv Region</option>
+    <option>Odesa Region</option>
+    <option>Poltava Region</option>
+    <option>Rivne Region</option>
+    <option>Sumy Region</option>
+    <option>Ternopil Region</option>
+    <option>The City of Sevastopol</option>
+    <option>Vinnytsya Region</option>
+    <option>Volyn region</option>
+    <option>Zakarpattya Region</option>
+    <option>Zaporizhzhya Region</option>
+    <option>Zhytomyr Region</option>
+    <option>outside Ukraine</option>
+</select>

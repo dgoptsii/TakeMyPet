@@ -78,8 +78,8 @@ p{
             margin: 0;
             padding-top: 0px;
             color: #2e323c;
-            background: white;
             position: relative;
+            background-color: white !important;
             height: 90%;
         }
     </style>

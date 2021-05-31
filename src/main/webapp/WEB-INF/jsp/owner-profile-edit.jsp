@@ -21,32 +21,32 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter name">
+                            <label >Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Name">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="surname">Surname</label>
-                            <input type="text" class="form-control" id="surname" placeholder="Enter surname">
+                            <label >Surname</label>
+                            <input type="text" class="form-control" id="surname" placeholder="Surname">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="eMail">E-mail</label>
-                            <input type="email" class="form-control" id="eMail" placeholder="Enter e-mail">
+                            <label >E-mail</label>
+                            <input type="email" class="form-control" id="eMail" placeholder="E-mail">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+                            <label >Phone number</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Phone number">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="inputLogin">Login</label>
-                            <input type="text" class="form-control" id="inputLogin" placeholder="Enter login">
+                            <label >Login</label>
+                            <input type="text" class="form-control" id="inputLogin" placeholder="Login">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -54,21 +54,25 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="inputCountry">Country</label>
-                            <input type="text" class="form-control" id="inputCountry" placeholder="Enter country">
+                            <label >Region</label>
+                            <%@ include file="/WEB-INF/jspf/regions.jspf" %>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity" placeholder="Enter city">
+                            <label >City</label>
+                            <input type="text" class="form-control" id="inputCity" placeholder="City">
                         </div>
                     </div>
                 </div>
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
-                            <a href="/owner/profile"><button type="submit" id="submitB" name="submitB" class="btn btn-success">Save</button></a>
+                            <a href="/owner/profile">
+                                <button type="button" id="submit" name="submit" class="btn btn-success"
+                                        style="width:25%; min-width:80px"> Save
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -77,5 +81,6 @@
         </div>
         </div>
         </div>
+<%@ include file="/WEB-INF/jspf/footer.jspf" %>
 </body>
 </html>

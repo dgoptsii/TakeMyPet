@@ -7,11 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/jspf/head.jspf" %>
-    <style>
-        body {
-            background-color: #f1e5d7;
-        }
-    </style>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
@@ -123,6 +119,6 @@
         </div>
     </div>
 </div>
-
+<%@ include file="/WEB-INF/jspf/footer.jspf" %>
 </body>
 </html>
