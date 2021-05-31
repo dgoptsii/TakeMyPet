@@ -18,7 +18,7 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
                 <div class="card">
                     <div class="card-header">
-                        <h6 class="mb-2 text-primary">Post</h6>
+                        <h6 class="mb-2 text-success">Post</h6>
                     </div>
                     <div class="card-body">
                         <div class="row g-2">
@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="mb-2 text-right">
-                                    <a href="/owner/createContract/${post.id}"><button type="button" id="submit" name="submit" class="btn btn-primary mx-1 mt-1">Reserve</button></a>
+                                    <a href="/owner/createContract/${post.id}"><button type="button" id="submit" name="submit" class="btn btn-outline-success mx-1 mt-1">Reserve</button></a>
                                 </div>
                             </div>
                         </div>

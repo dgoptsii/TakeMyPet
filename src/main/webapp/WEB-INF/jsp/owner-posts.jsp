@@ -42,13 +42,26 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4  col-12">
                         <div class="form-group">
-                            <select class="form-control text-center" id="term">
-                                <option>1 day</option>
-                                <option>up to 3 days</option>
-                                <option>up to 5 days</option>
-                                <option>up to 10 days</option>
-                                <option>up to 15 days</option>
-                              </select>
+<%--                            <select class="form-control text-center" id="term">--%>
+<%--                                <option>1 day</option>--%>
+<%--                                <option>up to 3 days</option>--%>
+<%--                                <option>up to 5 days</option>--%>
+<%--                                <option>up to 10 days</option>--%>
+<%--                                <option>up to 15 days</option>--%>
+<%--                              </select>--%>
+    <label id="textInput" for="numPets">Max number of animals: <span id="demo"></span> </label>
+    <div class="slidecontainer">
+        <input type="range" min="1" max="5" value="1" class="slider" id="numPets">
+    </div>
+    <script>
+        var slider = document.getElementById("numPets");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
+        </script>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">

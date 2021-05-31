@@ -94,7 +94,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
                                     <a href="/host/profile/edit">
-                                        <button type="button" id="submit" name="submit" class="btn btn-success"
+                                        <button type="button" id="submit" name="submit" class="btn btn-outline-success"
                                                 style="width:25%; min-width:80px"> Edit
                                         </button>
                                     </a>

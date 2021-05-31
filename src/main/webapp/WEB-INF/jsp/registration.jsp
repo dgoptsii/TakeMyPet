@@ -10,12 +10,13 @@
     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
         <div class="row gutters d-flex justify-content-center">
     <div class="card pt-3">
-        <div class="card-body">
+        <div class="card-body pt-0">
             <div class="d-flex justify-content-center">
                 <form role="form" id="registration_form" name="registration_form"
                       action="${pageContext.request.contextPath}/registration" method="POST">
                     <%--    onsubmit="return validate(this);">--%>
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 text-center">
+                        <i class="fa fa-user-circle green-color " style="color:#28a745; font-size:70px"></i>
                         <h3 class="d-flex justify-content-center">Registration</h3>
                     </div>
                     <div class="row">

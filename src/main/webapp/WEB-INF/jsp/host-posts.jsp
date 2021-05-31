@@ -83,7 +83,7 @@
                             <ul class="pagination">
                                 <c:if test="${currentPage != 1}">
                                     <li class="page-item"><a class="page-link"
-                                                             href="${pageContext.request.contextPath}/owner/posts?page=${currentPage-1}&animal=${animal}&maxDays=${maxDays}">
+                                                             href="${pageContext.request.contextPath}/host/posts?page=${currentPage-1}&animal=${animal}&maxDays=${maxDays}">
                                         Previous</a>
                                     </li>
                                 </c:if>

@@ -18,11 +18,12 @@
     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
         <div class="row gutters d-flex justify-content-center">
 <div class="card pt-3">
-    <div class="card-body">
+    <div class="card-body pt-0">
         <div class="d-flex justify-content-center">
             <form role="form" name="login_form"
                   action="${pageContext.request.contextPath}/login" method="post">
-                <div class="form-outline mb-4">
+                <div class="form-outline mb-4 text-center">
+                    <i class="fa fa-user-circle green-color " style="color:#28a745; font-size:70px"></i>
                     <h3 class="d-flex justify-content-center">Log in</h3>
                 </div>
 
@@ -37,19 +38,6 @@
                                required/>
                     </div>
 
-                <%--    <div class="row mb-4">--%>
-                <%--      <div class="col d-flex justify-content-center">--%>
-                <%--        <div class="form-check">--%>
-                <%--          <input--%>
-                <%--                  class="form-check-input"--%>
-                <%--                  type="checkbox"--%>
-                <%--                  value=""--%>
-                <%--                  id="form1Example3"--%>
-                <%--                  checked />--%>
-                <%--          <label class="form-check-label" for="form1Example3"> Remember me </label>--%>
-                <%--        </div>--%>
-                <%--      </div>--%>
-                <%--    </div>--%>
                 <div class="text-center">
                     <input type="submit" value="Login" id="submit" class="btn btn-success">
                 </div>

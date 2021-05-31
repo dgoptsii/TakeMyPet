@@ -24,7 +24,7 @@
                       action="${pageContext.request.contextPath}/owner/createContract/${post.id}" method="post">
                     <div class="card">
                         <div class="card-header">
-                            <h6 class="mb-2 text-primary">Contract</h6>
+                            <h6 class="mb-2 text-success">Contract</h6>
                         </div>
                         <div class="card-body">
                             <div class="row gutters">
@@ -80,11 +80,11 @@
                                     });
                                 </script>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="my-2 text-right">
+                                    <div class="my-2 text-center">
 <%--                                        <button  class="btn btn-primary mx-1 mt-1" id="confirm-button">--%>
 <%--                                            Submit--%>
 <%--                                        </button>--%>
-                                        <input type="submit" class="btn btn-primary mx-1 mt-1" value='Submit'/>
+                                        <input type="submit" class="btn btn-outline-success mx-1 mt-1" value='Submit'/>
                                     </div>
                                 </div>
                             </div>
