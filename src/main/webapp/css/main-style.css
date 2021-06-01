@@ -12,6 +12,11 @@ body {
     background-color: #f1e5d7!important;
     position: relative;
     height: 90%;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 .account-settings .user-profile {
     margin: 0 0 1rem 0;

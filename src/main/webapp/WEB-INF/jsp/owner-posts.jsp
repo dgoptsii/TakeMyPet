@@ -16,6 +16,7 @@
 <%--            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 100, 255, 0.5);--%>
 <%--        }--%>
 <%--    </style>--%>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/owner-profile-nav.jspf" %>
@@ -41,7 +42,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4  col-12">
-                        <div class="form-group">
+                        <div class="form-group text-center">
 <%--                            <select class="form-control text-center" id="term">--%>
 <%--                                <option>1 day</option>--%>
 <%--                                <option>up to 3 days</option>--%>
@@ -49,7 +50,7 @@
 <%--                                <option>up to 10 days</option>--%>
 <%--                                <option>up to 15 days</option>--%>
 <%--                              </select>--%>
-                        <label id="textInput" for="nDays">Max number of days: <span id="demo"></span> </label>
+                        <label id="textInput" for="nDays">Days: <span id="demo"></span> </label>
                         <div class="slidecontainer">
                             <input type="range" min="1" max="14" value="1" class="slider" id="nDays">
                         </div>
@@ -176,6 +177,13 @@
             </div>
         </div>
     </div>
-<%@ include file="/WEB-INF/jspf/footer.jspf" %>
+    <footer class="container text-center py-3 pt-3 " id="foot" >
+        <div class="form-group text-center pb-0">
+            <img src="https://cdn1.savepice.ru/uploads/2021/6/1/478a03651046359a001893198fcc996e-full.png"
+                 width="140" height="140">
+            <p>&copy; 2021 FrogProg Inc.</p>
+        </div>
+
+    </footer>
 </body>
 </html>

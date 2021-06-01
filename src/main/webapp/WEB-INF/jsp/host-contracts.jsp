@@ -126,6 +126,11 @@
         </div>
     </div>
 </div>
-<%@ include file="/WEB-INF/jspf/footer.jspf" %>
-</body>
+<footer class="container text-center py-3 pt-3 " id="foot" >
+    <div class="form-group text-center pb-0">
+        <img src="https://cdn1.savepice.ru/uploads/2021/5/31/ee395eb1023c348b2663291ef821c831-full.png"
+             width="170" height="170">
+        <p>&copy; 2021 FrogProg Inc.</p>
+    </div>
+</footer>
 </html>
