@@ -73,6 +73,19 @@
                                                 <div class="form-col">
                                                     <p><b>Start date:</b><span> ${item.startDate}</span></p>
                                                     <p><b>End date:</b><span> ${item.endDate}</span></p>
+                                                    <div class="form-group">
+                                                        <label for="rating"><b>Rating: <c:out value="${item.rating}"/></b></label>
+                                                        <div id="rating" class="form-control-static">
+                                                            <script>
+                                                                $(function () {
+                                                                    $("#rating").rateYo({
+                                                                        rating: <c:out value="${item.rating}"/>
+                                                                    });
+                                                                    $("#rating").rateYo('option', 'readOnly', true);
+                                                                });
+                                                            </script>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 my-auto">

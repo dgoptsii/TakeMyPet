@@ -16,7 +16,7 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-5">
                 <div class="card">
                     <div class="card-header">
-                        <h6 class="mb-2 text-primary">Post</h6>
+                        <h6 class="mb-2 text-success">Post</h6>
                     </div>
                     <div class="card-body">
                         <div class="row gutters">
@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <a href="/host/posts"><button type="submit" id="submit" name="submit" class="btn btn-primary">Create</button></a>
+                                    <a href="/host/posts"><button type="submit" id="submit" name="submit" class="btn btn-outline-success">Create</button></a>
                                 </div>
                             </div>
                     </div>

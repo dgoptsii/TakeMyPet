@@ -81,11 +81,14 @@
                                 <div class="form-group">
                                     <label for="rating"><b>Rating: <c:out value="${host.rating}"/></b></label>
                                     <div id="rating" class="form-control-static">
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-secondary fa fa-star"></i>
-                                        <i class="text-secondary fa fa-star"></i>
+                                        <script>
+                                            $(function () {
+                                                $("#rating").rateYo({
+                                                    rating: <c:out value="${host.rating}"/>
+                                                });
+                                                $("#rating").rateYo('option', 'readOnly', true);
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>

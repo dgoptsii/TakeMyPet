@@ -112,14 +112,16 @@
                                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                                 <div class="form-col text-right">
                                                     <div class="form-group">
-                                                        <label for="rating"><b>Rating: <c:out
-                                                                value="${item.host.rating}"/></b></label>
+                                                        <label for="rating"><b>Rating: <c:out value="${item.host.rating}"/></b></label>
                                                         <div id="rating" class="form-control-static">
-                                                            <i class="text-warning fa fa-star"></i>
-                                                            <i class="text-warning fa fa-star"></i>
-                                                            <i class="text-warning fa fa-star"></i>
-                                                            <i class="text-secondary fa fa-star"></i>
-                                                            <i class="text-secondary fa fa-star"></i>
+                                                            <script>
+                                                                $(function () {
+                                                                    $("#rating").rateYo({
+                                                                        rating: <c:out value="${item.host.rating}"/>
+                                                                    });
+                                                                    $("#rating").rateYo('option', 'readOnly', true);
+                                                                });
+                                                            </script>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -154,16 +156,18 @@
                                                 </li>
                                             </c:when>
                                             <c:otherwise>
-                                                <li class="page-item"><a class="page-link"
-                                                                         href="${pageContext.request.contextPath}/owner/posts?page=${i}&animal=${animal}&maxDays=${maxDays}">${i}</a>
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/owner/posts?page=${i}&animal=${animal}&maxDays=${maxDays}">${i}</a>
                                                 </li>
                                             </c:otherwise>
                                         </c:choose>
                                     </c:forEach>
 
                                     <c:if test="${currentPage lt totalPages}">
-                                        <li class="page-item"><a class="page-link"
-                                                                 href="${pageContext.request.contextPath}/owner/posts?page=${currentPage+1}&animal=${animal}&maxDays=${maxDays}">
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/owner/posts?page=${currentPage+1}&animal=${animal}&maxDays=${maxDays}">
                                             Next
                                         </a>
                                         </li>
@@ -185,5 +189,6 @@
         </div>
 
     </footer>
+</div>
 </body>
 </html>

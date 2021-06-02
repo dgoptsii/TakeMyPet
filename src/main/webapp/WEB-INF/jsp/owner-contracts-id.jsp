@@ -10,6 +10,9 @@
 <body>
 <%@ include file="/WEB-INF/jspf/owner-profile-nav.jspf" %>
 
+<c:set var="host" value="${hostInfo}"/>
+<c:set var="owner" value="${ownerInfo}"/>
+
     <div class="container">
         <div class="row gutters d-flex justify-content-center">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
@@ -162,16 +165,17 @@
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                <div class="form-col">
-                                    <div class="form-group">
-                                        <label for="rating"><b>Rated: 3,3/-</b></label>
-                                        <div id="rating" class="form-control-static">
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-secondary fa fa-star"></i>
-                                            <i class="text-secondary fa fa-star"></i>
-                                        </div>
+                                <div class="form-group">
+                                    <label for="rating"><b>Rating: <c:out value="${item.rating}"/></b></label>
+                                    <div id="rating" class="form-control-static">
+                                        <script>
+                                            $(function () {
+                                                $("#rating").rateYo({
+                                                    rating: <c:out value="${item.rating}"/>
+                                                });
+                                                $("#rating").rateYo('option', 'readOnly', true);
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>

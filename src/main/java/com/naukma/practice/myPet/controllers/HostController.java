@@ -9,6 +9,7 @@ import com.naukma.practice.myPet.db.entity.Contract;
 import com.naukma.practice.myPet.db.entity.Host;
 import com.naukma.practice.myPet.db.entity.Post;
 import com.naukma.practice.myPet.db.entity.User;
+import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -103,7 +104,7 @@ public class HostController {
     }
 
     @GetMapping(path = {"/createPost"})
-    public String hostCreatePostPage(){
+    public String hostCreatePostPage() throws NotFoundException {
         log.info("host create post");
         return "host-create-post";
     }

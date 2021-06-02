@@ -35,12 +35,15 @@
                                     <p><b>Phone:</b><span> <c:out value="${host.phone}"/></span></p>
                                     <div class="form-group">
                                         <label for="rating"><b>Rating: <c:out value="${host.rating}"/></b></label>
-                                        <div class="form-control-static">
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-secondary fa fa-star"></i>
-                                            <i class="text-secondary fa fa-star"></i>
+                                        <div id="rating" class="form-control-static">
+                                            <script>
+                                                $(function () {
+                                                    $("#rating").rateYo({
+                                                        rating: <c:out value="${host.rating}"/>
+                                                    });
+                                                    $("#rating").rateYo('option', 'readOnly', true);
+                                                });
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
