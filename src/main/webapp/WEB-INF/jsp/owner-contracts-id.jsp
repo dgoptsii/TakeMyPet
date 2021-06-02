@@ -165,19 +165,20 @@
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                <div class="form-group">
-                                    <label for="rating"><b>Rating: <c:out value="${item.rating}"/></b></label>
-                                    <div id="rating" class="form-control-static">
-                                        <script>
-                                            $(function () {
-                                                $("#rating").rateYo({
-                                                    rating: <c:out value="${item.rating}"/>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="rating"><b>Rating: <c:out value="${item.rating}"/></b></label>
+                                        <div id="rating" class="form-control-static">
+                                            <script>
+                                                $(function () {
+                                                    $("#rating").rateYo({
+                                                        rating: <c:out value="${item.rating}"/>
+                                                    });
+                                                    $("#rating").rateYo('option', 'readOnly', true);
                                                 });
-                                                $("#rating").rateYo('option', 'readOnly', true);
-                                            });
-                                        </script>
+                                            </script>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                 <div class="form-col">
