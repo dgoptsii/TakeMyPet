@@ -65,7 +65,6 @@ public class OwnerController {
         return "owner-profile";
     }
 
-    //TODO KATE
     @GetMapping(path = {"/profile/edit"})
     public ModelAndView ownerProfileEditPage(Model model, HttpServletRequest request) {
         log.info("owner profile edit");
@@ -268,7 +267,6 @@ public class OwnerController {
         return true;
     }
 
-    //TODO CORRECT RETURN TYPE,ADD STATUS WINDOW
     @SneakyThrows
     @PostMapping(path = {"/createContract/{id}"})
     public void ownerCreateContractAction(@RequestParam(name = "startDate") String startDate,
@@ -293,6 +291,7 @@ public class OwnerController {
         Date end = Date.valueOf(dateToFormat(endDate));
         Host host = post.getHost();
 
+        //TODO ANDREY
         //TODO check days number
         List<Contract> list = contractRepository.findAllDistinctByHostAndEndDateAfterOrStartDateBefore(host, start, end);
         System.out.println(list.toString());

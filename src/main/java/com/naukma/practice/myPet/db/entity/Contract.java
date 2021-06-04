@@ -48,7 +48,7 @@ public class Contract {
         contract.setDays(0);
         contract.setRating(post.getHost().getRating());
         contract.setAnimal(post.getAnimal());
-        contract.setStatus("WAITING");
+        contract.setStatus("NEW");
         return contract;
     }
 
