@@ -23,16 +23,6 @@
     </script>
 </c:if>
 
-<c:if test="${not empty getAlert and getAlert=='error'}">
-    <c:set var="getAlert" value="" scope="session"/>
-    <c:set var="errorMessage" value="" scope="session"/>
-    <script>
-        $(document).ready(function () {
-            $("#error-alert").show(1000);
-            $("#error-alert").show().delay(5000).fadeOut();
-        });
-    </script>
-</c:if>
 <div class="container">
     <div class="row gutters d-flex justify-content-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
