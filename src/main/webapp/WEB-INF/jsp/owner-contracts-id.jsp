@@ -51,9 +51,9 @@
                             </div>
                         </div>
                     </div>
-                    <form role="form" name="login_form"
-                          action="${pageContext.request.contextPath}/contract/rate/${contract.id}" method="post">
 
+                    <form id="request" role="form"
+                          action="${pageContext.request.contextPath}/contract/rate/${contract.id}" method="post">
                         <div class="row mt-4">
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                 <div class="form-col">
@@ -159,6 +159,7 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
                 <%@ include file="/WEB-INF/jspf/cancel_dialog.jspf" %>
                 <%@ include file="/WEB-INF/jspf/error_dialog.jspf" %>
