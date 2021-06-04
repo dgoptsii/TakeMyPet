@@ -111,14 +111,13 @@ public class MainController {
     public void rateContract(@PathVariable Long id,@RequestParam(name="rating") String rating,
                              HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
         System.out.println("rating");
-        Integer rate;
+        int rate=0;
         //add catch if rate not number (ariphmetic error or smth)
         try{
-            rate = Integer.valueOf(rating);
+            rate = Integer.parseInt(rating);
         }catch (NumberFormatException ex){
             throw new NumberFormatException();
         }
-
         Contract contract;
         if(contractRepository.findById(id).isPresent()) {
             contract = contractRepository.findById(id).get();

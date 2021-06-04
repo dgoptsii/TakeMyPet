@@ -117,13 +117,15 @@ public class AuthenticationService implements AuthenticationServiceInterface {
             if ((currentState.equals("NEW")) && !newState.equals("WAITING")) {
                 newState = "CANCELED";
                 contractRepository.delete(c);
-            }
-            if (!c.getStatus().equalsIgnoreCase(newState))
+            }else if((currentState.equals("RATED")) && newState.equals("FINISHED")){
+                // do nothing
+            }else if (!c.getStatus().equalsIgnoreCase(newState)) {
                 try {
                     contractRepository.updateStatus(c.getId(), newState);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
         }
     }
 
