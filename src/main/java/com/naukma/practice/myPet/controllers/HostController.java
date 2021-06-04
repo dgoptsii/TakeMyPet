@@ -1,14 +1,9 @@
 package com.naukma.practice.myPet.controllers;
 
-import com.naukma.practice.myPet.db.ContractRepository;
+import com.naukma.practice.myPet.db.*;
 import com.naukma.practice.myPet.db.DTO.HostDTO;
-import com.naukma.practice.myPet.db.HostRepository;
-import com.naukma.practice.myPet.db.PostRepository;
-import com.naukma.practice.myPet.db.UserRepository;
-import com.naukma.practice.myPet.db.entity.Contract;
-import com.naukma.practice.myPet.db.entity.Host;
-import com.naukma.practice.myPet.db.entity.Post;
-import com.naukma.practice.myPet.db.entity.User;
+import com.naukma.practice.myPet.db.DTO.OwnerDTO;
+import com.naukma.practice.myPet.db.entity.*;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +27,9 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/host")
 public class HostController {
+
+    @Autowired
+    private AnimalRepository animalRepository;
 
     @Autowired
     private HostRepository hostRepository;
@@ -157,10 +155,50 @@ public class HostController {
         return "host-posts";
     }
 
-    @GetMapping(path = {"/posts/edit"})
-    public String hostPostsEditPage() {
-        log.info("host posts edit");
+    @GetMapping(path = {"/posts/edit/{id}"})
+    public String hostPostsEditPage(Model model,@PathVariable Long id) throws NotFoundException {
+        Post post;
+        if (postRepository.findById(id).isPresent()) {
+            post = postRepository.findById(id).get();
+        } else {
+            //TODO add custom exception
+            throw new NotFoundException("Post with this id doesn't exist");
+        }
+        model.addAttribute("animals", animalRepository.findAll());
+        model.addAttribute("post", post);
+//        return new ModelAndView("host-posts-edit", "post", post);
         return "host-posts-edit";
+    }
+
+
+    @PostMapping(path = {"/posts/edit/{id}"})
+    public void hostPostsEditAction(@PathVariable Long id,
+                                      @RequestParam(defaultValue = "0", name = "animal") String animal,
+                                      @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId) throws NotFoundException {
+
+        long animalId = Long.parseLong(animal);
+        int maxDays = Integer.parseInt(maxDaysId);
+
+        if (maxDays < 0) {
+            //error to page
+            //redirect to /posts/edit/{id}
+        }
+
+        if (animalId < 0) {
+            //error to page
+            //redirect to /posts/edit/{id}
+        }
+
+        // checks... ask Dasha
+
+        // get post from db ("oldPost")
+
+        // set new fields to oldPost
+
+        //save old post to db
+
+        // success getAlert to posts
+        //redirect to posts page
     }
 
     @GetMapping(path = {"/createPost"})
@@ -217,4 +255,5 @@ public class HostController {
 
         return "host-contracts-id";
     }
+
 }

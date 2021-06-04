@@ -7,18 +7,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/jspf/head.jspf" %>
-
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
+<%@ include file="/WEB-INF/jspf/delete_dialog.jspf" %>
+<%@ include file="/WEB-INF/jspf/error_dialog.jspf" %>
+
+<c:if test="${not empty getAlert and getAlert=='success'}">
+    <c:set var="getAlert" value="" scope="session"/>
+    <c:set var="message" value="" scope="session"/>
+    <script>
+        $(document).ready(function () {
+            $("#success-alert").show(1000);
+            $("#success-alert").show().delay(5000).fadeOut();
+        });
+    </script>
+</c:if>
 
 <div class="container">
     <div class="row gutters d-flex justify-content-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
+
+            <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
+                Post edited!
+            </div>
+
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3 mt-3">
                     <div class="text-center">
-                        <a href="/host/createPost">
+                        <a href="${pageContext.request.contextPath}/host/createPost">
                             <button type="button" id="submit1" name="submit" class="btn btn-success">+ Add post</button>
                         </a>
                     </div>
@@ -73,8 +90,20 @@
                                             <p><b>Term:</b><span> <c:out value="${item.maxDays}"/> days</span></p>
                                         </div>
                                         <div class="text-right col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <a href="#"><button type="button" id="edit_b" name="submit" class="btn btn-outline-warning mr-1 mt-1">Edit</button></a>
-                                            <a href="#"><button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button></a>
+                                            <a href="${pageContext.request.contextPath}/host/posts/edit/${item.id}"><button type="button" id="edit_b" name="submit" class="btn btn-outline-warning mr-1 mt-1">Edit</button></a>
+<%--                                            <a href="">--%>
+<%--                                                <button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button>--%>
+                                            <button type="button"
+                                                    id="delete_b" name="submit" class="btn btn-danger mx-1 mt-1"
+                                                    data-toggle="modal" data-target="#delete-file-modal">
+                                                Delete
+                                            </button>
+                                            <script type="text/javascript">
+                                                $('#confirm-delete-button').on("click", function () {
+                                                    location.href = "${pageContext.request.contextPath}/posts/delete/${item.id}";
+                                                });
+                                            </script>
+<%--                                            </a>--%>
                                         </div>
                                     </div>
                                 </div>
