@@ -1,6 +1,7 @@
 package com.naukma.practice.myPet.controllers;
 
 import com.naukma.practice.myPet.db.ContractRepository;
+import com.naukma.practice.myPet.db.PostRepository;
 import com.naukma.practice.myPet.services.AuthenticationServiceInterface;
 import com.naukma.practice.myPet.services.OperationServer;
 import javassist.NotFoundException;
@@ -21,6 +22,9 @@ import java.io.IOException;
 @Controller
 @Slf4j
 public class MainController {
+
+    @Autowired
+    private PostRepository postRepository;
 
     @Autowired
     private OperationServer operationServer;
@@ -71,8 +75,9 @@ public class MainController {
     }
 
     @GetMapping(path = {"/posts/delete/{id}"})
-    public void deletePost(@PathVariable Long id){
-
+    public void deletePost(@PathVariable Long id,HttpServletRequest request, HttpServletResponse response) throws IOException {
+        postRepository.delete(postRepository.getOne(id));
+        response.sendRedirect(request.getContextPath()+"/host/posts");
     }
 
 }

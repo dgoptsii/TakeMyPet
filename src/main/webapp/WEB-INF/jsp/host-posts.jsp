@@ -7,18 +7,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/jspf/head.jspf" %>
-
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
 
+<c:if test="${not empty getAlert and getAlert=='success'}">
+    <c:set var="getAlert" value="" scope="session"/>
+    <c:set var="message" value="" scope="session"/>
+    <script>
+        $(document).ready(function () {
+            $("#success-alert").show(1000);
+            $("#success-alert").show().delay(5000).fadeOut();
+        });
+    </script>
+</c:if>
+
 <div class="container">
     <div class="row gutters d-flex justify-content-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
+
+            <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
+                Post edited!
+            </div>
+
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3 mt-3">
                     <div class="text-center">
-                        <a href="/host/createPost">
+                        <a href="${pageContext.request.contextPath}/host/createPost">
                             <button type="button" id="submit1" name="submit" class="btn btn-success">+ Add post</button>
                         </a>
                     </div>

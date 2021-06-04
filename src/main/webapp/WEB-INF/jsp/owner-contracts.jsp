@@ -16,8 +16,8 @@
     <c:set var="message" value="" scope="session"/>
     <script>
         $(document).ready(function () {
-            $("#error-alert").show(1000);
-            $("#error-alert").show().delay(5000).fadeOut();
+            $("#success").show(1000);
+            $("#success").show().delay(5000).fadeOut();
         });
     </script>
 </c:if>
