@@ -55,9 +55,20 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="daysRange">Term: ${post.maxDays} days</label>
-                                    <input type="range" name="maxDays" class="form-range form-control" min="1" max="20" step="1.0"
+                                    <label for="daysRange">Term: <span id="demo"></span> days</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="range" name="maxDays" class="slider" min="1" max="14"
                                            id="daysRange" value="${post.maxDays}">
+                                    <script>
+                                        var slider = document.getElementById("daysRange");
+                                        var output = document.getElementById("demo");
+                                        output.innerHTML = slider.value;
+
+                                        slider.oninput = function() {
+                                            output.innerHTML = this.value;
+                                        }
+                                    </script>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
