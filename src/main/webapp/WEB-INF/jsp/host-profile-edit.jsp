@@ -29,6 +29,7 @@
             <div class="card-body">
                 <form:form id="request" action="${pageContext.request.contextPath}/host/profile/edit" method="post" modelAttribute="host" onclick="">
                 <form:input path="id" type="hidden" value="${host.id}" />
+                    <form:input path="rating" type="hidden" value="${host.rating}" />
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <h5 class="mb-2 text-success">Personal Details</h5>
