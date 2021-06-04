@@ -96,16 +96,9 @@
                                                     <c:if test="${item.status =='FINISHED' }">
                                                         <div class="form-group">
                                                             <label for="rating"><b>Rating:</b> <c:out value="${item.rating}"/></label>
-                                                            <div id="rating" class="form-control-static">
-                                                                <script>
-                                                                    $(function () {
-                                                                        $("#rating").rateYo({
-                                                                            rating: <c:out value="${item.rating}"/>
-                                                                        });
-                                                                        $("#rating").rateYo('option', 'readOnly', true);
-                                                                    });
-                                                                </script>
-                                                            </div>
+                                                         <div id="rating" class="str_Rating_detail">
+                                                            <div data-rating="<c:out value="${item.rating}"/>" data-rateyo-read-only="false" class="rateYo bookrating px-0" ></div>
+                                                        </div>
                                                         </div>
                                                     </c:if>
                                                 </div>
@@ -162,6 +155,24 @@
             </div>
         </div>
     </div>
+
+
+<script>
+    $(".rateYo").each(function (e) {
+        var rating = $(this).attr("data-rating");
+        $(this).rateYo({
+            onSet: function (rating) {
+                ratingFunc(rating, $(this).next().next().val());
+            },
+            rating: rating,
+            // starWidth: "20px",
+            // spacing: "5px",
+            // precision: 2,
+        });
+        $(this).rateYo('option', 'readOnly', true);
+    });
+    function ratingFunc(rating){}
+</script>
 <footer class="container text-center py-3 pt-3 " id="foot" >
     <div class="form-group text-center pb-0">
         <img src="https://cdn1.savepice.ru/uploads/2021/6/1/df08565d31e0a625add74d94afbf176b-full.png"

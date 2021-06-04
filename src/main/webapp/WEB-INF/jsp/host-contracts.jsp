@@ -35,29 +35,34 @@
                                     <div class="row g-2">
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                             <div class="form-col">
-                                                <p><b>Owner:</b> <c:out value="${item.owner.name} ${item.owner.surname}"/></p>
+                                                <p><b>Owner:</b> <c:out
+                                                        value="${item.owner.name} ${item.owner.surname}"/></p>
                                                 <p><b>Pet:</b><span> <c:out value="${item.animal.name}"/></span></p>
                                                 <p><b>Status:</b>
 
                                                     <c:choose>
                                                         <c:when test="${item.status =='ACTIVE'}">
-                                                            <span class="badge bg-success text-wrap" style="width: 5rem; color:white">
+                                                            <span class="badge bg-success text-wrap"
+                                                                  style="width: 5rem; color:white">
                                                                  active
                                                             </span>
                                                         </c:when>
                                                         <c:when test="${item.status =='WAITING'}">
-                                                            <span class="badge bg-warning text-wrap" style="width: 5rem; ">
+                                                            <span class="badge bg-warning text-wrap"
+                                                                  style="width: 5rem; ">
                                                                 waiting
                                                             </span>
                                                         </c:when>
                                                         <c:when test="${item.status =='FINISHED'}">
-                                                             <span class="badge bg-secondary text-wrap" style="width: 5rem; color:white">
+                                                             <span class="badge bg-secondary text-wrap"
+                                                                   style="width: 5rem; color:white">
                                                                  finished
                                                              </span>
                                                         </c:when>
                                                         <c:otherwise>
 
-                                                            <span class="badge bg-danger text-wrap" style="width: 5rem; color:white">
+                                                            <span class="badge bg-danger text-wrap"
+                                                                  style="width: 5rem; color:white">
                                                                 emergency
                                                             </span>
                                                         </c:otherwise>
@@ -71,17 +76,11 @@
                                                 <p><b>Start date:</b> <c:out value="${item.startDate}"/></p>
                                                 <p><b>End date:</b> <c:out value="${item.endDate}"/></p>
                                                 <c:if test="${item.status =='FINISHED' }">
-                                                    <div class="form-group">
+                                                    <div class="form-group px-0">
+
                                                         <label for="rating"><b>Rating:</b> <c:out value="${item.rating}"/></label>
-                                                        <div id="rating" class="form-control-static">
-                                                            <script>
-                                                                $(function () {
-                                                                    $("#rating").rateYo({
-                                                                        rating: <c:out value="${item.rating}"/>
-                                                                    });
-                                                                    $("#rating").rateYo('option', 'readOnly', true);
-                                                                });
-                                                            </script>
+                                                        <div id="rating" class="str_Rating_detail">
+                                                            <div data-rating="<c:out value="${item.rating}"/>" data-rateyo-read-only="false" class="rateYo bookrating px-0" ></div>
                                                         </div>
                                                     </div>
                                                 </c:if>
@@ -141,7 +140,25 @@
     </div>
 </div>
 </body>
-<footer class="container text-center py-3 pt-3 " id="foot" >
+
+<script>
+    $(".rateYo").each(function (e) {
+        var rating = $(this).attr("data-rating");
+        $(this).rateYo({
+            onSet: function (rating) {
+                ratingFunc(rating, $(this).next().next().val());
+            },
+            rating: rating,
+            // starWidth: "20px",
+            // spacing: "5px",
+            // precision: 2,
+        });
+        $(this).rateYo('option', 'readOnly', true);
+    });
+    function ratingFunc(rating){}
+</script>
+
+<footer class="container text-center py-3 pt-3 " id="foot">
     <div class="form-group text-center pb-0">
         <img src="https://cdn1.savepice.ru/uploads/2021/5/31/ee395eb1023c348b2663291ef821c831-full.png"
              width="170" height="170">
