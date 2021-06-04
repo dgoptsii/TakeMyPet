@@ -8,7 +8,7 @@
             <a href="/host/profile" class="nav-item nav-link">Profile</a>
             <a href="/host/posts" class="nav-item nav-link">Posts</a>
             <a href="/host/contracts" class="nav-item nav-link">Contracts</a>
-            <a href="/logout" class="nav-item nav-link">Logout</a>
+            <a href="/logout" class="nav-item nav-link"><i class="fa fa-user-times"></i> Logout</a>
         </div>
     </div>
 </nav>
