@@ -152,6 +152,7 @@
             // starWidth: "20px",
             // spacing: "5px",
             // precision: 2,
+            //
         });
         $(this).rateYo('option', 'readOnly', true);
     });
