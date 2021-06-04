@@ -51,105 +51,118 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="form-col">
-                                <p><b>Pet:</b> <c:out value="${contract.animal.name}"/></p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <c:if test="${contract.status =='FINISHED' }">
-                                <div class="form-col">
-                                    <div class="form-group">
-                                        <label for="rating"><b>Rating:</b> <c:out value="${contract.rating}"/></label>
-<%--                                        <label for="rating"><b>Rating:</b> <span id="demo"></span></label>--%>
-                                        <div class="str_Rating_detail">
-                                            <!--star rating-->
-                                            <div id="rating" data-rating="0" data-rateyo-read-only="false" class="rateYo bookrating" ></div>
-                                            <input type="hidden" name="rating" class="bookrating">
-                                        </div>
+                    <form role="form" name="login_form"
+                          action="${pageContext.request.contextPath}/contract/rate/${contract.id}" method="post">
 
-                                    </div>
+                        <div class="row mt-4">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-col">
+                                    <p><b>Pet:</b> <c:out value="${contract.animal.name}"/></p>
                                 </div>
-                            </c:if>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="form-col">
-                                <p><b>Status: </b>
-                                    <c:choose>
-                                        <c:when test="${contract.status =='NEW'}">
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                <c:if test="${contract.status =='FINISHED' }">
+                                    <div class="form-col">
+                                        <div class="form-group">
+                                            <label for="rating"><b>Rating:</b> <c:out
+                                                    value="${contract.rating}"/></label>
+                                                <%--                                        <label for="rating"><b>Rating:</b> <span id="demo"></span></label>--%>
+                                            <div class="str_Rating_detail">
+                                                <!--star rating-->
+                                                <div id="rating" data-rating="0" data-rateyo-read-only="false"
+                                                     class="rateYo bookrating"></div>
+                                                <input type="hidden" name="rating" class="bookrating">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </c:if>
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-col">
+                                    <p><b>Status: </b>
+                                        <c:choose>
+                                            <c:when test="${contract.status =='NEW'}">
                                             <span class="badge bg-info text-wrap" style="width: 5rem;">
                                                 new
                                             </span>
-                                        </c:when>
+                                            </c:when>
 
-                                        <c:when test="${contract.status =='WAITING'}">
+                                            <c:when test="${contract.status =='WAITING'}">
                                              <span class="badge bg-warning text-wrap" style="width: 5rem;">
                                                  waiting
                                              </span>
-                                        </c:when>
+                                            </c:when>
 
-                                        <c:when test="${contract.status =='ACTIVE'}">
+                                            <c:when test="${contract.status =='ACTIVE'}">
                                             <span class="badge bg-success text-wrap" style="width: 5rem; color:white">
                                                 active
                                             </span>
-                                        </c:when>
+                                            </c:when>
 
-                                        <c:when test="${contract.status =='FINISHED'}">
+                                            <c:when test="${contract.status =='FINISHED'}">
                                              <span class="badge bg-secondary text-wrap"
                                                    style="width: 5rem; color:white">
                                                  finished
                                              </span>
-                                        </c:when>
-                                        <%--                                        <c:when test="${contract.status =='ACTIVE'}">--%>
-                                        <%--                                            <span class="badge bg-success text-wrap"--%>
-                                        <%--                                                  style="width: 5rem;">in process</span>--%>
-                                        <%--                                        </c:when>--%>
-                                        <%--                                        <c:when test="${contract.status ==''}">--%>
-                                        <%--                                            <span class="badge bg-success text-wrap"--%>
-                                        <%--                                                  style="width: 5rem;">in process</span>--%>
-                                        <%--                                        </c:when>--%>
-                                    </c:choose>
-                                    <%--                                    <span class="badge bg-info text-wrap" style="width: 5rem;">new</span>--%>
-                                </p>
+                                            </c:when>
+                                            <%--                                        <c:when test="${contract.status =='ACTIVE'}">--%>
+                                            <%--                                            <span class="badge bg-success text-wrap"--%>
+                                            <%--                                                  style="width: 5rem;">in process</span>--%>
+                                            <%--                                        </c:when>--%>
+                                            <%--                                        <c:when test="${contract.status ==''}">--%>
+                                            <%--                                            <span class="badge bg-success text-wrap"--%>
+                                            <%--                                                  style="width: 5rem;">in process</span>--%>
+                                            <%--                                        </c:when>--%>
+                                        </c:choose>
+                                        <%--                                    <span class="badge bg-info text-wrap" style="width: 5rem;">new</span>--%>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="text-right">
-                                <c:if test="${contract.status =='NEW' || contract.status =='WAITING'}">
-                                    <%--<a href="#">--%>
-                                    <button type="button"
-                                            id="submit1" name="submit" class="btn btn-danger mx-1 mt-1"
-                                            data-toggle="modal" data-target="#cancel-file-modal">
-                                        Cancel
-                                    </button>
-                                    <%--</a>--%>
-                                </c:if>
-                                <c:if test="${contract.status =='FINISHED'}">
-                                    <%--<a href="#">--%>
-                                    <button type="button"
-                                            id="rate" name="submit" class="btn btn-warning mx-1 mt-1"
-<%--                                            data-toggle="modal" data-target="#cancel-file-modal"--%>
-                                    >
-                                        Rate
-                                    </button>
-                                    <%--</a>--%>
-                                </c:if>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <c:if test="${contract.status =='NEW' || contract.status =='WAITING'}">
+                                        <%--<a href="#">--%>
+                                        <button type="button"
+                                                id="submit1" name="submit" class="btn btn-danger mx-1 mt-1"
+                                                data-toggle="modal" data-target="#cancel-file-modal">
+                                            Cancel
+                                        </button>
+                                        <%--</a>--%>
+                                    </c:if>
+                                    <c:if test="${contract.status =='FINISHED'}">
+                                        <%--                                    <a href="#">--%>
 
-                                <button type="button"
-                                        id="submit2" name="submit" class="btn btn-outline-danger mx-1 mt-1"
-                                        data-toggle="modal" data-target="#error-file-modal">
-                                    Error
-                                </button>
+                                        <button type="button"
+                                                id="rate" name="submit" class="btn btn-warning mx-1 mt-1"
+                                                data-toggle="modal" data-target="#rate-file-modal">
+                                            Rate
+                                        </button>
+                                        <%--                                    <button type="button"--%>
+                                        <%--                                            id="rate" name="submit" class="btn btn-warning mx-1 mt-1">--%>
+                                        <%--                                            &lt;%&ndash;                                            data-toggle="modal" data-target="#cancel-file-modal"&ndash;%&gt;--%>
+                                        <%--                                        Rate--%>
+                                        <%--                                    </button>--%>
+                                        <%--                                    </a>--%>
+                                    </c:if>
+
+                                    <button type="button"
+                                            id="submit2" name="submit" class="btn btn-outline-danger mx-1 mt-1"
+                                            data-toggle="modal" data-target="#error-file-modal">
+                                        Error
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-
                 <%@ include file="/WEB-INF/jspf/cancel_dialog.jspf" %>
                 <%@ include file="/WEB-INF/jspf/error_dialog.jspf" %>
+                <%@ include file="/WEB-INF/jspf/rate_dialog.jspf" %>
             </div>
 
         </div>
@@ -157,6 +170,9 @@
     <%@ include file="/WEB-INF/jspf/footer.jspf" %>
 
     <script type="text/javascript">
+        $('#confirm-rate-button').on("click", function () {
+            $("#request").submit();
+        });
         $('#confirm-cancel-button').on("click", function () {
             location.href = "${pageContext.request.contextPath}/contracts/cancel/${contractInfo.id}";
         });
@@ -182,7 +198,9 @@
                 fullStar: true
             });
         });
-        function ratingFunc(rating, lang){}
+
+        function ratingFunc(rating, lang) {
+        }
     </script>
 </body>
 </html>

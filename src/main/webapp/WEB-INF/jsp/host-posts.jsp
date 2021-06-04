@@ -52,10 +52,8 @@
                     </c:when>
 
                     <c:otherwise>
-
                         <c:forEach var="item" items="${postsList}">
                             <div class="card">
-
                                 <div class="card-header">
                                     <b>    <h6 class="mb-2 text-success">Post</h6></b>
                                 </div>

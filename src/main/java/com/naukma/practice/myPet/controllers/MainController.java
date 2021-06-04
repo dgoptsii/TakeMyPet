@@ -2,6 +2,7 @@ package com.naukma.practice.myPet.controllers;
 
 import com.naukma.practice.myPet.db.ContractRepository;
 import com.naukma.practice.myPet.db.PostRepository;
+import com.naukma.practice.myPet.db.entity.Contract;
 import com.naukma.practice.myPet.exceptions.InvalidDataException;
 import com.naukma.practice.myPet.services.AuthenticationServiceInterface;
 import com.naukma.practice.myPet.services.OperationServer;
@@ -22,6 +23,8 @@ import java.io.NotActiveException;
 @Controller
 @Slf4j
 public class MainController {
+    @Autowired
+    private ContractRepository contractRepository;
 
     @Autowired
     private PostRepository postRepository;
@@ -107,6 +110,31 @@ public class MainController {
             throw new NotFoundException("No post with this id! ");
         }
 
+    }
+
+    @PostMapping(path = {"/contract/rate/{id}"})
+    public void rateContract(@PathVariable Long id,@RequestParam(name="rating") String rating,
+                             HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
+        System.out.println("rating");
+        Integer rate;
+        //add catch if rate not number (ariphmetic error or smth)
+        try{
+            rate = Integer.valueOf(rating);
+        }catch (NumberFormatException ex){
+            throw new NumberFormatException();
+        }
+
+        Contract contract;
+        if(contractRepository.findById(id).isPresent()) {
+            contract = contractRepository.findById(id).get();
+            contract.setRating(rate);
+            contract.setStatus("RATED");
+            contractRepository.save(contract);
+            request.getSession().setAttribute("getAlert", "success");
+        }else{
+            throw new NotFoundException("No contract with this id! ");
+        }
+        response.sendRedirect(request.getContextPath()+"/owner/contracts");
     }
 
 }

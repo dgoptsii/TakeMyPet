@@ -32,7 +32,7 @@ public class Contract {
 
     private Integer days;
 
-    private Double rating;
+    private Integer rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "animal_id")
@@ -48,7 +48,7 @@ public class Contract {
         contract.setStartDate(startDate);
         contract.setEndDate(endDate);
         contract.setDays(days);
-        contract.setRating(post.getHost().getRating());
+        contract.setRating(0);
         contract.setAnimal(post.getAnimal());
         contract.setStatus("NEW");
         return contract;
