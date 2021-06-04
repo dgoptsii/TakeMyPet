@@ -38,16 +38,16 @@ public class Contract {
     @JoinColumn(name = "animal_id")
     private Animal animal;
 
-    @Column(name="contract_status")
+    @Column(name = "contract_status")
     private String status;
 
-    public static Contract createContract(Post post,Owner owner, Date startDate, Date endDate){
+    public static Contract createContract(Post post, Owner owner, Date startDate, Date endDate, Integer days) {
         Contract contract = new Contract();
         contract.setOwner(owner);
         contract.setHost(post.getHost());
         contract.setStartDate(startDate);
         contract.setEndDate(endDate);
-        contract.setDays(0);
+        contract.setDays(days);
         contract.setRating(post.getHost().getRating());
         contract.setAnimal(post.getAnimal());
         contract.setStatus("NEW");
