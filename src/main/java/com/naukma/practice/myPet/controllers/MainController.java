@@ -70,4 +70,9 @@ public class MainController {
         response.sendRedirect(request.getContextPath()+"/owner/contracts");
     }
 
+    @GetMapping(path = {"/posts/delete/{id}"})
+    public void deletePost(@PathVariable Long id){
+
+    }
+
 }
