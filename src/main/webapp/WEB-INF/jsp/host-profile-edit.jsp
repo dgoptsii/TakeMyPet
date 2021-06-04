@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +10,16 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
+<c:if test="${not empty getAlert and getAlert=='error'}">
+    <c:set var="getAlert" value="" scope="session"/>
+    <%--    <c:set var="errorMessage" value="" scope="session"/>--%>
+    <script>
+        $(document).ready(function () {
+            $("#error-alert").show(1000);
+            $("#error-alert").show().delay(5000).fadeOut();
+        });
+    </script>
+</c:if>
 
     <div class="container">
         <div class="row gutters d-flex justify-content-center">

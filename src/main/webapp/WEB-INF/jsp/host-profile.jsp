@@ -11,6 +11,16 @@
 <body>
 <%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
 
+<c:if test="${not empty getAlert and getAlert=='success'}">
+    <c:set var="getAlert" value="" scope="session"/>
+    <script>
+        $(document).ready(function () {
+            $("#success-alert").show(1000);
+            $("#success-alert").show().delay(5000).fadeOut();
+        });
+    </script>
+</c:if>
+
 <c:set var="host" value="${hostInfo}"/>
 
 <div class="container">
