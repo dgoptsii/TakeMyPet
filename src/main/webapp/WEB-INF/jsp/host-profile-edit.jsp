@@ -21,11 +21,14 @@
     </script>
 </c:if>
 
+
     <div class="container">
         <div class="row gutters d-flex justify-content-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-5">
         <div class="card">
             <div class="card-body">
+                <form:form id="request" action="${pageContext.request.contextPath}/host/profile/edit" method="post" modelAttribute="host" onclick="">
+                <form:input path="id" type="hidden" value="${host.id}" />
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <h5 class="mb-2 text-success">Personal Details</h5>
@@ -33,31 +36,34 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter name">
+                            <form:input path="name" class="form-control" value="${host.name}" id="name"  placeholder="Name" />
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="surname">Surname</label>
-                            <input type="text" class="form-control" id="surname" placeholder="Surname">
+                            <form:input path="surname" type="text" class="form-control" value="${host.surname}"
+                                        id="surname" placeholder="Surname"/>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="eMail">E-mail</label>
-                            <input type="email" class="form-control" id="eMail" placeholder="E-mail">
+                            <form:input path="email" type="email" class="form-control" value="${host.email}"
+                                        id="eMail" placeholder="E-mail" />
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" placeholder="Phone number">
+                            <form:input path="phone" type="text" class="form-control" value="${host.phone}"  id="phone" placeholder="Phone number"/>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="inputLogin">Login</label>
-                            <input type="text" class="form-control" id="inputLogin" placeholder="Login">
+                            <form:input path="login" type="text" class="form-control" value="${host.login}"
+                                        id="inputLogin" placeholder="Login" />
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -72,7 +78,8 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity" placeholder="City">
+                            <form:input path="city" type="text" class="form-control" value="${host.city}"
+                                        id="inputCity" placeholder="City" />
                         </div>
                     </div>
                 </div>
@@ -84,7 +91,9 @@
                         <div class="form-group text-center">
                             <label id="textInput" for="numPets">Max number of animals hosted together: <span id="demo"></span> </label>
                              <div class="slidecontainer">
-                                <input type="range" min="1" max="5" value="1" class="slider" id="numPets">
+                                 <form:input path="maxAnimals" type="range" min="1" max="5" value="${host.maxAnimals}" class="slider" id="numPets"/>
+<%--                                 <form:input path="city" type="text" class="form-control" value="${host.maxAnimals}"--%>
+<%--                                             id="inputCity" placeholder="City" />--%>
                             </div>
                             <script>
                                 var slider = document.getElementById("numPets");
@@ -101,14 +110,15 @@
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
-                            <a href="/host/profile">
                                 <button type="button" id="submit" name="submit" class="btn btn-outline-success"
-                                        style="width:25%; min-width:80px"> Save
+                                        style="width:25%; min-width:80px"
+                                        data-toggle="modal" data-target="#edit-file-modal"> Save
                                 </button>
-                            </a>
                         </div>
                     </div>
                 </div>
+                    <%@ include file="/WEB-INF/jspf/edit_dialog.jspf" %>
+                </form:form>
             </div>
         </div>
         </div>

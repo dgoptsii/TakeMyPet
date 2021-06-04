@@ -131,7 +131,8 @@
                                     <%--<a href="#">--%>
                                     <button type="button"
                                             id="rate" name="submit" class="btn btn-warning mx-1 mt-1"
-                                            data-toggle="modal" data-target="#cancel-file-modal">
+<%--                                            data-toggle="modal" data-target="#cancel-file-modal"--%>
+                                    >
                                         Rate
                                     </button>
                                     <%--</a>--%>

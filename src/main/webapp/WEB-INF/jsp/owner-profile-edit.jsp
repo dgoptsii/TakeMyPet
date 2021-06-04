@@ -38,8 +38,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form:form id="request" action="${pageContext.request.contextPath}/owner/profile/edit" method="post" modelAttribute="owner"
-                    onclick="">
+                    <form:form id="request" action="${pageContext.request.contextPath}/owner/profile/edit" method="post" modelAttribute="owner" onclick="">
 
                         <form:input path="id" type="hidden" value="${owner.id}" />
                         <div class="row gutters">
