@@ -20,7 +20,6 @@ public class Host {
 
     private String city;
     private String region;
-    private String address;
     private Double rating = 0.0;
 
     @Column(name="max_animals")
@@ -30,8 +29,8 @@ public class Host {
 
     public static Host createHost(String login, String name, String surname,
                                   String region, String city,
-                                  String phone
-//                                  Double rating, Integer maxAnimals, String address,
+                                  String phone,
+                                  Double rating, Integer maxAnimals
                                   ) {
         Host host = new Host();
         host.setLogin(login);
@@ -40,9 +39,8 @@ public class Host {
         host.setRegion(region);
         host.setCity(city);
 
-//        host.setAddress(address);
-//        host.setRating(rating);
-//        host.setMaxAnimals(maxAnimals);
+        host.setRating(rating);
+        host.setMaxAnimals(maxAnimals);
         host.setPhone(phone);
         return host;
     }

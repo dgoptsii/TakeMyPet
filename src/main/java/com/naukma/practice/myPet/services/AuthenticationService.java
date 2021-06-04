@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -79,11 +78,11 @@ public class AuthenticationService implements AuthenticationServiceInterface {
             forward = "/owner/profile";
         }
         setUserToSession(session, user, userRole);
-        updateStatusesOfContracts(login,userRole);
+        updateStatusesOfContracts(login, userRole);
         return request.getContextPath() + forward;
     }
 
-    public void updateStatusesOfContracts(String login,String userRole){
+    public void updateStatusesOfContracts(String login, String userRole) {
 
         Date today = new Date(System.currentTimeMillis());
         List<Contract> contracts = null;
@@ -92,7 +91,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         } else if (userRole.equals("OWNER")) {
             contracts = contractRepository.findAllByOwnerLogin(login);
         }
-        if(contracts.size()==0)
+        if (contracts.size() == 0)
             return;
         for (Contract c : contracts) {
 
@@ -101,12 +100,12 @@ public class AuthenticationService implements AuthenticationServiceInterface {
 
             String currentState = c.getStatus();
 
-            System.out.println(c.getId()+" "+currentState+" date - "+ contractStartDate+" "+contractEndDate);
+            System.out.println(c.getId() + " " + currentState + " date - " + contractStartDate + " " + contractEndDate);
             String newState = c.getStatus();
 
             int todayToStart = today.compareTo(contractStartDate);
             int todayToEnd = today.compareTo(contractEndDate);
-            System.out.println("compare- "+todayToStart+" : "+todayToEnd);
+            System.out.println("compare- " + todayToStart + " : " + todayToEnd);
             if (todayToStart > 0 && todayToEnd > 0) {
                 newState = "FINISHED";
             } else if (todayToStart >= 0 && todayToEnd <= 0) {
@@ -120,9 +119,9 @@ public class AuthenticationService implements AuthenticationServiceInterface {
                 contractRepository.delete(c);
             }
             if (!c.getStatus().equalsIgnoreCase(newState))
-                try{
-                    contractRepository.updateStatus(c.getId(),newState);
-                }catch (Exception e){
+                try {
+                    contractRepository.updateStatus(c.getId(), newState);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
         }
@@ -130,7 +129,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
 
     @Override
     public void registrationUser(String login, String password, String email, String password_confirm,
-                                 String name,String surname,String telephone,String country,String city,String role,
+                                 String name, String surname, String telephone, String country, String city, String role,
                                  HttpServletRequest request) throws Exception {
 
         HttpSession checkSession = request.getSession(false);
@@ -159,19 +158,19 @@ public class AuthenticationService implements AuthenticationServiceInterface {
                 || userRepository.findUserByEmail(email).isPresent()
                 || hostRepository.findHostByPhone(telephone).isPresent()
                 || ownerRepository.findOwnerByLogin(telephone).isPresent()
-        ){
+        ) {
             throw new InvalidDataException("User with this login or e-mail is already registered");
         } else {
             String bcryptHashString = passwordEncoder.encode(password);
-            User insertUser = User.createUser(login, email, bcryptHashString,role);
+            User insertUser = User.createUser(login, email, bcryptHashString, role);
             User resultUser = userRepository.save(insertUser);
             System.out.println("result for : add to users list ->" + resultUser);
-            if(role.equals("HOST")){
-                Host insertHost = Host.createHost(login,name,surname,country,city,telephone);
+            if (role.equals("HOST")) {
+                Host insertHost = Host.createHost(login, name, surname, country, city, telephone, 0.0, 1);
                 Host resultHost = hostRepository.save(insertHost);
                 System.out.println("result for : add to hosts list ->" + resultHost);
-            }else if(role.equals("OWNER")){
-                Owner insertOwner = Owner.createOwner(login,name,surname,country,city,telephone);
+            } else if (role.equals("OWNER")) {
+                Owner insertOwner = Owner.createOwner(login, name, surname, country, city, telephone);
                 Owner resultOwner = ownerRepository.save(insertOwner);
                 System.out.println("result for : add to owners list ->" + resultOwner);
             }
@@ -192,7 +191,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
 
     @Override
     public boolean validateData(String login, String password, String email, String password_confirm,
-                                String name,String surname,String telephone,String country,String city,String role) {
+                                String name, String surname, String telephone, String country, String city, String role) {
         if (!validateData(login, password)
                 || email == null || email.isEmpty()
                 || password_confirm == null || password_confirm.isEmpty()

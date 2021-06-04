@@ -16,7 +16,6 @@ public class HostDTO {
 
     private String city;
     private String region; // WARNING ???? here was country
-    private String address;
     private Double rating;
 
     private Integer maxAnimals;
@@ -35,7 +34,6 @@ public class HostDTO {
 
         hostInfo.setRegion(host.getRegion());
         hostInfo.setCity(host.getCity());
-        hostInfo.setAddress(host.getAddress());
 
         hostInfo.setRating(host.getRating());
         hostInfo.setMaxAnimals(host.getMaxAnimals());
@@ -51,6 +49,9 @@ public class HostDTO {
         newHost.setLogin(host.getLogin());
         newHost.setName(host.getName());
         newHost.setSurname(host.getSurname());
+        newHost.setMaxAnimals(host.getMaxAnimals());
+        newHost.setRating(host.getRating());
+
 
         newHost.setPhone(host.getPhone());
         newHost.setRegion(host.getRegion());
