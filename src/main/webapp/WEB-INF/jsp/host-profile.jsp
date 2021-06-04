@@ -63,7 +63,7 @@
                                 <div class="form-group">
                                     <label for="address"><b>Address</b></label>
                                     <p class="form-control-static" id="address"><c:out value="${host.city}"/>, <c:out
-                                            value="${host.country}"/></p>
+                                            value="${host.region}"/></p>
                                 </div>
                             </div>
                         </div>

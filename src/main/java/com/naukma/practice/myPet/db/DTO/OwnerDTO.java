@@ -56,12 +56,6 @@ public class OwnerDTO {
         return newUser;
     }
 
-    public User createUserFromDTO(OwnerDTO owner,User oldUser) {
-        oldUser.setLogin(owner.getLogin());
-        oldUser.setEmail(owner.getEmail());
-        return oldUser;
-    }
-
 
     @Override
     public boolean equals(Object o) {
