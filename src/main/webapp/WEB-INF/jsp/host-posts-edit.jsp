@@ -41,9 +41,9 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="petCategory">Pet</label>
-                                    <select class="form-control text-center" id="petCategory" name="animal_id">
+                                    <select class="form-control text-center" id="petCategory" name="animal">
                                         <c:forEach var="item" items="${animals}">
-                                            <option value="${item.id}" ${ (post.animal==item.id) ? 'selected' : ''} >${item.name}</option>
+                                            <option value="${item.id}" ${ (post.animal.id==item.id) ? 'selected' : ''} >${item.name}</option>
                                         </c:forEach>
                                     </select>
                                     <%--                                    <form:select path="animal" class="form-control" id="petCategory">--%>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="daysRange">Term: n days</label>
+                                    <label for="daysRange">Term: ${post.maxDays} days</label>
                                     <input type="range" name="maxDays" class="form-range form-control" min="1" max="20" step="1.0"
                                            id="daysRange" value="${post.maxDays}">
                                 </div>

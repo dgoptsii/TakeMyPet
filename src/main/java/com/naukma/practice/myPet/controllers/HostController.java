@@ -156,7 +156,7 @@ public class HostController {
     }
 
     @GetMapping(path = {"/posts/edit/{id}"})
-    public ModelAndView hostPostsEditPage(Model model,@PathVariable Long id) throws NotFoundException {
+    public String hostPostsEditPage(Model model,@PathVariable Long id) throws NotFoundException {
         Post post;
         if (postRepository.findById(id).isPresent()) {
             post = postRepository.findById(id).get();
@@ -165,8 +165,9 @@ public class HostController {
             throw new NotFoundException("Post with this id doesn't exist");
         }
         model.addAttribute("animals", animalRepository.findAll());
-//        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
-        return new ModelAndView("host-posts-edit", "post", post);
+        model.addAttribute("post", post);
+//        return new ModelAndView("host-posts-edit", "post", post);
+        return "host-posts-edit";
     }
 
     @GetMapping(path = {"/createPost"})
