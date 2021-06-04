@@ -17,7 +17,7 @@ public class OwnerDTO {
     private String phone;
 
     private String city;
-    private String country;
+    private String region;
 
     public static OwnerDTO createOwner(Owner owner, User user) {
         OwnerDTO ownerInfo = new OwnerDTO();
@@ -30,7 +30,7 @@ public class OwnerDTO {
         ownerInfo.setSurname(owner.getSurname());
 
         ownerInfo.setPhone(owner.getPhone());
-        ownerInfo.setCountry(owner.getRegion());
+        ownerInfo.setRegion(owner.getRegion());
         ownerInfo.setCity(owner.getCity());
         return ownerInfo;
     }

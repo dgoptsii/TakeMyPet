@@ -61,7 +61,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="address"><b>Address</b></label>
-                            <p class="form-control-static" id="address"><c:out value="${owner.city}"/>, <c:out value="${owner.country}"/></p>
+                            <p class="form-control-static" id="address"><c:out value="${owner.city}"/>, <c:out value="${owner.region}"/></p>
                         </div>
                     </div>
                 </div>

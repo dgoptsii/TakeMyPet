@@ -1,6 +1,6 @@
 <select class="form-control" id="region" name="region"  placeholder="Region" required>
-    <option value="" disabled selected>Region</option>
-    <option>Crimea</option>
+<%--    <option value="" disabled selected>Region</option>--%>
+    <option ${ (owner.region =='Crimea') ? 'selected' : ''}>Crimea</option>
     <option>Cherkasy Region</option>
     <option>Chernihiv Region</option>
     <option>Chernivtsi Region</option>

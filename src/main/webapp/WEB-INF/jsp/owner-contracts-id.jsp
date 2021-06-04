@@ -12,7 +12,7 @@
 
 <c:set var="contract" value="${contractInfo}"/>
 <c:set var="host" value="${contractInfo.host}"/>
-<c:set var="owner" value="${contractInfo.owner}"/>
+<c:set var="owner" value="${ownerInfo}"/>
 
 <div class="container">
     <div class="row gutters d-flex justify-content-center">

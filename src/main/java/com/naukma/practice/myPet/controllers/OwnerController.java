@@ -62,9 +62,16 @@ public class OwnerController {
 
     //TODO KATE
     @GetMapping(path = {"/profile/edit"})
-    public String ownerProfileEditPage() {
+    public String ownerProfileEditPage(Model model, HttpServletRequest request) {
         log.info("owner profile edit");
+
+        String login = (String) request.getSession().getAttribute("userLogin");
+        Owner owner = ownerRepository.findOwnerByLogin(login).get();
+        User user = userRepository.findUserByLogin(login).get();
+
+        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
         return "owner-profile-edit";
+
     }
 
     @GetMapping(path = {"/posts"})
@@ -282,7 +289,7 @@ public class OwnerController {
     }
 
     @GetMapping(path = {"/contracts/{id}"})
-    public String ownerContractsIdPage(@PathVariable Long id, Model model) throws NotFoundException {
+    public String ownerContractsIdPage(@PathVariable Long id, Model model,HttpServletRequest request) throws NotFoundException {
 
         log.info("owner contracts " + id);
         Contract contract;
@@ -294,6 +301,11 @@ public class OwnerController {
         }
         model.addAttribute("contractInfo", contract);
 
+        String login = (String) request.getSession().getAttribute("userLogin");
+        Owner owner = ownerRepository.findOwnerByLogin(login).get();
+        User user = userRepository.findUserByLogin(login).get();
+
+        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
         return "owner-contracts-id";
     }
 
