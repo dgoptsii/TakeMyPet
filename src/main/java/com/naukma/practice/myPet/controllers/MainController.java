@@ -99,6 +99,7 @@ public class MainController {
     @GetMapping(path = {"/posts/delete/{id}"})
     public void deletePost(@PathVariable Long id,HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
         if(postRepository.findById(id).isPresent()){
+            System.out.println("delete post -> id="+id);
             postRepository.delete(postRepository.getOne(id));
             response.sendRedirect(request.getContextPath()+"/host/posts");
         }else{
