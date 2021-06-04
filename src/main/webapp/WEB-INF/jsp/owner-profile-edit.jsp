@@ -14,7 +14,7 @@
 
 <c:if test="${not empty getAlert and getAlert=='error'}">
     <c:set var="getAlert" value="" scope="session"/>
-    <c:set var="errorMessage" value="" scope="session"/>
+<%--    <c:set var="errorMessage" value="" scope="session"/>--%>
     <script>
         $(document).ready(function () {
             $("#error-alert").show(1000);
@@ -40,6 +40,7 @@
 
                     <form:form id="request" action="${pageContext.request.contextPath}/owner/profile/edit" method="post" modelAttribute="owner">
 
+                        <form:input path="id" type="hidden" value="${owner.id}" />
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <h5 class="mb-2 text-success">Personal Details</h5>
@@ -47,36 +48,46 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" value="<c:out value="${owner.name}"/>" id="name"
-                                           placeholder="Name"/>
+                                    <form:input path="name" class="form-control" value="${owner.name}" id="name"  placeholder="Name" />
+<%--                                    <input type="text" name="" class="form-control" value="<c:out value="${owner.name}"/>" id="name"--%>
+<%--                                           placeholder="Name"/>--%>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Surname</label>
-                                    <input type="text" class="form-control" value="<c:out value="${owner.surname}"/>"
-                                           id="surname" placeholder="Surname"/>
+                                    <form:input path="surname" type="text" class="form-control" value="${owner.surname}"
+                                    id="surname" placeholder="Surname"/>
+
+<%--                                    <input type="text" class="form-control" value="<c:out value="${owner.surname}"/>"--%>
+<%--                                           id="surname" placeholder="Surname"/>--%>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>E-mail</label>
-                                    <input type="email" class="form-control" value="<c:out value="${owner.email}"/>"
-                                           id="eMail" placeholder="E-mail"/>
+                                    <form:input path="email" type="email" class="form-control" value="${owner.email}"
+                                    id="eMail" placeholder="E-mail" />
+
+<%--                                    <input type="email" class="form-control" value="<c:out value="${owner.email}"/>"--%>
+<%--                                           id="eMail" placeholder="E-mail"/>--%>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Phone number</label>
-                                    <input type="text" class="form-control" value="<c:out value="${owner.phone}"/>"
-                                           id="phone" placeholder="Phone number"/>
+                                    <form:input path="phone" type="text" class="form-control" value="${owner.phone}"  id="phone" placeholder="Phone number"/>
+<%--                                    <input type="text" class="form-control" value="<c:out value="${owner.phone}"/>"--%>
+<%--                                           id="phone" placeholder="Phone number"/>--%>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Login</label>
-                                    <input type="text" class="form-control" value="<c:out value="${owner.login}"/>"
-                                           id="inputLogin" placeholder="Login"/>
+                                    <form:input path="login" type="text" class="form-control" value="${owner.login}"
+                                    id="inputLogin" placeholder="Login" />
+<%--                                    <input type="text" class="form-control" value="<c:out value="${owner.login}"/>"--%>
+<%--                                           id="inputLogin" placeholder="Login"/>--%>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -91,8 +102,10 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>City</label>
-                                    <input type="text" class="form-control" value="<c:out value="${owner.city}"/>"
-                                           id="inputCity" placeholder="City">
+                                    <form:input path="city" type="text" class="form-control" value="${owner.city}"
+                                    id="inputCity" placeholder="City" />
+<%--                                    <input type="text" class="form-control" value="<c:out value="${owner.city}"/>"--%>
+<%--                                           id="inputCity" placeholder="City">--%>
                                 </div>
                             </div>
                         </div>
@@ -100,10 +113,11 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
 
-                                    <button type="button" id="submit" name="submit" class="btn btn-outline-success"
-                                            style="width:25%; min-width:80px"
-                                            data-toggle="modal" data-target="#edit-file-modal"> Save
-                                    </button>
+                                    <input type = "submit" value = "Submit" />
+<%--                                    <button type="button" id="submit" name="submit" class="btn btn-outline-success"--%>
+<%--                                            style="width:25%; min-width:80px"--%>
+<%--                                            data-toggle="modal" data-target="#edit-file-modal"> Save--%>
+<%--                                    </button>--%>
 
                                     <%--                                <button type="button"--%>
                                     <%--                                        id="submit2" name="submit" class="btn btn-outline-danger mx-1 mt-1"--%>

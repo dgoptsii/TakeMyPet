@@ -1,11 +1,13 @@
 package com.naukma.practice.myPet.db.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@DynamicUpdate
 @Table(name = "user")
 public class User {
 

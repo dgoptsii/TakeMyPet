@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.io.IOException;
@@ -35,8 +36,8 @@ import java.util.stream.Collectors;
 public class OwnerController {
 
 
-    @Autowired
-    private OperationServer operationServer;
+//    @Autowired
+//    private OperationServer operationServer;
 
     @Autowired
     private OwnerRepository ownerRepository;
@@ -83,24 +84,48 @@ public class OwnerController {
     public void ownerProfileEditAction(@Valid @ModelAttribute("owner")OwnerDTO ownerNew,
                                        BindingResult result,
                                        HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        log.info("owner profile edit");
-
+        System.out.println("dodod");
         if (result.hasErrors()) {
+            System.out.println("tototot");
             request.getSession().setAttribute("getAlert", "error");
             request.getSession().setAttribute("errorMessage", "Invalid input!");
             response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
-            return;
         }else{
-
+            System.out.println(ownerNew);
             String login = (String) request.getSession().getAttribute("userLogin");
+
             Owner owner = ownerRepository.findOwnerByLogin(login).get();
             User user = userRepository.findUserByLogin(login).get();
+
             OwnerDTO currentInfo = OwnerDTO.createOwner(owner, user);
-            if(currentInfo.equals(ownerNew) || ){
+
+            if(currentInfo.equals(ownerNew)){
                 request.getSession().setAttribute("getAlert", "error");
                 request.getSession().setAttribute("errorMessage", "You don't change nothing!");
                 response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
-                return;
+            }else if(
+                    (userRepository.findUserByLogin(ownerNew.getLogin()).isPresent()  && !currentInfo.getLogin().equals(ownerNew.getLogin()) )
+                    || ( userRepository.findUserByEmail(ownerNew.getEmail()).isPresent() && !currentInfo.getEmail().equals(ownerNew.getEmail()) )
+                    ){
+                request.getSession().setAttribute("getAlert", "error");
+                request.getSession().setAttribute("errorMessage", "User with this login/e-mail is already exist!");
+                response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
+            }else if( ownerRepository.findOwnerByPhone(ownerNew.getPhone()).isPresent()  && !currentInfo.getPhone().equals(ownerNew.getPhone()) ){
+                request.getSession().setAttribute("getAlert", "error");
+                request.getSession().setAttribute("errorMessage", "User with this phone number is already exist!");
+                response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
+
+            }else{
+                user.setLogin(ownerNew.getLogin());
+                user.setEmail(ownerNew.getEmail());
+
+                System.out.println("Updated user -> "+userRepository.save(user));
+                owner = OwnerDTO.createOwnerFromDTO(ownerNew);
+                System.out.println("Updated owner -> "+ownerRepository.save(owner));
+                request.getSession().setAttribute("userLogin", ownerNew.getLogin());
+
+                request.getSession().setAttribute("getAlert", "success");
+                response.sendRedirect(request.getContextPath() + "/owner/profile");
             }
         }
 //        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));

@@ -1,4 +1,5 @@
-<select class="form-control" id="region" name="region"  placeholder="Region" required>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<form:select path="region" class="form-control" id="region" name="region"  placeholder="Region">
 <%--    <option value="" disabled selected>Region</option>--%>
     <option ${ (owner.region =='Crimea') ? 'selected' : ''}>Crimea</option>
     <option>Cherkasy Region</option>
@@ -28,4 +29,4 @@
     <option>Zaporizhzhya Region</option>
     <option>Zhytomyr Region</option>
     <option>outside Ukraine</option>
-</select>
+</form:select>
