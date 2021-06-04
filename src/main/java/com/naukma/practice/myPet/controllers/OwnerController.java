@@ -3,7 +3,6 @@ package com.naukma.practice.myPet.controllers;
 import com.naukma.practice.myPet.db.*;
 import com.naukma.practice.myPet.db.DTO.OwnerDTO;
 import com.naukma.practice.myPet.db.entity.*;
-import com.naukma.practice.myPet.services.OperationServer;
 import javassist.NotFoundException;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -13,15 +12,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.sql.Date;
@@ -80,7 +76,7 @@ public class OwnerController {
 
     //TODO KATE
     @PostMapping(path = {"/profile/edit"})
-    public void ownerProfileEditAction(@Valid @ModelAttribute("owner")OwnerDTO ownerNew,
+    public void ownerProfileEditAction(@Valid @ModelAttribute("owner") OwnerDTO ownerNew,
                                        BindingResult result,
                                        HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("dodod");
@@ -89,7 +85,7 @@ public class OwnerController {
             request.getSession().setAttribute("getAlert", "error");
             request.getSession().setAttribute("errorMessage", "Invalid input!");
             response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
-        }else{
+        } else {
             System.out.println(ownerNew);
             String login = (String) request.getSession().getAttribute("userLogin");
 
@@ -98,29 +94,29 @@ public class OwnerController {
 
             OwnerDTO currentInfo = OwnerDTO.createOwner(owner, user);
 
-            if(currentInfo.equals(ownerNew)){
+            if (currentInfo.equals(ownerNew)) {
                 request.getSession().setAttribute("getAlert", "error");
                 request.getSession().setAttribute("errorMessage", "You don't change nothing!");
                 response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
-            }else if(
-                    (userRepository.findUserByLogin(ownerNew.getLogin()).isPresent()  && !currentInfo.getLogin().equals(ownerNew.getLogin()) )
-                            || ( userRepository.findUserByEmail(ownerNew.getEmail()).isPresent() && !currentInfo.getEmail().equals(ownerNew.getEmail()) )
-            ){
+            } else if (
+                    (userRepository.findUserByLogin(ownerNew.getLogin()).isPresent() && !currentInfo.getLogin().equals(ownerNew.getLogin()))
+                            || (userRepository.findUserByEmail(ownerNew.getEmail()).isPresent() && !currentInfo.getEmail().equals(ownerNew.getEmail()))
+            ) {
                 request.getSession().setAttribute("getAlert", "error");
                 request.getSession().setAttribute("errorMessage", "User with this login/e-mail is already exist!");
                 response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
-            }else if( ownerRepository.findOwnerByPhone(ownerNew.getPhone()).isPresent()  && !currentInfo.getPhone().equals(ownerNew.getPhone()) ){
+            } else if (ownerRepository.findOwnerByPhone(ownerNew.getPhone()).isPresent() && !currentInfo.getPhone().equals(ownerNew.getPhone())) {
                 request.getSession().setAttribute("getAlert", "error");
                 request.getSession().setAttribute("errorMessage", "User with this phone number is already exist!");
                 response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
 
-            }else{
+            } else {
                 user.setLogin(ownerNew.getLogin());
                 user.setEmail(ownerNew.getEmail());
 
-                System.out.println("Updated user -> "+userRepository.save(user));
+                System.out.println("Updated user -> " + userRepository.save(user));
                 owner = OwnerDTO.createOwnerFromDTO(ownerNew);
-                System.out.println("Updated owner -> "+ownerRepository.save(owner));
+                System.out.println("Updated owner -> " + ownerRepository.save(owner));
                 request.getSession().setAttribute("userLogin", ownerNew.getLogin());
 
                 request.getSession().setAttribute("getAlert", "success");
@@ -291,7 +287,7 @@ public class OwnerController {
         Date end = Date.valueOf(dateToFormat(endDate));
         Host host = post.getHost();
 
-        //TODO ANDREY
+        //TODO andrei
         //TODO check days number
         List<Contract> list = contractRepository.findAllDistinctByHostAndEndDateAfterOrStartDateBefore(host, start, end);
         System.out.println(list.toString());
@@ -348,7 +344,7 @@ public class OwnerController {
     }
 
     @GetMapping(path = {"/contracts/{id}"})
-    public String ownerContractsIdPage(@PathVariable Long id, Model model,HttpServletRequest request) throws NotFoundException {
+    public String ownerContractsIdPage(@PathVariable Long id, Model model, HttpServletRequest request) throws NotFoundException {
 
         log.info("owner contracts " + id);
         Contract contract;

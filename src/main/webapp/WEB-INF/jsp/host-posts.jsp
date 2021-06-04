@@ -114,6 +114,7 @@
                                 </c:if>
                             </ul>
                         </nav>
+                        </nav>
                     </c:otherwise>
                 </c:choose>
             </div>

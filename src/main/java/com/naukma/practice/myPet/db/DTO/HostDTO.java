@@ -15,7 +15,7 @@ public class HostDTO {
     private String email;
 
     private String city;
-    private String country;
+    private String region; // WARNING ???? here was country
     private String address;
     private Double rating;
 
@@ -33,7 +33,7 @@ public class HostDTO {
         hostInfo.setName(host.getName());
         hostInfo.setSurname(host.getSurname());
 
-        hostInfo.setCountry(host.getRegion());
+        hostInfo.setRegion(host.getRegion());
         hostInfo.setCity(host.getCity());
         hostInfo.setAddress(host.getAddress());
 
@@ -44,4 +44,17 @@ public class HostDTO {
         return hostInfo;
     }
 
+    public static Host createHostFromDTO(HostDTO host) {
+        Host newHost = new Host();
+
+        newHost.setId(host.getId());
+        newHost.setLogin(host.getLogin());
+        newHost.setName(host.getName());
+        newHost.setSurname(host.getSurname());
+
+        newHost.setPhone(host.getPhone());
+        newHost.setRegion(host.getRegion());
+        newHost.setCity(host.getCity());
+        return newHost;
+    }
 }
