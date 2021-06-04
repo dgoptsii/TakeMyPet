@@ -98,7 +98,11 @@
                                                     data-toggle="modal" data-target="#delete-file-modal">
                                                 Delete
                                             </button>
-
+                                            <script type="text/javascript">
+                                                $('#confirm-cancel-button').on("click", function () {
+                                                    location.href = "${pageContext.request.contextPath}/posts/delete/${item.id}";
+                                                });
+                                            </script>
 <%--                                            </a>--%>
                                         </div>
                                     </div>
@@ -148,19 +152,6 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    $('#confirm-cancel-button').on("click", function () {
-
-        location.href = "${pageContext.request.contextPath}/posts/delete/${item.id}";
-    });
-    $('#confirm-error-button').on("click", function () {
-
-        $("#error-alert").show(1000);
-        $("#error-alert").show().delay(5000).fadeOut();
-        <%--location.href = "${pageContext.request.contextPath}/owner/contracts/cancel/${contractInfo.id}";--%>
-    });
-
-</script>
 <footer class="container text-center py-3 pt-3 " id="foot" >
     <div class="form-group text-center pb-0">
         <img src="https://cdn1.savepice.ru/uploads/2021/5/31/7c924beb31e24833a66bb65a73234d46-full.png"
