@@ -10,6 +10,8 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
+<%@ include file="/WEB-INF/jspf/delete_dialog.jspf" %>
+<%@ include file="/WEB-INF/jspf/error_dialog.jspf" %>
 
 <c:if test="${not empty getAlert and getAlert=='success'}">
     <c:set var="getAlert" value="" scope="session"/>
@@ -90,7 +92,13 @@
                                         <div class="text-right col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <a href="${pageContext.request.contextPath}/host/posts/edit/${item.id}"><button type="button" id="edit_b" name="submit" class="btn btn-outline-warning mr-1 mt-1">Edit</button></a>
 <%--                                            <a href="">--%>
-                                                <button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button>
+<%--                                                <button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button>--%>
+                                            <button type="button"
+                                                    id="delete_b" name="submit" class="btn btn-danger mx-1 mt-1"
+                                                    data-toggle="modal" data-target="#delete-file-modal">
+                                                Delete
+                                            </button>
+
 <%--                                            </a>--%>
                                         </div>
                                     </div>
@@ -140,6 +148,19 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    $('#confirm-cancel-button').on("click", function () {
+
+        location.href = "${pageContext.request.contextPath}/posts/delete/${item.id}";
+    });
+    $('#confirm-error-button').on("click", function () {
+
+        $("#error-alert").show(1000);
+        $("#error-alert").show().delay(5000).fadeOut();
+        <%--location.href = "${pageContext.request.contextPath}/owner/contracts/cancel/${contractInfo.id}";--%>
+    });
+
+</script>
 <footer class="container text-center py-3 pt-3 " id="foot" >
     <div class="form-group text-center pb-0">
         <img src="https://cdn1.savepice.ru/uploads/2021/5/31/7c924beb31e24833a66bb65a73234d46-full.png"
