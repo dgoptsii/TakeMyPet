@@ -142,6 +142,7 @@ public class OwnerController {
 
 
         String login = (String) request.getSession().getAttribute("userLogin");
+        System.out.println(login);
         Owner owner = ownerRepository.findOwnerByLogin(login).get();
 
         String region = owner.getRegion();

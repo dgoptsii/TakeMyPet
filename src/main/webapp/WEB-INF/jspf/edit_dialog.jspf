@@ -9,9 +9,12 @@
             </div>
             <form class="form-horizontal" method="post" id="edit_form">
                 <div class="modal-footer">
-                    <button data-dismiss="modal" class="btn btn-primary" id="confirm-edit-button">
-                        Edit
-                    </button>
+<%--                    <button data-dismiss="modal" class="btn btn-primary" id="confirm-edit-button">--%>
+<%--                        Edit--%>
+<%--                    </button>--%>
+
+                    <input   class="btn btn-primary" type = "submit" value = "Submit" />
+
                     <button data-dismiss="modal" class="btn btn-default" name="in_confirm_insert"
                             id="cancel-delete-button">Cancel</button>
                 </div>

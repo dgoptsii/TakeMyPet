@@ -38,7 +38,8 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form:form id="request" action="${pageContext.request.contextPath}/owner/profile/edit" method="post" modelAttribute="owner">
+                    <form:form id="request" action="${pageContext.request.contextPath}/owner/profile/edit" method="post" modelAttribute="owner"
+                    onclick="">
 
                         <form:input path="id" type="hidden" value="${owner.id}" />
                         <div class="row gutters">
@@ -113,11 +114,10 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
 
-                                    <input type = "submit" value = "Submit" />
-<%--                                    <button type="button" id="submit" name="submit" class="btn btn-outline-success"--%>
-<%--                                            style="width:25%; min-width:80px"--%>
-<%--                                            data-toggle="modal" data-target="#edit-file-modal"> Save--%>
-<%--                                    </button>--%>
+                                    <button type="button" id="submit" name="submit" class="btn btn-outline-success"
+                                            style="width:25%; min-width:80px"
+                                            data-toggle="modal" data-target="#edit-file-modal"> Save
+                                    </button>
 
                                     <%--                                <button type="button"--%>
                                     <%--                                        id="submit2" name="submit" class="btn btn-outline-danger mx-1 mt-1"--%>
@@ -133,9 +133,8 @@
                                 </div>
                             </div>
                         </div>
+                        <%@ include file="/WEB-INF/jspf/edit_dialog.jspf" %>
                     </form:form>
-
-                    <%@ include file="/WEB-INF/jspf/edit_dialog.jspf" %>
                 </div>
             </div>
         </div>
@@ -144,10 +143,9 @@
 <%@ include file="/WEB-INF/jspf/footer.jspf" %>
 
 <script type="text/javascript">
-    $('#confirm-edit-button').on("click", function () {
-        $("#request").submit();
-    });
-
+    // $('#confirm-edit-button').on("click", function () {
+    //     $("#request").submit();
+    // });
 </script>
 </body>
 </html>
