@@ -102,6 +102,7 @@ public class MainController {
             System.out.println("delete post -> id="+id);
             postRepository.delete(postRepository.getOne(id));
             response.sendRedirect(request.getContextPath()+"/host/posts");
+            request.getSession().setAttribute("getAlert", "success");
         }else{
             throw new NotFoundException("No post with this id! ");
         }
