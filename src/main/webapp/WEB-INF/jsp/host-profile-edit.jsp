@@ -72,7 +72,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label >Country</label>
-                            <%@ include file="/WEB-INF/jspf/regions.jspf" %>
+                            <%@ include file="/WEB-INF/jspf/host-regions.jspf" %>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
