@@ -1,8 +1,10 @@
 package com.naukma.practice.myPet.services;
 
+import com.naukma.practice.myPet.db.ContractRepository;
 import com.naukma.practice.myPet.db.HostRepository;
 import com.naukma.practice.myPet.db.OwnerRepository;
 import com.naukma.practice.myPet.db.UserRepository;
+import com.naukma.practice.myPet.db.entity.Contract;
 import com.naukma.practice.myPet.db.entity.Host;
 import com.naukma.practice.myPet.db.entity.Owner;
 import com.naukma.practice.myPet.db.entity.User;
@@ -15,6 +17,9 @@ import org.springframework.stereotype.Service;
 import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
+import java.sql.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +32,8 @@ public class AuthenticationService implements AuthenticationServiceInterface {
     private HostRepository hostRepository;
     @Autowired
     private OwnerRepository ownerRepository;
+    @Autowired
+    private ContractRepository contractRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -72,8 +79,53 @@ public class AuthenticationService implements AuthenticationServiceInterface {
             forward = "/owner/profile";
         }
         setUserToSession(session, user, userRole);
-
+        updateStatusesOfContracts(login,userRole);
         return request.getContextPath() + forward;
+    }
+
+    public void updateStatusesOfContracts(String login,String userRole){
+
+        Date today = new Date(System.currentTimeMillis());
+        List<Contract> contracts = null;
+        if (userRole.equals("HOST")) {
+            contracts = contractRepository.findAllByHostLogin(login);
+        } else if (userRole.equals("OWNER")) {
+            contracts = contractRepository.findAllByOwnerLogin(login);
+        }
+        if(contracts.size()==0)
+            return;
+        for (Contract c : contracts) {
+
+            Date contractStartDate = c.getStartDate();
+            Date contractEndDate = c.getEndDate();
+
+            String currentState = c.getStatus();
+
+            System.out.println(c.getId()+" "+currentState+" date - "+ contractStartDate+" "+contractEndDate);
+            String newState = c.getStatus();
+
+            int todayToStart = today.compareTo(contractStartDate);
+            int todayToEnd = today.compareTo(contractEndDate);
+            System.out.println("compare- "+todayToStart+" : "+todayToEnd);
+            if (todayToStart > 0 && todayToEnd > 0) {
+                newState = "FINISHED";
+            } else if (todayToStart >= 0 && todayToEnd <= 0) {
+                newState = "ACTIVE";
+            } else if (todayToStart < 0) {
+                newState = "WAITING";
+            }
+            System.out.println(newState);
+            if ((currentState.equals("NEW")) && !newState.equals("WAITING")) {
+                newState = "CANCELED";
+                contractRepository.delete(c);
+            }
+            if (!c.getStatus().equalsIgnoreCase(newState))
+                try{
+                    contractRepository.updateStatus(c.getId(),newState);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+        }
     }
 
     @Override

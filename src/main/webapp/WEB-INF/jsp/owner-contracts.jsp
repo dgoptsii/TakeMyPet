@@ -11,8 +11,26 @@
 <body>
 <%@ include file="/WEB-INF/jspf/owner-profile-nav.jspf" %>
 
+<c:if test="${not empty getAlert and getAlert=='success'}">
+    <c:set var="getAlert" value="" scope="session"/>
+    <c:set var="message" value="" scope="session"/>
+    <script>
+        $(document).ready(function () {
+            $("#error-alert").show(1000);
+            $("#error-alert").show().delay(5000).fadeOut();
+        });
+    </script>
+</c:if>
+
     <div class="container">
         <div class="row gutters d-flex justify-content-center">
+
+            <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
+                <c:if test="${not empty message}">
+                    <c:out value="${message}"/>
+                </c:if>
+            </div>
+
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
                 <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                <b>  <h5 class="mt-2 mb-2 text-success">List of contracts</h5></b>
@@ -43,7 +61,7 @@
 
 
                                                         <c:choose>
-                                                            <c:when test="${item.status =='ACTIVE'}">
+                                                            <c:when test="${item.status =='NEW'}">
            <span class="badge bg-success text-wrap" style="width: 5rem; color:white">
                                                 active
                                             </span>
@@ -53,6 +71,12 @@
         <span class="badge bg-warning text-wrap" style="width: 5rem; ">
                                                 waiting
                                             </span>
+                                                            </c:when>
+                                                            <c:when test="${item.status =='ACTIVE'}">
+           <span class="badge bg-success text-wrap" style="width: 5rem; color:white">
+                                                active
+                                            </span>
+
                                                             </c:when>
                                                             <c:when test="${item.status =='FINISHED'}">
      <span class="badge bg-secondary text-wrap" style="width: 5rem; color:white">

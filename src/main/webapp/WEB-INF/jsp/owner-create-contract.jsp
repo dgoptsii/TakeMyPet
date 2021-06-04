@@ -17,9 +17,31 @@
     <c:set var="post" value="${postInfo}"/>
     <c:set var="host" value="${postInfo.host}"/>
 
+
+    <c:if test="${not empty getAlert and getAlert=='error'}">
+        <c:set var="getAlert" value="" scope="session"/>
+        <c:set var="errorMessage" value="" scope="session"/>
+        <script>
+            $(document).ready(function () {
+                $("#error-alert").show(1000);
+                $("#error-alert").show().delay(5000).fadeOut();
+            });
+        </script>
+    </c:if>
+
     <div class="container">
+
+
+
         <div class="row gutters d-flex justify-content-center">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
+
+                <div class="alert alert-danger" role="alert" id="error-alert" style="display:none;">
+                    Error:
+                    <c:if test="${not empty errorMessage}">
+                        <c:out value="${errorMessage}"/>
+                    </c:if>
+                </div>
                 <form id="request"
                       action="${pageContext.request.contextPath}/owner/createContract/${post.id}" method="post">
                     <div class="card">
@@ -43,12 +65,12 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-col">
-                                        Start Date: <input type="text" name="startDate" id="startDate" width="276" />
+                                        Start Date: <input type="text"  value="<c:out value="${startDate}"/>" name="startDate" id="startDate" width="276" />
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-col align-right">
-                                        End Date: <input type="text" name="endDate" id="endDate" width="276" />
+                                        End Date: <input type="text" value="<c:out value="${endDate}"/>" name="endDate" id="endDate" width="276" />
                                     </div>
                                 </div>
                                 <script>

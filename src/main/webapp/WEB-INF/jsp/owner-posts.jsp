@@ -21,10 +21,24 @@
 <body>
 <%@ include file="/WEB-INF/jspf/owner-profile-nav.jspf" %>
 
+<c:if test="${not empty getAlert and getAlert=='success'}">
+    <c:set var="getAlert" value="" scope="session"/>
+    <script>
+        $(document).ready(function () {
+            $("#success-alert").show(1000);
+            $("#success-alert").show().delay(5000).fadeOut();
+        });
+    </script>
+</c:if>
+
 <div class="container">
 
     <div class="row gutters d-flex justify-content-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-5">
+            <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
+                Contract created!
+            </div>
+
             <div class="card pt-3">
                 <div class="card-body">
             <form id="request"
@@ -33,8 +47,8 @@
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4  col-12">
                         <div class="form-group">
                             <select class="form-control text-center" id="petCategory" name="animal">
-                                <option value="" disabled selected>Animal</option>
-<%--                                <option value="0" ${ (animal=='0') ? 'selected' : ''} ></option>--%>
+<%--                                <option value="" disabled selected>Animal</option>--%>
+                                <option value="0" ${ (animal=='0') ? 'selected' : ''} ></option>
                                 <c:forEach var="item" items="${animals}">
                                     <option value="${item.id}" ${ (animal==item.id) ? 'selected' : ''} >${item.name}</option>
                                 </c:forEach>
@@ -52,7 +66,7 @@
 <%--                              </select>--%>
                         <label id="textInput" for="nDays">Days: <span id="demo"></span> </label>
                         <div class="slidecontainer">
-                            <input type="range" min="1" max="14" value="1" class="slider" id="nDays">
+                            <input type="range" min="1" max="14" value="${maxDays}" name="maxDays" class="slider" id="nDays">
                         </div>
                         <script>
                             var slider = document.getElementById("nDays");

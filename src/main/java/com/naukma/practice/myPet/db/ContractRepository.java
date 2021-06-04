@@ -7,7 +7,11 @@ import com.naukma.practice.myPet.db.entity.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +41,11 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
     List<Contract> findAllDistinctByOwnerAndStatus(Owner owner, String status);
 
     List<Contract> findAllDistinctByHostAndEndDateAfterOrStartDateBefore(Host host, Date start, Date end);
+
+    @Modifying(flushAutomatically = true)
+    @Transactional
+    @Query("UPDATE Contract u set u.status = :status where u.id = :id")
+    void updateStatus(@Param(value = "id") Long id, @Param(value = "status") String status);
 
     @Override
     List<Contract> findAll();

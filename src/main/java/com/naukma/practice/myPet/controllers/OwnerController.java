@@ -3,6 +3,7 @@ package com.naukma.practice.myPet.controllers;
 import com.naukma.practice.myPet.db.*;
 import com.naukma.practice.myPet.db.DTO.OwnerDTO;
 import com.naukma.practice.myPet.db.entity.*;
+import com.naukma.practice.myPet.services.OperationServer;
 import javassist.NotFoundException;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -26,6 +30,10 @@ import java.util.stream.Collectors;
 @RequestMapping("owner")
 public class OwnerController {
 
+
+    @Autowired
+    private OperationServer operationServer;
+
     @Autowired
     private OwnerRepository ownerRepository;
 
@@ -34,6 +42,7 @@ public class OwnerController {
 
     @Autowired
     private UserRepository userRepository;
+
 
     @Autowired
     private PostRepository postRepository;
@@ -51,6 +60,7 @@ public class OwnerController {
         return "owner-profile";
     }
 
+    //TODO KATE
     @GetMapping(path = {"/profile/edit"})
     public String ownerProfileEditPage() {
         log.info("owner profile edit");
@@ -64,10 +74,10 @@ public class OwnerController {
                                  @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId,
                                  Model model, HttpServletRequest request) throws Exception {
 
+
         String login = (String) request.getSession().getAttribute("userLogin");
         Owner owner = ownerRepository.findOwnerByLogin(login).get();
 
-//        String city = owner.getCity();
         String region = owner.getRegion();
 
         if (page > 0) {
@@ -76,6 +86,12 @@ public class OwnerController {
         long animalId = Long.parseLong(animal);
         int maxDays = Integer.parseInt(maxDaysId);
 
+        if (maxDays < 0) {
+            maxDays = 1;
+        }
+        if (animalId < 0) {
+            animalId = 0;
+        }
         try {
             List<Post> posts;
             Pageable paging = PageRequest.of(page, size);
@@ -96,6 +112,7 @@ public class OwnerController {
             posts = posts
                     .stream()
                     .filter(p -> p.getHost().getRegion().equals(region))
+                    .filter(p -> p.getStatus().equals("ACTIVE"))
                     .collect(Collectors.toList());
 
             if (posts.size() == 0) {
@@ -119,7 +136,6 @@ public class OwnerController {
         return "owner-posts";
     }
 
-
     @GetMapping(path = {"/posts/{id}"})
     public String ownerPostsIdPage(@PathVariable Long id, Model model) throws NotFoundException {
         Post post;
@@ -133,9 +149,13 @@ public class OwnerController {
         return "owner-posts-id";
     }
 
-
     @GetMapping(path = {"/createContract/{id}"})
-    public String ownerCreateContractPage(@PathVariable Long id, Model model) throws NotFoundException {
+    public String ownerCreateContractPage(@PathVariable Long id, Model model,
+                                          @RequestParam(name = "startDate", required = false) String startDate,
+                                          @RequestParam(name = "endDate", required = false) String endDate) throws NotFoundException {
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+
         log.info("owner create contract " + id);
         Post post;
         if (postRepository.findById(id).isPresent()) {
@@ -187,8 +207,13 @@ public class OwnerController {
     public void ownerCreateContractAction(@RequestParam(name = "startDate") String startDate,
                                           @RequestParam(name = "endDate") String endDate,
                                           @PathVariable Long id,
-                                          Model model,HttpServletRequest request) throws NotFoundException {
-        log.info(Date.valueOf(dateToFormat(startDate)) + " - " + Date.valueOf(dateToFormat(endDate)));
+                                          HttpServletRequest request, HttpServletResponse response) {
+        if (startDate.isEmpty() || endDate.isEmpty()) {
+            request.getSession().setAttribute("getAlert", "error");
+            request.getSession().setAttribute("errorMessage", "You need to select dates.");
+            response.sendRedirect(request.getContextPath() + "/owner/createContract/" + id + "/?startDate=" + startDate + "&endDate=" + endDate);
+            return;
+        }
         Post post;
         if (postRepository.findById(id).isPresent()) {
             post = postRepository.findById(id).get();
@@ -200,6 +225,7 @@ public class OwnerController {
         Date start = Date.valueOf(dateToFormat(startDate));
         Date end = Date.valueOf(dateToFormat(endDate));
         Host host = post.getHost();
+
         //TODO check days number
         List<Contract> list = contractRepository.findAllDistinctByHostAndEndDateAfterOrStartDateBefore(host, start, end);
         System.out.println(list.toString());
@@ -207,18 +233,21 @@ public class OwnerController {
         if (countInter(list, start, end, host.getMaxAnimals())) {
             String login = (String) request.getSession().getAttribute("userLogin");
             Owner owner = ownerRepository.findOwnerByLogin(login).get();
-            Contract contract = Contract.createContract(post,owner,start, end);
+            Contract contract = Contract.createContract(post, owner, start, end);
             Contract result = contractRepository.save(contract);
             System.out.println(result);
-        } else{
+
+            request.getSession().setAttribute("getAlert", "success");
+            response.sendRedirect(request.getContextPath() + "/owner/posts");
+
+        } else {
             //TODO add custom exception (errorSchedule)
-            throw new Exception("Maximum number of animals for this host. Please, select other dates.");
+            request.getSession().setAttribute("getAlert", "error");
+            request.getSession().setAttribute("errorMessage", "Maximum number of animals for this host. Please, select other dates.");
+            response.sendRedirect(request.getContextPath() + "/owner/createContract/" + id + "?startDate=" + startDate + "&endDate=" + endDate);
         }
 
-        //model.addAttribute("postInfo", post);
-//        return "owner-create-contract";
     }
-
 
     @GetMapping(path = {"/contracts"})
     public String ownerContractsPage(@RequestParam(defaultValue = "0") int page,
@@ -230,17 +259,17 @@ public class OwnerController {
         }
         try {
             List<Contract> contracts;
+
             Pageable paging = PageRequest.of(page, size);
 
-            Page<Contract> pageContracts = null;
-            pageContracts = contractRepository.findAllByOwnerLogin(login,paging);
-
+            Page<Contract> pageContracts = contractRepository.findAllByOwnerLogin(login, paging);
             contracts = pageContracts.getContent();
             if (contracts.size() == 0) {
                 model.addAttribute("message", "Oops. No contracts...");
             } else {
-                model.addAttribute("contractsList", contracts);
+                contracts = contractRepository.findAllByOwnerLogin(login, paging).getContent();
             }
+            model.addAttribute("contractsList", contracts);
             model.addAttribute("currentPage", page + 1);
             model.addAttribute("totalItems", pageContracts.getTotalElements());
             model.addAttribute("totalPages", pageContracts.getTotalPages());
@@ -253,8 +282,18 @@ public class OwnerController {
     }
 
     @GetMapping(path = {"/contracts/{id}"})
-    public String ownerContractsIdPage(@PathVariable int id) {
+    public String ownerContractsIdPage(@PathVariable Long id, Model model) throws NotFoundException {
+
         log.info("owner contracts " + id);
+        Contract contract;
+        if (contractRepository.findById(id).isPresent()) {
+            contract = contractRepository.findById(id).get();
+        } else {
+            //TODO add custom exception
+            throw new NotFoundException("Error. Contract not exist! ");
+        }
+        model.addAttribute("contractInfo", contract);
+
         return "owner-contracts-id";
     }
 
