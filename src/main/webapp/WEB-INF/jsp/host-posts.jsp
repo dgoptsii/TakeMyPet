@@ -99,7 +99,7 @@
                                                 Delete
                                             </button>
                                             <script type="text/javascript">
-                                                $('#confirm-cancel-button').on("click", function () {
+                                                $('#confirm-delete-button').on("click", function () {
                                                     location.href = "${pageContext.request.contextPath}/posts/delete/${item.id}";
                                                 });
                                             </script>

@@ -76,6 +76,7 @@ public class MainController {
 
     @GetMapping(path = {"/posts/delete/{id}"})
     public void deletePost(@PathVariable Long id,HttpServletRequest request, HttpServletResponse response) throws IOException {
+       System.out.println("Fuck");
         postRepository.delete(postRepository.getOne(id));
         response.sendRedirect(request.getContextPath()+"/host/posts");
     }
