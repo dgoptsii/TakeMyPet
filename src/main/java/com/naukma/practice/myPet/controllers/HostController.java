@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,9 +58,16 @@ public class HostController {
     }
 
     @GetMapping(path = {"/profile/edit"})
-    public String hostProfileEditPage() {
-        log.info("host profile edit");
-        return "host-profile-edit";
+    public ModelAndView hostProfileEditPage(Model model, HttpServletRequest request) {
+        log.info("owner profile edit");
+
+        String login = (String) request.getSession().getAttribute("userLogin");
+        Host host = hostRepository.findHostByLogin(login).get();
+        User user = userRepository.findUserByLogin(login).get();
+
+//        model.addAttribute("hostInfo", HostDTO.createHost(host, user));
+        return new ModelAndView("host-profile-edit", "host", HostDTO.createHost(host, user));
+//        return "host-profile-edit";
     }
 
 
