@@ -143,8 +143,18 @@ public class HostController {
 
 
     @GetMapping(path = {"/contracts/{id}"})
-    public String hostContractsIdPage(@PathVariable Long id){
+    public String hostContractsIdPage(@PathVariable Long id, Model model) throws NotFoundException {
         log.info("host contracts "+id);
+
+        Contract contract;
+        if (contractRepository.findById(id).isPresent()) {
+            contract = contractRepository.findById(id).get();
+        } else {
+            //TODO add custom exception
+            throw new NotFoundException("Error. Contract not exist! ");
+        }
+        model.addAttribute("contractInfo", contract);
+
         return "host-contracts-id";
     }
 }

@@ -124,9 +124,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                                <div class="form-col text-right">
+                                                <div class="form-col text-left">
                                                     <div class="form-group">
-                                                        <label for="rating"><b>Rating: <c:out value="${item.host.rating}"/></b></label>
+                                                        <label for="rating" class="pl-1"><b>Rating: <c:out value="${item.host.rating}"/></b></label>
                                                         <div id="rating" class="form-control-static">
                                                             <script>
                                                                 $(function () {

@@ -35,8 +35,7 @@
                                     <div class="row g-2">
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                             <div class="form-col">
-                                                <p><b>Owner:</b> <c:out value="${item.owner.name}"/> <c:out
-                                                        value="${item.owner.surname}"/></p>
+                                                <p><b>Owner:</b> <c:out value="${item.owner.name} ${item.owner.surname}"/></p>
                                                 <p><b>Pet:</b><span> <c:out value="${item.animal.name}"/></span></p>
                                                 <p><b>Status:</b>
 
@@ -69,21 +68,23 @@
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                             <div class="form-col">
-                                                <p><b>Start date:</b><span> ${item.startDate}</span></p>
-                                                <p><b>End date:</b><span> ${item.endDate}</span></p>
-                                                <div class="form-group">
-                                                    <label for="rating"><b>Rating: <c:out value="${item.rating}"/></b></label>
-                                                    <div id="rating" class="form-control-static">
-                                                        <script>
-                                                            $(function () {
-                                                                $("#rating").rateYo({
-                                                                    rating: <c:out value="${item.rating}"/>
+                                                <p><b>Start date:</b> <c:out value="${item.startDate}"/></p>
+                                                <p><b>End date:</b> <c:out value="${item.endDate}"/></p>
+                                                <c:if test="${item.status =='FINISHED' }">
+                                                    <div class="form-group">
+                                                        <label for="rating"><b>Rating:</b> <c:out value="${item.rating}"/></label>
+                                                        <div id="rating" class="form-control-static">
+                                                            <script>
+                                                                $(function () {
+                                                                    $("#rating").rateYo({
+                                                                        rating: <c:out value="${item.rating}"/>
+                                                                    });
+                                                                    $("#rating").rateYo('option', 'readOnly', true);
                                                                 });
-                                                                $("#rating").rateYo('option', 'readOnly', true);
-                                                            });
-                                                        </script>
+                                                            </script>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </c:if>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 my-auto">
@@ -139,6 +140,7 @@
         </div>
     </div>
 </div>
+</body>
 <footer class="container text-center py-3 pt-3 " id="foot" >
     <div class="form-group text-center pb-0">
         <img src="https://cdn1.savepice.ru/uploads/2021/5/31/ee395eb1023c348b2663291ef821c831-full.png"

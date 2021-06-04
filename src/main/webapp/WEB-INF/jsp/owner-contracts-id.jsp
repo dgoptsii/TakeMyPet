@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,58 +24,60 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h6 class="mb-2 text-primary">Contract</h6>
+                    <h6 class="mb-2 text-success">Contract</h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-col">
-                                <span><b>Owner details:</b><br>Name Surname</span><br>
-                                <span>000-000-000</span><br>
-                                <span>example@gmail.com</span>
+                                <span><b>Owner details:</b><br> <c:out value="${owner.name} ${owner.surname}"/></span><br>
+                                <span><c:out value="${owner.phone}"/></span><br>
+<%--                                <span><c:out value="${owner.email}"/></span>--%>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-col">
-                                <span><b>Host details:</b><br>Name Surname</span><br>
-                                <span>000-000-000</span><br>
-                                <span>example@gmail.com</span>
+                                <span><b>Host details:</b><br> <c:out value="${host.name} ${host.surname}"/></span><br>
+                                <span><c:out value="${host.phone}"/></span><br>
+<%--                                <span><c:out value="${host.email}"/></span>--%>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-col">
                                 <span><b>Contract details:</b></span><br>
-                                <span>Start date: 05/20/21</span><br>
-                                <span>End date: 05/23/21</span>
+                                <span>Start date: <c:out value="${contract.startDate}"/></span><br>
+                                <span>End date: <c:out value="${contract.endDate}"/></span>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-col">
-                                <p><b>Pet:</b> dog</p>
+                                <p><b>Pet:</b> <c:out value="${contract.animal.name}"/></p>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="form-col">
-                                <div class="form-group">
-                                    <label for="rating"><b>Rating: <c:out value="${item.rating}"/></b></label>
-                                    <div id="rating" class="form-control-static">
-                                        <script>
-                                            $(function () {
-                                                $("#rating").rateYo({
-                                                    rating: <c:out value="${item.rating}"/>
+                            <c:if test="${contract.status =='FINISHED' }">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="rating"><b>Rating:</b> <c:out value="${contract.rating}"/></label>
+                                        <div id="rating" class="form-control-static">
+                                            <script>
+                                                $(function () {
+                                                    $("#rating").rateYo({
+                                                        rating: <c:out value="${contract.rating}"/>
+                                                    });
+                                                    $("#rating").rateYo('option', 'readOnly', true);
                                                 });
-                                                $("#rating").rateYo('option', 'readOnly', true);
-                                            });
-                                        </script>
+                                            </script>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
+                            </c:if>
+                        </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-col">
-                                <p><b>Status: <c:out value="${contractInfo.status}"/></b>
+                                <p><b>Status: </b>
                                     <c:choose>
                                         <c:when test="${contract.status =='NEW'}">
                                             <span class="badge bg-info text-wrap" style="width: 5rem;">

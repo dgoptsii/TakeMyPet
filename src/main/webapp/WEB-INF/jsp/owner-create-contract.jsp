@@ -92,7 +92,7 @@
                                     });
                                 </script>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="my-2 text-center">
+                                    <div class="my-2 text-right">
 <%--                                        <button  class="btn btn-primary mx-1 mt-1" id="confirm-button">--%>
 <%--                                            Submit--%>
 <%--                                        </button>--%>
