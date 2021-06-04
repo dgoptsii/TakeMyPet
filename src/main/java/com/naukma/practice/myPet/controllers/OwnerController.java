@@ -128,6 +128,7 @@ public class OwnerController {
                 response.sendRedirect(request.getContextPath() + "/owner/profile");
             }
         }
+
 //        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
 //        return "owner-profile-edit";
 
