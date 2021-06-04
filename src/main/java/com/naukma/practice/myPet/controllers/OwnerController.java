@@ -103,6 +103,7 @@ public class OwnerController {
                 return;
             }
         }
+
 //        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
 //        return "owner-profile-edit";
 
