@@ -1,0 +1,32 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<form:select path="region" class="form-control" id="region" name="region"  placeholder="Region">
+<%--    <option value="" disabled selected>Region</option>--%>
+    <option ${ (owner.region =='Crimea') ? 'selected' : ''}>Crimea</option>
+    <option ${ (owner.region =='Cherkasy Region') ? 'selected' : ''}>Cherkasy Region</option>
+    <option ${ (owner.region =='Chernihiv Region') ? 'selected' : ''}>Chernihiv Region</option>
+    <option ${ (owner.region =='Chernivtsi Region') ? 'selected' : ''}>Chernivtsi Region</option>
+    <option ${ (owner.region =='Dnipropetrovsk Region') ? 'selected' : ''}>Dnipropetrovsk Region</option>
+    <option ${ (owner.region =='Donetsk Region') ? 'selected' : ''}>Donetsk Region</option>
+    <option ${ (owner.region =='Ivano-Frankivsk Region') ? 'selected' : ''}>Ivano-Frankivsk Region</option>
+    <option ${ (owner.region =='Kharkiv Region') ? 'selected' : ''}>Kharkiv Region</option>
+    <option ${ (owner.region =='Kherson Region') ? 'selected' : ''}>Kherson Region</option>
+    <option ${ (owner.region =='Khmelnytsky Region') ? 'selected' : ''}>Khmelnytsky Region</option>
+    <option ${ (owner.region =='Kirovograd Region') ? 'selected' : ''}>Kirovograd Region</option>
+    <option ${ (owner.region =='Kyiv Region') ? 'selected' : ''}>Kyiv Region</option>
+    <option ${ (owner.region =='The City of Kyiv') ? 'selected' : ''}>The City of Kyiv</option>
+    <option ${ (owner.region =='Luhansk Region') ? 'selected' : ''}>Luhansk Region</option>
+    <option ${ (owner.region =='Lviv Region') ? 'selected' : ''}>Lviv Region</option>
+    <option ${ (owner.region =='Mykolayiv Region') ? 'selected' : ''}>Mykolayiv Region</option>
+    <option ${ (owner.region =='Odesa Region') ? 'selected' : ''}>Odesa Region</option>
+    <option ${ (owner.region =='Poltava Region') ? 'selected' : ''}>Poltava Region</option>
+    <option ${ (owner.region =='Rivne Region') ? 'selected' : ''}>Rivne Region</option>
+    <option ${ (owner.region =='Sumy Region') ? 'selected' : ''}>Sumy Region</option>
+    <option ${ (owner.region =='Ternopil Region') ? 'selected' : ''}>Ternopil Region</option>
+    <option ${ (owner.region =='The City of Sevastopol') ? 'selected' : ''}>The City of Sevastopol</option>
+    <option ${ (owner.region =='Vinnytsya Region') ? 'selected' : ''}>Vinnytsya Region</option>
+    <option ${ (owner.region =='Volyn region') ? 'selected' : ''}>Volyn region</option>
+    <option ${ (owner.region =='Zakarpattya Region') ? 'selected' : ''}>Zakarpattya Region</option>
+    <option ${ (owner.region =='Zaporizhzhya Region') ? 'selected' : ''}>Zaporizhzhya Region</option>
+    <option ${ (owner.region =='Zhytomyr Region') ? 'selected' : ''}>Zhytomyr Region</option>
+    <option ${ (owner.region =='outside Ukraine') ? 'selected' : ''}>outside Ukraine</option>
+</form:select>

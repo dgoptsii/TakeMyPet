@@ -1,0 +1,32 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<form:select path="region" class="form-control" id="region" name="region"  placeholder="Region">
+
+    <option ${ (host.region =='Crimea') ? 'selected' : ''}>Crimea</option>
+    <option ${ (host.region =='Cherkasy Region') ? 'selected' : ''}>Cherkasy Region</option>
+    <option ${ (host.region =='Chernihiv Region') ? 'selected' : ''}>Chernihiv Region</option>
+    <option ${ (host.region =='Chernivtsi Region') ? 'selected' : ''}>Chernivtsi Region</option>
+    <option ${ (host.region =='Dnipropetrovsk Region') ? 'selected' : ''}>Dnipropetrovsk Region</option>
+    <option ${ (host.region =='Donetsk Region') ? 'selected' : ''}>Donetsk Region</option>
+    <option ${ (host.region =='Ivano-Frankivsk Region') ? 'selected' : ''}>Ivano-Frankivsk Region</option>
+    <option ${ (host.region =='Kharkiv Region') ? 'selected' : ''}>Kharkiv Region</option>
+    <option ${ (host.region =='Kherson Region') ? 'selected' : ''}>Kherson Region</option>
+    <option ${ (host.region =='Khmelnytsky Region') ? 'selected' : ''}>Khmelnytsky Region</option>
+    <option ${ (host.region =='Kirovograd Region') ? 'selected' : ''}>Kirovograd Region</option>
+    <option ${ (host.region =='Kyiv Region') ? 'selected' : ''}>Kyiv Region</option>
+    <option ${ (host.region =='The City of Kyiv') ? 'selected' : ''}>The City of Kyiv</option>
+    <option ${ (host.region =='Luhansk Region') ? 'selected' : ''}>Luhansk Region</option>
+    <option ${ (host.region =='Lviv Region') ? 'selected' : ''}>Lviv Region</option>
+    <option ${ (host.region =='Mykolayiv Region') ? 'selected' : ''}>Mykolayiv Region</option>
+    <option ${ (host.region =='Odesa Region') ? 'selected' : ''}>Odesa Region</option>
+    <option ${ (host.region =='Poltava Region') ? 'selected' : ''}>Poltava Region</option>
+    <option ${ (host.region =='Rivne Region') ? 'selected' : ''}>Rivne Region</option>
+    <option ${ (host.region =='Sumy Region') ? 'selected' : ''}>Sumy Region</option>
+    <option ${ (host.region =='Ternopil Region') ? 'selected' : ''}>Ternopil Region</option>
+    <option ${ (host.region =='The City of Sevastopol') ? 'selected' : ''}>The City of Sevastopol</option>
+    <option ${ (host.region =='Vinnytsya Region') ? 'selected' : ''}>Vinnytsya Region</option>
+    <option ${ (host.region =='Volyn region') ? 'selected' : ''}>Volyn region</option>
+    <option ${ (host.region =='Zakarpattya Region') ? 'selected' : ''}>Zakarpattya Region</option>
+    <option ${ (host.region =='Zaporizhzhya Region') ? 'selected' : ''}>Zaporizhzhya Region</option>
+    <option ${ (host.region =='Zhytomyr Region') ? 'selected' : ''}>Zhytomyr Region</option>
+    <option ${ (host.region =='outside Ukraine') ? 'selected' : ''}>outside Ukraine</option>
+</form:select>

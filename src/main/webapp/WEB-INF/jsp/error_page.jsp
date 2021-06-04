@@ -6,6 +6,8 @@
 
 <body>
 
+<%@ include file="/WEB-INF/jspf/simple-nav.jspf" %>
+
 <table id="main-container">
 
 <%--    <%@ include file="/WEB-INF/jspf/header.jspf" %>--%>
