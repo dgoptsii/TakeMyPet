@@ -23,10 +23,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> findDistinctByAnimalId(Long animal_id, Pageable pageable);
     Page<Post> findDistinctByAnimalIdAndMaxDaysGreaterThanEqual(Long animal_id, Integer maxDays, Pageable pageable);
     Page<Post> findByMaxDaysGreaterThanEqual(Integer maxDays, Pageable pageable);
-//    List<Post> findAllPostsByAnimal(Animal animal);
-
-//    List<Post> findAllDistinctByHostAndStatus(Host host, PostStatus status);
-
-//    List<Post> findAllDistinctByStatus(PostStatus status);
 
 }

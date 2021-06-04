@@ -68,21 +68,33 @@
 
                                             <c:choose>
                                                 <c:when test="${item.status =='ACTIVE'}">
-                                                    <input class="btn btn btn-outline-success actionUser"
-                                                           type="button"
-                                                           data-toggle="modal" data-target="#edit-file-modal"
-                                                           id="delete_button"
-                                                           name="${item.id}"
-                                                           value="Active">
+                                                    <a href="${pageContext.request.contextPath}/posts/edit/${item.id}/?status=active&page=${currentPage}&animal=${animal}&maxDays=${maxDays}">
+                                                        <button type="button"
+                                                                class="btn btn btn-outline-success actionUser">
+                                                            Active
+                                                        </button>
+                                                    </a>
+<%--                                                    <input class="btn btn btn-outline-success actionUser"--%>
+<%--                                                           type="button"--%>
+<%--                                                           data-toggle="modal" data-target="#edit-file-modal"--%>
+<%--                                                           id="delete_button"--%>
+<%--                                                           name="${item.id}"--%>
+<%--                                                           value="Active">--%>
 
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <input class="btn btn-outline-secondary actionUser"
-                                                           type="button"
-                                                           data-toggle="modal" data-target="#edit-file-modal"
-                                                           id="delete_button"
-                                                           name="${item.id}"
-                                                           value="Blocked">
+<%--                                                    <input class="btn btn-outline-secondary actionUser"--%>
+<%--                                                           type="button"--%>
+<%--                                                           data-toggle="modal" data-target="#edit-file-modal"--%>
+<%--                                                           id="delete_button"--%>
+<%--                                                           name="${item.id}"--%>
+<%--                                                           value="Blocked">--%>
+                                                    <a href="${pageContext.request.contextPath}/posts/edit/${item.id}/?status=blocked&page=${currentPage}&animal=${animal}&maxDays=${maxDays}">
+                                                        <button type="button"
+                                                                class="btn btn btn-outline-success actionUser">
+                                                            Blocked
+                                                        </button>
+                                                    </a>
                                                 </c:otherwise>
                                             </c:choose>
                                         </div>

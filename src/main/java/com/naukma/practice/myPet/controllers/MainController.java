@@ -2,22 +2,22 @@ package com.naukma.practice.myPet.controllers;
 
 import com.naukma.practice.myPet.db.ContractRepository;
 import com.naukma.practice.myPet.db.PostRepository;
+import com.naukma.practice.myPet.exceptions.InvalidDataException;
 import com.naukma.practice.myPet.services.AuthenticationServiceInterface;
 import com.naukma.practice.myPet.services.OperationServer;
+//import com.sun.media.sound.InvalidDataException;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.security.sasl.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.NotActiveException;
 
 @Controller
 @Slf4j
@@ -74,11 +74,37 @@ public class MainController {
         response.sendRedirect(request.getContextPath()+"/owner/contracts");
     }
 
+    @GetMapping(path = {"/posts/edit/{id}"})
+    public void postChangeStatus(@PathVariable Long id,
+                                 @RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(name="status") String status,
+                                 @RequestParam(defaultValue = "0", name = "animal") String animal,
+                                 @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId,
+                                 HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException, InvalidDataException {
+        System.out.println("edit post status");
+        if(postRepository.findById(id).isPresent()){
+            if(status.equals("active")){
+                // postRepository.setStatus("BLOCKED");
+            }else if(status.equals("blocked")){
+                // postRepository.setStatus("ACTIVE");
+            }else{
+                throw new InvalidDataException("Invalid status!");
+            }
+            response.sendRedirect(request.getContextPath()+"/host/posts?page="+page+"&animal="+animal+"&maxDays="+maxDaysId);
+        }else{
+            throw new NotFoundException("No post with this id! ");
+        }
+    }
+
     @GetMapping(path = {"/posts/delete/{id}"})
-    public void deletePost(@PathVariable Long id,HttpServletRequest request, HttpServletResponse response) throws IOException {
-       System.out.println("Fuck");
-        postRepository.delete(postRepository.getOne(id));
-        response.sendRedirect(request.getContextPath()+"/host/posts");
+    public void deletePost(@PathVariable Long id,HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
+        if(postRepository.findById(id).isPresent()){
+            postRepository.delete(postRepository.getOne(id));
+            response.sendRedirect(request.getContextPath()+"/host/posts");
+        }else{
+            throw new NotFoundException("No post with this id! ");
+        }
+
     }
 
 }
