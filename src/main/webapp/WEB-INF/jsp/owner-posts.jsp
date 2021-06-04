@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <select class="form-control text-center" id="petCategory" name="animal">
 <%--                                <option value="" disabled selected>Animal</option>--%>
-                                <option value="0" ${ (animal=='0') ? 'selected' : ''} ></option>
+                                <option value="0" ${ (animal=='0') ? 'selected' : ''} >Choose animal</option>
                                 <c:forEach var="item" items="${animals}">
                                     <option value="${item.id}" ${ (animal==item.id) ? 'selected' : ''} >${item.name}</option>
                                 </c:forEach>
@@ -127,16 +127,21 @@
                                                 <div class="form-col text-left">
                                                     <div class="form-group">
                                                         <label for="rating" class="pl-1"><b>Rating: <c:out value="${item.host.rating}"/></b></label>
-                                                        <div id="rating" class="form-control-static">
-                                                            <script>
-                                                                $(function () {
-                                                                    $("#rating").rateYo({
-                                                                        rating: <c:out value="${item.host.rating}"/>
-                                                                    });
-                                                                    $("#rating").rateYo('option', 'readOnly', true);
-                                                                });
-                                                            </script>
-                                                        </div>
+<%--                                                        <div id="rating" class="form-control-static">--%>
+<%--                                                            <script>--%>
+<%--                                                                $(function () {--%>
+<%--                                                                    $("#rating").rateYo({--%>
+<%--                                                                        rating: <c:out value="${item.host.rating}"/>--%>
+<%--                                                                    });--%>
+<%--                                                                    $("#rating").rateYo('option', 'readOnly', true);--%>
+<%--                                                                });--%>
+<%--                                                            </script>--%>
+<%--                                                          --%>
+                                                                 <div id="rating" class="str_Rating_detail">
+                                                                    <div data-rating="<c:out value="${item.host.rating}"/>" data-rateyo-read-only="false" class="rateYo bookrating px-0" ></div>
+                                                                </div>
+
+<%--                                                        </div>--%>
                                                     </div>
                                                 </div>
                                             </div>
@@ -195,7 +200,24 @@
             </div>
         </div>
     </div>
-    <footer class="container text-center py-3 pt-3 " id="foot" >
+    <script>
+        $(".rateYo").each(function (e) {
+            var rating = $(this).attr("data-rating");
+            $(this).rateYo({
+                onSet: function (rating) {
+                    ratingFunc(rating, $(this).next().next().val());
+                },
+                rating: rating,
+                // starWidth: "20px",
+                // spacing: "5px",
+                // precision: 2,
+            });
+            $(this).rateYo('option', 'readOnly', true);
+        });
+        function ratingFunc(rating){}
+    </script>
+
+        <footer class="container text-center py-3 pt-3 " id="foot" >
         <div class="form-group text-center pb-0">
             <img src="https://cdn1.savepice.ru/uploads/2021/6/1/478a03651046359a001893198fcc996e-full.png"
                  width="140" height="140">
