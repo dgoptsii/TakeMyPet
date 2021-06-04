@@ -62,7 +62,7 @@ public class OwnerController {
     }
 
     @GetMapping(path = {"/profile/edit"})
-    public ModelAndView ownerProfileEditPage(Model model, HttpServletRequest request) {
+    public ModelAndView ownerProfileEditPage( HttpServletRequest request) {
         log.info("owner profile edit");
 
         String login = (String) request.getSession().getAttribute("userLogin");

@@ -25,9 +25,16 @@
     <div class="container">
         <div class="row gutters d-flex justify-content-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-5">
+
+            <div class="alert alert-danger" role="alert" id="error-alert" style="display:none;">
+                Error:
+                <c:if test="${not empty errorMessage}">
+                    <c:out value="${errorMessage}"/>
+                </c:if>
+            </div>
         <div class="card">
             <div class="card-body">
-                <form:form id="request" action="${pageContext.request.contextPath}/host/profile/edit" method="post" modelAttribute="host" onclick="">
+                <form:form id="request" action="${pageContext.request.contextPath}/host/profile/edit" method="post" modelAttribute="host">
                 <form:input path="id" type="hidden" value="${host.id}" />
                     <form:input path="rating" type="hidden" value="${host.rating}" />
                 <div class="row gutters">

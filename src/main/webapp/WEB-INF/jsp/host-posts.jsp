@@ -73,8 +73,8 @@
                                             <p><b>Term:</b><span> <c:out value="${item.maxDays}"/> days</span></p>
                                         </div>
                                         <div class="text-right col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <a href="#"><button type="button" id="edit_b" name="submit" class="btn btn-outline-warning mr-1 mt-1">Edit</button></a>
-                                            <a href="#"><button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button></a>
+                                            <a href="${pageContext.request.contextPath}/host/posts/edit/${item.id}"><button type="button" id="edit_b" name="submit" class="btn btn-outline-warning mr-1 mt-1">Edit</button></a>
+                                            <a href=""><button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button></a>
                                         </div>
                                     </div>
                                 </div>

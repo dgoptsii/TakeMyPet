@@ -1,14 +1,9 @@
 package com.naukma.practice.myPet.controllers;
 
-import com.naukma.practice.myPet.db.ContractRepository;
+import com.naukma.practice.myPet.db.*;
 import com.naukma.practice.myPet.db.DTO.HostDTO;
-import com.naukma.practice.myPet.db.HostRepository;
-import com.naukma.practice.myPet.db.PostRepository;
-import com.naukma.practice.myPet.db.UserRepository;
-import com.naukma.practice.myPet.db.entity.Contract;
-import com.naukma.practice.myPet.db.entity.Host;
-import com.naukma.practice.myPet.db.entity.Post;
-import com.naukma.practice.myPet.db.entity.User;
+import com.naukma.practice.myPet.db.DTO.OwnerDTO;
+import com.naukma.practice.myPet.db.entity.*;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +27,9 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/host")
 public class HostController {
+
+    @Autowired
+    private AnimalRepository animalRepository;
 
     @Autowired
     private HostRepository hostRepository;
@@ -157,10 +155,18 @@ public class HostController {
         return "host-posts";
     }
 
-    @GetMapping(path = {"/posts/edit"})
-    public String hostPostsEditPage() {
-        log.info("host posts edit");
-        return "host-posts-edit";
+    @GetMapping(path = {"/posts/edit/{id}"})
+    public ModelAndView hostPostsEditPage(Model model,@PathVariable Long id) throws NotFoundException {
+        Post post;
+        if (postRepository.findById(id).isPresent()) {
+            post = postRepository.findById(id).get();
+        } else {
+            //TODO add custom exception
+            throw new NotFoundException("Post with this id doesn't exist");
+        }
+        model.addAttribute("animals", animalRepository.findAll());
+//        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
+        return new ModelAndView("host-posts-edit", "post", post);
     }
 
     @GetMapping(path = {"/createPost"})
