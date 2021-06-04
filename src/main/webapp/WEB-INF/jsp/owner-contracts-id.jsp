@@ -123,7 +123,7 @@
                                         <%--<a href="#">--%>
                                         <button type="button"
                                                 id="submit1" name="submit" class="btn btn-danger mx-1 mt-1"
-                                                data-toggle="modal"  data-target="#edit-file-modal">
+                                                data-toggle="modal"  data-target="#cancel-file-modal">
                                             Cancel
                                         </button>
                                         <%--</a>--%>

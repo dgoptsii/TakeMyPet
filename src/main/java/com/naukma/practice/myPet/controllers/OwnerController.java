@@ -13,11 +13,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
@@ -62,15 +66,45 @@ public class OwnerController {
 
     //TODO KATE
     @GetMapping(path = {"/profile/edit"})
-    public String ownerProfileEditPage(Model model, HttpServletRequest request) {
+    public ModelAndView ownerProfileEditPage(Model model, HttpServletRequest request) {
         log.info("owner profile edit");
 
         String login = (String) request.getSession().getAttribute("userLogin");
         Owner owner = ownerRepository.findOwnerByLogin(login).get();
         User user = userRepository.findUserByLogin(login).get();
 
-        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
-        return "owner-profile-edit";
+//        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
+        return new ModelAndView("owner-profile-edit", "owner", OwnerDTO.createOwner(owner, user));
+//        return "owner-profile-edit";
+    }
+
+    //TODO KATE
+    @PostMapping(path = {"/profile/edit"})
+    public void ownerProfileEditAction(@Valid @ModelAttribute("owner")OwnerDTO ownerNew,
+                                       BindingResult result,
+                                       HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        log.info("owner profile edit");
+
+        if (result.hasErrors()) {
+            request.getSession().setAttribute("getAlert", "error");
+            request.getSession().setAttribute("errorMessage", "Invalid input!");
+            response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
+            return;
+        }else{
+
+            String login = (String) request.getSession().getAttribute("userLogin");
+            Owner owner = ownerRepository.findOwnerByLogin(login).get();
+            User user = userRepository.findUserByLogin(login).get();
+            OwnerDTO currentInfo = OwnerDTO.createOwner(owner, user);
+            if(currentInfo.equals(ownerNew) || ){
+                request.getSession().setAttribute("getAlert", "error");
+                request.getSession().setAttribute("errorMessage", "You don't change nothing!");
+                response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
+                return;
+            }
+        }
+//        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
+//        return "owner-profile-edit";
 
     }
 

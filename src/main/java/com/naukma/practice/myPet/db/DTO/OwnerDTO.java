@@ -4,6 +4,8 @@ import com.naukma.practice.myPet.db.entity.Owner;
 import com.naukma.practice.myPet.db.entity.User;
 import lombok.Data;
 
+import java.util.Objects;
+
 @Data
 public class OwnerDTO {
 
@@ -35,4 +37,18 @@ public class OwnerDTO {
         return ownerInfo;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OwnerDTO ownerDTO = (OwnerDTO) o;
+        return id.equals(ownerDTO.id) && email.equals(ownerDTO.email) && login.equals(ownerDTO.login)
+                && name.equals(ownerDTO.name) && surname.equals(ownerDTO.surname)
+                && phone.equals(ownerDTO.phone) && city.equals(ownerDTO.city) && region.equals(ownerDTO.region);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, surname);
+    }
 }

@@ -1,10 +1,4 @@
-<button class="btn btn-secondary actionUser"
-        type="button"
-        data-toggle="modal" data-target="#add-file-modal">
-    <fmt:message key="button.add"/>
-</button>
-
-<div class="modal fade" id="add-file-modal" role="dialog">
+<div class="modal fade" id="edit-file-modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

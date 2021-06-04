@@ -10,11 +10,36 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/owner-profile-nav.jspf" %>
-
 <c:set var="owner" value="${ownerInfo}"/>
+
+
+<c:if test="${not empty getAlert and getAlert=='success'}">
+    <c:set var="getAlert" value="" scope="session"/>
+    <script>
+        $(document).ready(function () {
+            $("#success-alert").show(1000);
+            $("#success-alert").show().delay(5000).fadeOut();
+        });
+    </script>
+</c:if>
+
+<c:if test="${not empty getAlert and getAlert=='error'}">
+    <c:set var="getAlert" value="" scope="session"/>
+    <c:set var="errorMessage" value="" scope="session"/>
+    <script>
+        $(document).ready(function () {
+            $("#error-alert").show(1000);
+            $("#error-alert").show().delay(5000).fadeOut();
+        });
+    </script>
+</c:if>
 <div class="container">
     <div class="row gutters d-flex justify-content-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
+
+            <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
+                Profile edited!
+            </div>
             <div class="row gutters d-flex justify-content-center">
 
                 <div class="card pt-3">

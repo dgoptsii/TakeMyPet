@@ -15,3 +15,5 @@ JSTL i18n tag library.
 
 <%--<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>--%>
 <%--<%@ taglib prefix='spring' uri='http://www.springframework.org/tags'%>--%>
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
