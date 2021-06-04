@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -287,15 +288,14 @@ public class OwnerController {
         Date end = Date.valueOf(dateToFormat(endDate));
         Host host = post.getHost();
 
-        //TODO andrei
-        //TODO check days number
         List<Contract> list = contractRepository.findAllDistinctByHostAndEndDateAfterOrStartDateBefore(host, start, end);
         System.out.println(list.toString());
+        int days = countDays(start, end);
 
-        if (countInter(list, start, end, host.getMaxAnimals())) {
+        if (start.before(end) && days <= post.getMaxDays() && countInter(list, start, end, host.getMaxAnimals())) {
             String login = (String) request.getSession().getAttribute("userLogin");
             Owner owner = ownerRepository.findOwnerByLogin(login).get();
-            Contract contract = Contract.createContract(post, owner, start, end);
+            Contract contract = Contract.createContract(post, owner, start, end, days);
             Contract result = contractRepository.save(contract);
             System.out.println(result);
 
@@ -309,6 +309,12 @@ public class OwnerController {
             response.sendRedirect(request.getContextPath() + "/owner/createContract/" + id + "?startDate=" + startDate + "&endDate=" + endDate);
         }
 
+    }
+
+    private int countDays(Date start, Date end){
+        long diffInMillies = Math.abs(start.getTime() - end.getTime());
+        int diff = (int) TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        return diff;
     }
 
     @GetMapping(path = {"/contracts"})
