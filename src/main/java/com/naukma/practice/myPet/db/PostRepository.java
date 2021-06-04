@@ -1,12 +1,14 @@
 package com.naukma.practice.myPet.db;
 
-import com.naukma.practice.myPet.db.entity.*;
+import com.naukma.practice.myPet.db.entity.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
@@ -18,10 +20,19 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 
     Page<Post> findAllByHostLogin(String login, Pageable pageable);
+
     Page<Post> findAll(Pageable pageable);
 
     Page<Post> findDistinctByAnimalId(Long animal_id, Pageable pageable);
+
     Page<Post> findDistinctByAnimalIdAndMaxDaysGreaterThanEqual(Long animal_id, Integer maxDays, Pageable pageable);
+
     Page<Post> findByMaxDaysGreaterThanEqual(Integer maxDays, Pageable pageable);
+
+
+    @Modifying(flushAutomatically = true)
+    @Transactional
+    @Query("UPDATE Post p set p.status = :status where p.id = :id")
+    void setStatus(@Param(value = "id") Long id, @Param(value = "status") String status);
 
 }

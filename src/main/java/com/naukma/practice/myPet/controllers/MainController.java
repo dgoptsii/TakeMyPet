@@ -1,11 +1,8 @@
 package com.naukma.practice.myPet.controllers;
 
-import com.naukma.practice.myPet.db.ContractRepository;
 import com.naukma.practice.myPet.db.PostRepository;
 import com.naukma.practice.myPet.exceptions.InvalidDataException;
-import com.naukma.practice.myPet.services.AuthenticationServiceInterface;
 import com.naukma.practice.myPet.services.OperationServer;
-//import com.sun.media.sound.InvalidDataException;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.NotActiveException;
 
 @Controller
 @Slf4j
@@ -30,7 +26,7 @@ public class MainController {
     private OperationServer operationServer;
 
     @GetMapping(path = {"/hello"})
-    public String helloPage(){
+    public String helloPage() {
         log.info("hello");
         return "index";
     }
@@ -46,7 +42,7 @@ public class MainController {
         }
 
         log.debug("Command finished");
-        response.sendRedirect(request.getContextPath() +"/login");
+        response.sendRedirect(request.getContextPath() + "/login");
     }
 
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
@@ -55,13 +51,13 @@ public class MainController {
     }
 
     @GetMapping(path = {"/host/info"})
-    public String hostPage(){
+    public String hostPage() {
         log.info("host");
         return "host";
     }
 
     @GetMapping(path = {"/owner/info"})
-    public String ownerPage(){
+    public String ownerPage() {
         log.info("owner");
         return "owner";
     }
@@ -70,38 +66,38 @@ public class MainController {
     public void ownerChangeContractStateAction(@PathVariable Long id, @PathVariable String state,
                                                HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
 
-        operationServer.changeContractStatus(id,state,request);
-        response.sendRedirect(request.getContextPath()+"/owner/contracts");
+        operationServer.changeContractStatus(id, state, request);
+        response.sendRedirect(request.getContextPath() + "/owner/contracts");
     }
 
     @GetMapping(path = {"/posts/edit/{id}"})
     public void postChangeStatus(@PathVariable Long id,
                                  @RequestParam(defaultValue = "0") int page,
-                                 @RequestParam(name="status") String status,
+                                 @RequestParam(name = "status") String status,
                                  @RequestParam(defaultValue = "0", name = "animal") String animal,
                                  @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId,
                                  HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException, InvalidDataException {
         System.out.println("edit post status");
-        if(postRepository.findById(id).isPresent()){
-            if(status.equals("active")){
-                // postRepository.setStatus("BLOCKED");
-            }else if(status.equals("blocked")){
-                // postRepository.setStatus("ACTIVE");
-            }else{
+        if (postRepository.findById(id).isPresent()) {
+            if (status.equals("active")) {
+                postRepository.setStatus(id, "BLOCKED");
+            } else if (status.equals("blocked")) {
+                postRepository.setStatus(id, "ACTIVE");
+            } else {
                 throw new InvalidDataException("Invalid status!");
             }
-            response.sendRedirect(request.getContextPath()+"/host/posts?page="+page+"&animal="+animal+"&maxDays="+maxDaysId);
-        }else{
+            response.sendRedirect(request.getContextPath() + "/host/posts?page=" + page + "&animal=" + animal + "&maxDays=" + maxDaysId);
+        } else {
             throw new NotFoundException("No post with this id! ");
         }
     }
 
     @GetMapping(path = {"/posts/delete/{id}"})
-    public void deletePost(@PathVariable Long id,HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
-        if(postRepository.findById(id).isPresent()){
+    public void deletePost(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
+        if (postRepository.findById(id).isPresent()) {
             postRepository.delete(postRepository.getOne(id));
-            response.sendRedirect(request.getContextPath()+"/host/posts");
-        }else{
+            response.sendRedirect(request.getContextPath() + "/host/posts");
+        } else {
             throw new NotFoundException("No post with this id! ");
         }
 
