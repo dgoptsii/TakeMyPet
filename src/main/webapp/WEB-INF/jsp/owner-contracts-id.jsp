@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <form id="request" role="form"
+                    <form id="" role="form"
                           action="${pageContext.request.contextPath}/contract/rate/${contract.id}" method="post">
                         <div class="row mt-4">
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
@@ -137,12 +137,11 @@
                                     <c:if test="${contract.status =='FINISHED'}">
                                         <%--                                    <a href="#">--%>
 <%--                                        <a href="${pageContext.request.contextPath}/contract/rate/${contract.id}">--%>
-                                            <button type="button"
+                                            <input type="submit"
                                                     id="rate" name="submit" class="btn btn-warning mx-1 mt-1"
-                                                    data-toggle="modal" data-target="#rate-file-modal">
+                                                    data-toggle="modal" data-target="#rate-file-modal" value="Rate">
 <%--                                            >--%>
-                                                Rate
-                                            </button>
+
                                         </a>
                                         <%--                                    <button type="button"--%>
                                         <%--                                            id="rate" name="submit" class="btn btn-warning mx-1 mt-1">--%>
