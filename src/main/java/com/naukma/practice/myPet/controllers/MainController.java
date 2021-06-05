@@ -1,6 +1,7 @@
 package com.naukma.practice.myPet.controllers;
 
 import com.naukma.practice.myPet.db.ContractRepository;
+import com.naukma.practice.myPet.db.HostRepository;
 import com.naukma.practice.myPet.db.PostRepository;
 import com.naukma.practice.myPet.db.entity.Contract;
 import com.naukma.practice.myPet.exceptions.InvalidDataException;
@@ -25,6 +26,10 @@ public class MainController {
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private HostRepository hostRepository;
+
 
     @Autowired
     private OperationServer operationServer;
@@ -127,10 +132,21 @@ public class MainController {
             contract.setRating(rate);
             contract.setStatus("RATED");
             contractRepository.save(contract);
+            int amountOfRatedContracts
+                    = (int) contractRepository.countContractByStatusAndHostLogin("RATED", contract.getHost().getLogin());
+            int sumOfRatings
+                    = contractRepository.sumOfRatingByStatus("RATED", contract.getHost().getLogin());
+
+            double resRating =  (double) sumOfRatings / (double) amountOfRatedContracts;
+            hostRepository.updateRating(contract.getHost().getId(), resRating);
             request.getSession().setAttribute("getAlert", "success");
         } else {
             throw new NotFoundException("No contract with this id! ");
         }
         response.sendRedirect(request.getContextPath() + "/owner/contracts");
+    }
+
+    private void recountRating(String hostLogin) {
+
     }
 }

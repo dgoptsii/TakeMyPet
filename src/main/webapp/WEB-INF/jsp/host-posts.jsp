@@ -35,13 +35,16 @@
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3 mt-3">
                     <div class="text-center">
-                        <a href="${pageContext.request.contextPath}/host/createPost">
-                            <button type="button" id="submit1" name="submit" class="btn btn-success">+ Add post</button>
-                        </a>
+                        <c:if test="${totalItems < numberOfAnimals}">
+                            <a href="${pageContext.request.contextPath}/host/createPost">
+                                <button type="button" id="submit1" name="submit" class="btn btn-success">+ Add post
+                                </button>
+                            </a>
+                        </c:if>
                     </div>
                 </div>
                 <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <b> <h5 class="mt-2 mb-2 text-inverse">List of posts</h5></b>
+                    <b><h5 class="mt-2 mb-2 text-inverse">List of posts</h5></b>
                 </div>
             </div>
 
@@ -55,7 +58,7 @@
                         <c:forEach var="item" items="${postsList}">
                             <div class="card">
                                 <div class="card-header">
-                                    <b>    <h6 class="mb-2 text-success">Post</h6></b>
+                                    <b><h6 class="mb-2 text-success">Post</h6></b>
                                 </div>
                                 <div class="card-body">
                                     <div class="row g-2">
@@ -73,23 +76,23 @@
                                                             Active
                                                         </button>
                                                     </a>
-<%--                                                    <input class="btn btn btn-outline-success actionUser"--%>
-<%--                                                           type="button"--%>
-<%--                                                           data-toggle="modal" data-target="#edit-file-modal"--%>
-<%--                                                           id="delete_button"--%>
-<%--                                                           name="${item.id}"--%>
-<%--                                                           value="Active">--%>
+                                                    <%--                                                    <input class="btn btn btn-outline-success actionUser"--%>
+                                                    <%--                                                           type="button"--%>
+                                                    <%--                                                           data-toggle="modal" data-target="#edit-file-modal"--%>
+                                                    <%--                                                           id="delete_button"--%>
+                                                    <%--                                                           name="${item.id}"--%>
+                                                    <%--                                                           value="Active">--%>
 
                                                 </c:when>
                                                 <c:otherwise>
-<%--                                                    <input class="btn btn-outline-secondary actionUser"--%>
-<%--                                                           type="button"--%>
-<%--                                                           data-toggle="modal" data-target="#edit-file-modal"--%>
-<%--                                                           id="delete_button"--%>
-<%--                                                           name="${item.id}"--%>
-<%--                                                           value="Blocked">--%>
+                                                    <%--                                                    <input class="btn btn-outline-secondary actionUser"--%>
+                                                    <%--                                                           type="button"--%>
+                                                    <%--                                                           data-toggle="modal" data-target="#edit-file-modal"--%>
+                                                    <%--                                                           id="delete_button"--%>
+                                                    <%--                                                           name="${item.id}"--%>
+                                                    <%--                                                           value="Blocked">--%>
                                                     <a href="${pageContext.request.contextPath}/posts/edit/${item.id}/?status=blocked&page=${currentPage}&animal=${animal}&maxDays=${maxDays}"
-                                                        class="mx-1">
+                                                       class="mx-1">
                                                         <button type="button"
                                                                 class="btn btn btn-outline-secondary actionUser">
                                                             Blocked
@@ -102,21 +105,26 @@
                                             <p><b>Term:</b><span> <c:out value="${item.maxDays}"/> days</span></p>
                                         </div>
                                         <div class="text-right col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <a href="${pageContext.request.contextPath}/host/posts/edit/${item.id}"><button type="button" id="edit_b" name="submit" class="btn btn-outline-warning mr-1 mt-1">Edit</button></a>
-<%--                                            <a href="">--%>
-<%--                                                <button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button>--%>
-                                            <a href="/posts/delete/${item.id}"> <button type="button"
-                                                    id="delete_b" name="submit" class="btn btn-danger mx-1 mt-1"
-                                                    data-toggle="modal" data-target="#delete-file-modal">
-                                                Delete
-                                            </button>
-                                        </a>
-<%--                                            <script type="text/javascript">--%>
-<%--                                                $('#confirm-delete-button').on("click", function () {--%>
-<%--                                                    location.href = "${pageContext.request.contextPath}/posts/delete/${item.id}";--%>
-<%--                                                });--%>
-<%--                                            </script>--%>
-<%--                                            </a>--%>
+                                            <a href="${pageContext.request.contextPath}/host/posts/edit/${item.id}">
+                                                <button type="button" id="edit_b" name="submit"
+                                                        class="btn btn-outline-warning mr-1 mt-1">Edit
+                                                </button>
+                                            </a>
+                                                <%--                                            <a href="">--%>
+                                                <%--                                                <button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button>--%>
+                                            <a href="/posts/delete/${item.id}">
+                                                <button type="button"
+                                                        id="delete_b" name="submit" class="btn btn-danger mx-1 mt-1"
+                                                        data-toggle="modal" data-target="#delete-file-modal">
+                                                    Delete
+                                                </button>
+                                            </a>
+                                                <%--                                            <script type="text/javascript">--%>
+                                                <%--                                                $('#confirm-delete-button').on("click", function () {--%>
+                                                <%--                                                    location.href = "${pageContext.request.contextPath}/posts/delete/${item.id}";--%>
+                                                <%--                                                });--%>
+                                                <%--                                            </script>--%>
+                                                <%--                                            </a>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +173,7 @@
     </div>
 </div>
 
-<footer class="container text-center py-3 pt-3 " id="foot" >
+<footer class="container text-center py-3 pt-3 " id="foot">
     <div class="form-group text-center pb-0">
         <img src="https://cdn1.savepice.ru/uploads/2021/5/31/7c924beb31e24833a66bb65a73234d46-full.png"
              width="140" height="140">
