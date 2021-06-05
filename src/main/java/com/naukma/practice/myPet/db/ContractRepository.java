@@ -24,6 +24,10 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
     @Override
     Optional<Contract> findById(Long id);
 
+    long countContractByStatusAndHostLogin(String status, String hostLogin);
+
+    @Query("SELECT SUM(c.rating) FROM Contract c WHERE c.status = :status AND c.host.login = :hostLogin")
+    int sumOfRatingByStatus(String status, String hostLogin);
 
     //for /host/contracts
     Page<Contract> findAllByHostLogin(String login, Pageable pageable);
