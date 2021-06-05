@@ -89,7 +89,7 @@
 <%--                                                           value="Blocked">--%>
                                                     <a href="${pageContext.request.contextPath}/posts/edit/${item.id}/?status=blocked&page=${currentPage}&animal=${animal}&maxDays=${maxDays}">
                                                         <button type="button"
-                                                                class="btn btn btn-outline-success actionUser">
+                                                                class="btn btn btn-outline-secondary actionUser">
                                                             Blocked
                                                         </button>
                                                     </a>
