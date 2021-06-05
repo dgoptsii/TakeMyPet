@@ -33,26 +33,26 @@
                     </c:if>
                 </div>
                 <div class="card-header">
-                    <h6 class="mb-2 text-primary">Post</h6>
+                    <h6 class="mb-2 text-success">Post</h6>
                 </div>
                 <form id="request" action="${pageContext.request.contextPath}/host/posts/edit/${post.id}" method="post">
                     <div class="card-body">
                         <div class="row gutters">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-<%--    &lt;%&ndash;                                <label for="petCategory">Pet</label>--%>
-<%--                                    <select class="form-control text-center" id="petCategory" name="animal">--%>
-<%--                                        <c:forEach var="item" items="${animals}">--%>
-<%--                                            <option value="${item.id}" ${ (post.animal.id==item.id) ? 'selected' : ''} >${item.name}</option>--%>
-<%--                                        </c:forEach>--%>
-<%--                                    </select>&ndash;%&gt;--%>
-                                    <%--                                    <form:select path="animal" class="form-control" id="petCategory">--%>
-                                    <%--                                        <c:forEach var="item" items="${animals}">--%>
-                                    <%--                                            <option value="${item.id}" ${ (animal==item.id) ? 'selected' : ''} >${item.name}</option>--%>
-                                    <%--                                        </c:forEach>--%>
-                                    <%--                                      </form:select>--%>
-                                </div>
-                            </div>
+<%--                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">--%>
+<%--                                <div class="form-group">--%>
+<%--&lt;%&ndash;    &lt;%&ndash;                                <label for="petCategory">Pet</label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <select class="form-control text-center" id="petCategory" name="animal">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <c:forEach var="item" items="${animals}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <option value="${item.id}" ${ (post.animal.id==item.id) ? 'selected' : ''} >${item.name}</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        </c:forEach>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </select>&ndash;%&gt;&ndash;%&gt;--%>
+<%--                                    &lt;%&ndash;                                    <form:select path="animal" class="form-control" id="petCategory">&ndash;%&gt;--%>
+<%--                                    &lt;%&ndash;                                        <c:forEach var="item" items="${animals}">&ndash;%&gt;--%>
+<%--                                    &lt;%&ndash;                                            <option value="${item.id}" ${ (animal==item.id) ? 'selected' : ''} >${item.name}</option>&ndash;%&gt;--%>
+<%--                                    &lt;%&ndash;                                        </c:forEach>&ndash;%&gt;--%>
+<%--                                    &lt;%&ndash;                                      </form:select>&ndash;%&gt;--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="daysRange">Term: <span id="demo"></span> days</label>
@@ -70,6 +70,7 @@
                                         }
                                     </script>
                                 </div>
+
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
