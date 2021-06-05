@@ -106,20 +106,23 @@ public class AuthenticationService implements AuthenticationServiceInterface {
             int todayToStart = today.compareTo(contractStartDate);
             int todayToEnd = today.compareTo(contractEndDate);
             System.out.println("compare- " + todayToStart + " : " + todayToEnd);
-            if (todayToStart > 0 && todayToEnd > 0) {
+            if (today.after(contractStartDate) && today.after(contractEndDate)) {
                 newState = "FINISHED";
             } else if (todayToStart >= 0 && todayToEnd <= 0) {
                 newState = "ACTIVE";
-            } else if (todayToStart < 0) {
-                newState = "WAITING";
+
             }
+//            else if (today.before(contractStartDate) && c.getStatus().) {
+//                newState = "WAITING";
+//            }
             System.out.println(newState);
-            if ((currentState.equals("NEW")) && !newState.equals("WAITING")) {
-                newState = "CANCELED";
-                contractRepository.delete(c);
-            }else if((currentState.equals("RATED")) && newState.equals("FINISHED")){
+//            if ((currentState.equals("NEW")) && !newState.equals("WAITING")) {
+//                newState = "CANCELED";
+//                contractRepository.delete(c);
+//            }else
+                if((currentState.equals("RATED")) && newState.equals("FINISHED")){
                 // do nothing
-            }else if (!c.getStatus().equalsIgnoreCase(newState)) {
+            } else if (!c.getStatus().equalsIgnoreCase(newState)) {
                 try {
                     contractRepository.updateStatus(c.getId(), newState);
                 } catch (Exception e) {
