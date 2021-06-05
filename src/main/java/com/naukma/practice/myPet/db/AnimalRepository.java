@@ -12,7 +12,8 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
     @Override
     Optional<Animal> findById(Long id);
-
+    Optional<Animal> findByName(String name);
+    long count();
     @Override
     List<Animal> findAll();
 }

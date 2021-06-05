@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
@@ -20,6 +21,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 
     Page<Post> findAllByHostLogin(String login, Pageable pageable);
+    List<Post> findAllByHostLogin(String login);
 
     Page<Post> findAll(Pageable pageable);
 

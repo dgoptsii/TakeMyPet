@@ -2,7 +2,6 @@ package com.naukma.practice.myPet.controllers;
 
 import com.naukma.practice.myPet.db.*;
 import com.naukma.practice.myPet.db.DTO.HostDTO;
-import com.naukma.practice.myPet.db.DTO.OwnerDTO;
 import com.naukma.practice.myPet.db.entity.*;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -144,6 +145,8 @@ public class HostController {
             } else {
                 model.addAttribute("postsList", posts);
             }
+
+            model.addAttribute("numberOfAnimals", animalRepository.count());
             model.addAttribute("currentPage", page + 1);
             model.addAttribute("totalItems", pagePosts.getTotalElements());
             model.addAttribute("totalPages", pagePosts.getTotalPages());
@@ -156,7 +159,7 @@ public class HostController {
     }
 
     @GetMapping(path = {"/posts/edit/{id}"})
-    public String hostPostsEditPage(Model model,@PathVariable Long id) throws NotFoundException {
+    public String hostPostsEditPage(Model model, @PathVariable Long id) throws NotFoundException {
         Post post;
         if (postRepository.findById(id).isPresent()) {
             post = postRepository.findById(id).get();
@@ -173,7 +176,7 @@ public class HostController {
 
     @PostMapping(path = {"/posts/edit/{id}"})
     public void hostPostsEditAction(@PathVariable Long id,
-                                      @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId,
+                                    @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId,
                                     HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
 
         int maxDays = Integer.parseInt(maxDaysId);
@@ -189,9 +192,47 @@ public class HostController {
     }
 
     @GetMapping(path = {"/createPost"})
-    public String hostCreatePostPage() throws NotFoundException {
+    public String hostCreatePostPage(HttpServletRequest request) throws NotFoundException {
         log.info("host create post");
+        String hostLogin = (String) request.getSession().getAttribute("userLogin");
+        List<Animal> postAnimals = postRepository.findAllByHostLogin(hostLogin)
+                .stream().map(Post::getAnimal).collect(Collectors.toList());
+        List<Animal> animals = animalRepository.findAll();
+        animals = animals.stream().filter(a -> !postAnimals.contains(a)).collect(Collectors.toList());
+        request.setAttribute("animals", animals);
         return "host-create-post";
+    }
+
+    @PostMapping(path = {"/createPost"})
+    public void hostCreatePostPageAction(@RequestParam(name = "days", defaultValue = "1") String days,
+                                         @RequestParam(name = "pet") String pet,
+                                         HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
+        log.info("host created post");
+
+        String hostLogin = (String) request.getSession().getAttribute("userLogin");
+        List<String> postAnimals = postRepository.findAllByHostLogin(hostLogin)
+                .stream().map(p -> p.getAnimal().getName()).collect(Collectors.toList());
+        List<String> animals = animalRepository.findAll().stream().map(Animal::getName).collect(Collectors.toList());
+        animals = animals.stream().filter(a -> !postAnimals.contains(a)).collect(Collectors.toList());
+        int maxDays = Integer.parseInt(days);
+        Optional<Host> host = hostRepository.findHostByLogin(hostLogin);
+        if (host.isPresent() && pet != null && animals.contains(pet) && maxDays > 0 && maxDays < 15) {
+            log.info("creating post");
+            Post post = new Post();
+            log.info("searching " + hostLogin);
+            post.setHost(host.get());
+            log.info("found host");
+            post.setAnimal(animalRepository.findByName(pet).get());
+            log.info("found animal");
+            post.setMaxDays(maxDays);
+            post.setStatus("ACTIVE");
+            postRepository.save(post);
+            request.getSession().setAttribute("getAlert", "Created Post");
+            response.sendRedirect(request.getContextPath() + "/host/posts");
+        } else {
+            //TODO throw exception redirect to error page
+        }
+
     }
 
     @GetMapping(path = {"/contracts"})
