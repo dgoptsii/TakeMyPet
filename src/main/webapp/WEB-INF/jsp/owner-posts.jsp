@@ -226,7 +226,7 @@
 
     <footer class="container text-center py-3 pt-3 " id="foot">
         <div class="form-group text-center pb-0">
-            <img src="https://cdn1.savepice.ru/uploads/2021/6/1/478a03651046359a001893198fcc996e-full.png"
+            <img src="https://cdn1.savepice.ru/uploads/2021/5/31/7c924beb31e24833a66bb65a73234d46-full.png"
                  width="140" height="140">
             <p>&copy; 2021 FrogProg Inc.</p>
         </div>

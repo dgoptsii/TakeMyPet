@@ -101,9 +101,15 @@
         </div>
     </div>
 </div>
-<%@ include file="/WEB-INF/jspf/footer.jspf" %>
+<footer class="container text-center py-3 pt-3 " id="foot" >
+    <div class="form-group text-center pb-0">
 
+        <img src="https://cdn1.savepice.ru/uploads/2021/6/1/478a03651046359a001893198fcc996e-full.png"
+             width="140" height="140">
+        <p>&copy; 2021 FrogProg Inc.</p>
+    </div>
 
+</footer>
 <script type="text/javascript">
     $('#confirm-edit-button').on("click", function () {
         $("#request").submit();
