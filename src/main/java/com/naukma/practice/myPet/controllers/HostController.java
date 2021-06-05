@@ -173,31 +173,18 @@ public class HostController {
 
     @PostMapping(path = {"/posts/edit/{id}"})
     public void hostPostsEditAction(@PathVariable Long id,
-                                      @RequestParam(defaultValue = "0", name = "animal") String animal,
-                                      @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId) throws NotFoundException {
+                                      @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId,
+                                    HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
 
-        long animalId = Long.parseLong(animal);
         int maxDays = Integer.parseInt(maxDaysId);
 
-        if (maxDays < 0) {
+        if (maxDays > 0) {
             //error to page
             //redirect to /posts/edit/{id}
+
+            postRepository.setMaxDays(id, maxDays);
+            response.sendRedirect(request.getContextPath() + "/host/posts");
         }
-
-        if (animalId < 0) {
-            //error to page
-            //redirect to /posts/edit/{id}
-        }
-
-        // checks... ask Dasha
-
-        // get post from db ("oldPost")
-
-        // set new fields to oldPost
-
-        //save old post to db
-
-        // success getAlert to posts
         //redirect to posts page
     }
 
