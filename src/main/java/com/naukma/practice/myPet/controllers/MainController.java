@@ -69,9 +69,9 @@ public class MainController {
     @GetMapping(path = {"/contracts/{state}/{id}"})
     public void ownerChangeContractStateAction(@PathVariable Long id, @PathVariable String state,
                                                HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
-       System.out.println("Bla bla");
-            operationServer.changeContractStatus(id, state, request);
-            response.sendRedirect(request.getContextPath() + "/owner/contracts");
+        System.out.println("Bla bla");
+        operationServer.changeContractStatus(id, state, request);
+        response.sendRedirect(request.getContextPath() + "/owner/contracts");
 
     }
 
@@ -111,26 +111,26 @@ public class MainController {
 
 
     @PostMapping(path = {"/contract/rate/{id}"})
-    public void rateContract(@PathVariable Long id,@RequestParam(name="rating") String rating,
+    public void rateContract(@PathVariable Long id, @RequestParam(name = "rating") String rating,
                              HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
         System.out.println("rating");
-        int rate=0;
+        int rate = 0;
         //add catch if rate not number (ariphmetic error or smth)
-        try{
+        try {
             rate = Integer.parseInt(rating);
-        }catch (NumberFormatException ex){
+        } catch (NumberFormatException ex) {
             throw new NumberFormatException();
         }
         Contract contract;
-        if(contractRepository.findById(id).isPresent()) {
+        if (contractRepository.findById(id).isPresent()) {
             contract = contractRepository.findById(id).get();
             contract.setRating(rate);
             contract.setStatus("RATED");
             contractRepository.save(contract);
             request.getSession().setAttribute("getAlert", "success");
-        }else{
+        } else {
             throw new NotFoundException("No contract with this id! ");
         }
-        response.sendRedirect(request.getContextPath()+"/owner/contracts");
+        response.sendRedirect(request.getContextPath() + "/owner/contracts");
     }
 }
