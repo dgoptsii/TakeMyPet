@@ -66,7 +66,8 @@
 
                                             <c:choose>
                                                 <c:when test="${item.status =='ACTIVE'}">
-                                                    <a href="${pageContext.request.contextPath}/posts/edit/${item.id}/?status=active&page=${currentPage}&animal=${animal}&maxDays=${maxDays}">
+                                                    <a href="${pageContext.request.contextPath}/posts/edit/${item.id}/?status=active&page=${currentPage}&animal=${animal}&maxDays=${maxDays}"
+                                                       class="mx-1">
                                                         <button type="button"
                                                                 class="btn btn btn-outline-success actionUser">
                                                             Active
@@ -87,7 +88,8 @@
 <%--                                                           id="delete_button"--%>
 <%--                                                           name="${item.id}"--%>
 <%--                                                           value="Blocked">--%>
-                                                    <a href="${pageContext.request.contextPath}/posts/edit/${item.id}/?status=blocked&page=${currentPage}&animal=${animal}&maxDays=${maxDays}">
+                                                    <a href="${pageContext.request.contextPath}/posts/edit/${item.id}/?status=blocked&page=${currentPage}&animal=${animal}&maxDays=${maxDays}"
+                                                        class="mx-1">
                                                         <button type="button"
                                                                 class="btn btn btn-outline-secondary actionUser">
                                                             Blocked

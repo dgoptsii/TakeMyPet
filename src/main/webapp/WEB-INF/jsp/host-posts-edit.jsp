@@ -24,7 +24,7 @@
 
 <div class="container">
     <div class="row gutters d-flex justify-content-center">
-        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-5">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-5">
             <div class="card">
                 <div class="alert alert-danger" role="alert" id="error-alert" style="display:none;">
                     Error:
@@ -55,7 +55,7 @@
 <%--                            </div>--%>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="daysRange">Term: <span id="demo"></span> days</label>
+                                    <label for="daysRange"><b>Term:</b> <span id="demo"></span> days</label>
                                 </div>
                                 <div class="form-group">
                                     <input type="range" name="maxDays" class="slider" min="1" max="14"
@@ -70,9 +70,8 @@
                                         }
                                     </script>
                                 </div>
-
                             </div>
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="text-right">
 <%--                                    <a href="#">--%>
                                         <button type="button"
