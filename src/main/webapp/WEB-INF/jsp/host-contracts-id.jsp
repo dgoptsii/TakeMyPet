@@ -137,13 +137,13 @@
                                         <button type="button"
                                                 id="submit1" name="submit" class="btn btn-danger mx-1 mt-1"
                                                 data-toggle="modal"  data-target="#edit-file-modal">
-                                            Reject
+                                            Cancel
                                         </button>
-                                        <button type="button"
-                                                id="submit2" name="submit2" class="btn btn-success mx-1 mt-1"
-                                                data-toggle="modal"  data-target="#edit-file-modal">
-                                            Accept
-                                        </button>
+<%--                                        <button type="button"--%>
+<%--                                                id="submit2" name="submit2" class="btn btn-success mx-1 mt-1"--%>
+<%--                                                data-toggle="modal"  data-target="#edit-file-modal">--%>
+<%--                                            Accept--%>
+<%--                                        </button>--%>
                                     </c:if>
                                     <button type="button"
                                             id="submit2" name="submit" class="btn btn-outline-danger mx-1 mt-1"

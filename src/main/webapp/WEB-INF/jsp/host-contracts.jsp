@@ -41,30 +41,34 @@
                                                 <p><b>Status:</b>
 
                                                     <c:choose>
-                                                        <c:when test="${item.status =='ACTIVE'}">
-                                                            <span class="badge bg-success text-wrap"
-                                                                  style="width: 5rem; color:white">
-                                                                 active
-                                                            </span>
+                                                        <c:when test="${item.status =='NEW'}">
+           <span class="badge bg-info text-wrap" style="width: 5rem; color:white">
+                                                new
+                                            </span>
+
                                                         </c:when>
                                                         <c:when test="${item.status =='WAITING'}">
-                                                            <span class="badge bg-warning text-wrap"
-                                                                  style="width: 5rem; ">
-                                                                waiting
-                                                            </span>
+        <span class="badge bg-warning text-wrap" style="width: 5rem; ">
+                                                waiting
+                                            </span>
+                                                        </c:when>
+                                                        <c:when test="${item.status =='ACTIVE'}">
+           <span class="badge bg-success text-wrap" style="width: 5rem; color:white">
+                                                active
+                                            </span>
+
                                                         </c:when>
                                                         <c:when test="${item.status =='FINISHED'}">
-                                                             <span class="badge bg-secondary text-wrap"
-                                                                   style="width: 5rem; color:white">
-                                                                 finished
-                                                             </span>
+     <span class="badge bg-secondary text-wrap" style="width: 5rem; color:white">
+                                                finished
+                                            </span>
+
                                                         </c:when>
                                                         <c:otherwise>
 
-                                                            <span class="badge bg-danger text-wrap"
-                                                                  style="width: 5rem; color:white">
-                                                                emergency
-                                                            </span>
+                                            <span class="badge bg-danger text-wrap" style="width: 5rem; color:white">
+                                                emergency
+                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
 

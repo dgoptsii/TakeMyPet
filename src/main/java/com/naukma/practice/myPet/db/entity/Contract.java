@@ -32,6 +32,7 @@ public class Contract {
 
     private Integer days;
 
+    @Column(name = "rating")
     private Integer rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,6 +41,7 @@ public class Contract {
 
     @Column(name = "contract_status")
     private String status;
+
 
     public static Contract createContract(Post post, Owner owner, Date startDate, Date endDate, Integer days) {
         Contract contract = new Contract();

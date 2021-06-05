@@ -136,12 +136,14 @@
                                     </c:if>
                                     <c:if test="${contract.status =='FINISHED'}">
                                         <%--                                    <a href="#">--%>
-
-                                        <button type="button"
-                                                id="rate" name="submit" class="btn btn-warning mx-1 mt-1"
-                                                data-toggle="modal" data-target="#rate-file-modal">
-                                            Rate
-                                        </button>
+<%--                                        <a href="${pageContext.request.contextPath}/contract/rate/${contract.id}">--%>
+                                            <button type="button"
+                                                    id="rate" name="submit" class="btn btn-warning mx-1 mt-1"
+                                                    data-toggle="modal" data-target="#rate-file-modal">
+<%--                                            >--%>
+                                                Rate
+                                            </button>
+                                        </a>
                                         <%--                                    <button type="button"--%>
                                         <%--                                            id="rate" name="submit" class="btn btn-warning mx-1 mt-1">--%>
                                         <%--                                            &lt;%&ndash;                                            data-toggle="modal" data-target="#cancel-file-modal"&ndash;%&gt;--%>
@@ -173,6 +175,7 @@
     <script type="text/javascript">
         $('#confirm-rate-button').on("click", function () {
             $("#request").submit();
+           // location.href = "${pageContext.request.contextPath}/contract/rate/${contractInfo.id}";
         });
         $('#confirm-cancel-button').on("click", function () {
             location.href = "${pageContext.request.contextPath}/contracts/cancel/${contractInfo.id}";

@@ -29,7 +29,7 @@
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
 
             <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
-                Post edited!
+                Post deleted!
             </div>
 
             <div class="row gutters">
@@ -103,16 +103,17 @@
                                             <a href="${pageContext.request.contextPath}/host/posts/edit/${item.id}"><button type="button" id="edit_b" name="submit" class="btn btn-outline-warning mr-1 mt-1">Edit</button></a>
 <%--                                            <a href="">--%>
 <%--                                                <button type="button" id="delete_b" name="submit" class="btn btn-outline-danger mt-1">Delete</button>--%>
-                                            <button type="button"
+                                            <a href="/posts/delete/${item.id}"> <button type="button"
                                                     id="delete_b" name="submit" class="btn btn-danger mx-1 mt-1"
                                                     data-toggle="modal" data-target="#delete-file-modal">
                                                 Delete
                                             </button>
-                                            <script type="text/javascript">
-                                                $('#confirm-delete-button').on("click", function () {
-                                                    location.href = "${pageContext.request.contextPath}/posts/delete/${item.id}";
-                                                });
-                                            </script>
+                                        </a>
+<%--                                            <script type="text/javascript">--%>
+<%--                                                $('#confirm-delete-button').on("click", function () {--%>
+<%--                                                    location.href = "${pageContext.request.contextPath}/posts/delete/${item.id}";--%>
+<%--                                                });--%>
+<%--                                            </script>--%>
 <%--                                            </a>--%>
                                         </div>
                                     </div>

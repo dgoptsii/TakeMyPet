@@ -69,9 +69,10 @@ public class MainController {
     @GetMapping(path = {"/contracts/{state}/{id}"})
     public void ownerChangeContractStateAction(@PathVariable Long id, @PathVariable String state,
                                                HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
+       System.out.println("Bla bla");
+            operationServer.changeContractStatus(id, state, request);
+            response.sendRedirect(request.getContextPath() + "/owner/contracts");
 
-        operationServer.changeContractStatus(id, state, request);
-        response.sendRedirect(request.getContextPath() + "/owner/contracts");
     }
 
     @GetMapping(path = {"/posts/edit/{id}"})
@@ -104,8 +105,10 @@ public class MainController {
         } else {
             throw new NotFoundException("No post with this id! ");
         }
+        request.getSession().setAttribute("getAlert", "success");
 
     }
+
 
     @PostMapping(path = {"/contract/rate/{id}"})
     public void rateContract(@PathVariable Long id,@RequestParam(name="rating") String rating,
@@ -130,5 +133,4 @@ public class MainController {
         }
         response.sendRedirect(request.getContextPath()+"/owner/contracts");
     }
-
 }
