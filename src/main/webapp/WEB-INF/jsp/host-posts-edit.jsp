@@ -36,8 +36,8 @@
                     <h6 class="mb-2 text-success">Post</h6>
                 </div>
                 <form id="request" action="${pageContext.request.contextPath}/host/posts/edit/${post.id}" method="post">
-                    <div class="card-body">
-                        <div class="row gutters">
+                    <div class="card-body d-flex flex-column">
+                        <div class="row">
 <%--                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">--%>
 <%--                                <div class="form-group">--%>
 <%--&lt;%&ndash;    &lt;%&ndash;                                <label for="petCategory">Pet</label>&ndash;%&gt;--%>
@@ -54,36 +54,45 @@
 <%--                                </div>--%>
 <%--                            </div>--%>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
+                                <div class="form-col">
                                     <label for="daysRange"><b>Term:</b> <span id="demo"></span> days</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="range" name="maxDays" class="slider" min="1" max="14"
-                                           id="daysRange" value="${post.maxDays}">
-                                    <script>
-                                        var slider = document.getElementById("daysRange");
-                                        var output = document.getElementById("demo");
-                                        output.innerHTML = slider.value;
+                                    <div class="form-group">
+                                        <input type="range" name="maxDays" class="slider" min="1" max="14"
+                                               id="daysRange" value="${post.maxDays}">
+                                        <script>
+                                            var slider = document.getElementById("daysRange");
+                                            var output = document.getElementById("demo");
+                                            output.innerHTML = slider.value;
 
-                                        slider.oninput = function() {
-                                            output.innerHTML = this.value;
-                                        }
-                                    </script>
+                                            slider.oninput = function() {
+                                                output.innerHTML = this.value;
+                                            }
+                                        </script>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="text-right">
-<%--                                    <a href="#">--%>
+                                    <div class="form-col text-right pt-3">
                                         <button type="button"
                                                 id="submit2" name="submit" class="btn btn-success"
                                                 data-toggle="modal" data-target="#edit-file-modal">
                                             Save
                                         </button>
-<%--                                        <button type="button" id="submit" name="submit" class="btn btn-success">Save--%>
-<%--                                        </button>--%>
-<%--                                    </a>--%>
-                                </div>
+                                    </div>
                             </div>
+<%--                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">--%>
+<%--                                <div class="text-right">--%>
+<%--&lt;%&ndash;                                    <a href="#">&ndash;%&gt;--%>
+<%--                                        <button type="button"--%>
+<%--                                                id="submit2" name="submit" class="btn btn-success"--%>
+<%--                                                data-toggle="modal" data-target="#edit-file-modal">--%>
+<%--                                            Save--%>
+<%--                                        </button>--%>
+<%--&lt;%&ndash;                                        <button type="button" id="submit" name="submit" class="btn btn-success">Save&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        </button>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </a>&ndash;%&gt;--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                         </div>
                     </div>
                     <%@ include file="/WEB-INF/jspf/edit_dialog.jspf" %>
