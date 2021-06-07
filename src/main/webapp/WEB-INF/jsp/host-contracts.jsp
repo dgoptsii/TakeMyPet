@@ -28,12 +28,14 @@
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4  col-12">
                                 <div class="form-group">
                                     <select class="form-control text-center" name="status">
-                                        <%--                                <option value="" disabled selected>Animal</option>--%>
-                                        <option value="ALL">All</option>
-                                        <option value="NEW">New</option>
-                                        <option value="WAITING">Waiting</option>
-                                        <option value="FINISHED">Finished</option>
-                                        <option value="RATED">Rated</option>
+
+                                        <option value="ALL ${ (status=='ALL') ? 'selected' : ''} ">All</option>
+                                        <option value="NEW" ${ (status=='NEW') ? 'selected' : ''}>New</option>
+                                        <option value="WAITING" ${ (status=='WAITING') ? 'selected' : ''}>Waiting</option>
+                                        <option value="ACTIVE" ${ (status=='ACTIVE') ? 'selected' : ''}>Active</option>
+                                        <option value="FINISHED" ${ (status=='FINISHED') ? 'selected' : ''}>Finished</option>
+                                        <option value="RATED" ${ (status=='RATED') ? 'selected' : ''}>Rated</option>
+                                        <option value="EMERGENCY" ${ (status=='EMERGENCY') ? 'selected' : ''}>Emergency</option>
                                     </select>
                                 </div>
                             </div>

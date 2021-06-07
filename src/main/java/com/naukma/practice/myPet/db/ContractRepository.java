@@ -34,6 +34,8 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
 
     Page<Contract> findAllByHostLoginOrderByStartDateAsc(String login, Pageable pageable);
 
+    Page<Contract> findAllByHostLoginAndStatusOrderByStartDateAsc(String login, String status,  Pageable pageable);
+
     //for /owner/contracts
     Page<Contract> findAllByOwnerLogin(String login, Pageable pageable);
 //    Page<Post> findAll(Pageable pageable);

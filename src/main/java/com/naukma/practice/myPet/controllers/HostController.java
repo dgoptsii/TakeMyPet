@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -250,7 +251,14 @@ public class HostController {
 
 
             Page<Contract> pageContracts = null;
-            pageContracts = contractRepository.findAllByHostLoginOrderByStartDateAsc(login, paging);
+            if(status.equals("ALL")){
+                pageContracts
+                        = contractRepository.findAllByHostLoginOrderByStartDateAsc(login, paging);
+            } else {
+                pageContracts
+                        = contractRepository.findAllByHostLoginAndStatusOrderByStartDateAsc(login, status.toUpperCase(), paging);
+            }
+
 
             contracts = pageContracts.getContent();
             if (contracts.size() == 0) {
