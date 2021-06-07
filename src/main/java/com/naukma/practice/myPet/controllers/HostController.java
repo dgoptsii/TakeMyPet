@@ -248,7 +248,7 @@ public class HostController {
             Pageable paging = PageRequest.of(page, size);
 
             Page<Contract> pageContracts = null;
-            pageContracts = contractRepository.findAllByHostLogin(login, paging);
+            pageContracts = contractRepository.findAllByHostLoginOrderByStartDateAsc(login, paging);
 
             contracts = pageContracts.getContent();
             if (contracts.size() == 0) {

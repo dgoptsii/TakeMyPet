@@ -128,7 +128,7 @@
                                                 <div class="form-col text-left">
                                                     <div class="form-group">
                                                         <label for="rating" class="pl-1"><b>Rating: <c:out
-                                                                value="${item.host.rating}"/></b></label>
+                                                                value="${item.host.rating} "/></b></label>
                                                             <%--                                                        <div id="rating" class="form-control-static">--%>
                                                             <%--                                                            <script>--%>
                                                             <%--                                                                $(function () {--%>

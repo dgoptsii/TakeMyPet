@@ -137,7 +137,9 @@ public class MainController {
             int sumOfRatings
                     = contractRepository.sumOfRatingByStatus("RATED", contract.getHost().getLogin());
 
-            double resRating =  (double) sumOfRatings / (double) amountOfRatedContracts;
+            double resRating = Math.round(((double) (sumOfRatings) / (double) (amountOfRatedContracts)) * 100.) / 100.;
+            System.out.println(((double) (sumOfRatings) / (double) (amountOfRatedContracts)));
+            System.out.println(resRating);
             hostRepository.updateRating(contract.getHost().getId(), resRating);
             request.getSession().setAttribute("getAlert", "success");
         } else {
