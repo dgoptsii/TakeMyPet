@@ -63,7 +63,7 @@ public class OwnerController {
     }
 
     @GetMapping(path = {"/profile/edit"})
-    public ModelAndView ownerProfileEditPage( HttpServletRequest request) {
+    public ModelAndView ownerProfileEditPage(HttpServletRequest request) {
         log.info("owner profile edit");
 
         String login = (String) request.getSession().getAttribute("userLogin");
@@ -311,7 +311,7 @@ public class OwnerController {
 
     }
 
-    private int countDays(Date start, Date end){
+    private int countDays(Date start, Date end) {
         long diffInMillies = Math.abs(start.getTime() - end.getTime());
         int diff = (int) TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
         return diff;
@@ -320,6 +320,7 @@ public class OwnerController {
     @GetMapping(path = {"/contracts"})
     public String ownerContractsPage(@RequestParam(defaultValue = "0") int page,
                                      @RequestParam(defaultValue = "3") int size,
+                                     @RequestParam(defaultValue = "ALL") String status,
                                      Model model, HttpServletRequest request) throws Exception {
         String login = (String) request.getSession().getAttribute("userLogin");
         if (page > 0) {
@@ -330,17 +331,27 @@ public class OwnerController {
 
             Pageable paging = PageRequest.of(page, size);
 
-            Page<Contract> pageContracts = contractRepository.findAllByOwnerLogin(login, paging);
+            Page<Contract> pageContracts = null;
+            System.out.println("Status" + status);
+            if (status.equals("ALL")) {
+                pageContracts
+                        = contractRepository.findAllByOwnerLoginOrderByStartDateAsc(login, paging);
+            } else {
+                pageContracts
+                        = contractRepository.findAllByOwnerLoginAndStatusOrderByStartDateAsc(login, status.toUpperCase(), paging);
+            }
+
             contracts = pageContracts.getContent();
             if (contracts.size() == 0) {
                 model.addAttribute("message", "Oops. No contracts...");
             } else {
-                contracts = contractRepository.findAllByOwnerLogin(login, paging).getContent();
+                contracts = pageContracts.getContent();
             }
             model.addAttribute("contractsList", contracts);
             model.addAttribute("currentPage", page + 1);
             model.addAttribute("totalItems", pageContracts.getTotalElements());
             model.addAttribute("totalPages", pageContracts.getTotalPages());
+            model.addAttribute("status", status);
 
         } catch (Exception e) {
             //TODO add custom exception
@@ -369,7 +380,6 @@ public class OwnerController {
         model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
         return "owner-contracts-id";
     }
-
 
 
 }

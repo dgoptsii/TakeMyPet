@@ -269,6 +269,7 @@ public class HostController {
             model.addAttribute("currentPage", page + 1);
             model.addAttribute("totalItems", pageContracts.getTotalElements());
             model.addAttribute("totalPages", pageContracts.getTotalPages());
+            model.addAttribute("status", status);
 
         } catch (Exception e) {
             //TODO add custom exception

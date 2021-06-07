@@ -24,7 +24,6 @@
 
 <div class="container">
     <div class="row gutters d-flex justify-content-center">
-
         <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
             <c:if test="${not empty message}">
                 <c:out value="${message}"/>
@@ -35,6 +34,43 @@
             <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <b><h5 class="mt-2 mb-2 text-success">List of contracts</h5></b>
             </div>
+
+            <div class="card pt-3">
+                <div class="card-body">
+                    <form id="request"
+                          action="${pageContext.request.contextPath}/owner/contracts?status=${status}">
+
+                        <div class="row gutters row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4  col-12">
+                                <div class="form-group">
+                                    <select class="form-control text-center" name="status">
+
+                                        <option value="ALL" ${ (status=='ALL') ? 'selected' : ''}>All</option>
+                                        <option value="NEW" ${ (status=='NEW') ? 'selected' : ''}>New</option>
+                                        <option value="WAITING" ${ (status=='WAITING') ? 'selected' : ''}>Waiting
+                                        </option>
+                                        <option value="ACTIVE" ${ (status=='ACTIVE') ? 'selected' : ''}>Active</option>
+                                        <option value="FINISHED" ${ (status=='FINISHED') ? 'selected' : ''}>Finished
+                                        </option>
+                                        <option value="RATED" ${ (status=='RATED') ? 'selected' : ''}>Rated</option>
+                                        <option value="EMERGENCY" ${ (status=='EMERGENCY') ? 'selected' : ''}>
+                                            Emergency
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <div class="text-center" id="searchB">
+                                        <input type="submit" class="btn btn-success" value='Search'/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
 
             <c:choose>
                 <c:when test="${(not empty message)}">

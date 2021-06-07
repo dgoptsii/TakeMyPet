@@ -29,13 +29,17 @@
                                 <div class="form-group">
                                     <select class="form-control text-center" name="status">
 
-                                        <option value="ALL ${ (status=='ALL') ? 'selected' : ''} ">All</option>
+                                        <option value="ALL" ${ (status=='ALL') ? 'selected' : ''}>All</option>
                                         <option value="NEW" ${ (status=='NEW') ? 'selected' : ''}>New</option>
-                                        <option value="WAITING" ${ (status=='WAITING') ? 'selected' : ''}>Waiting</option>
+                                        <option value="WAITING" ${ (status=='WAITING') ? 'selected' : ''}>Waiting
+                                        </option>
                                         <option value="ACTIVE" ${ (status=='ACTIVE') ? 'selected' : ''}>Active</option>
-                                        <option value="FINISHED" ${ (status=='FINISHED') ? 'selected' : ''}>Finished</option>
+                                        <option value="FINISHED" ${ (status=='FINISHED') ? 'selected' : ''}>Finished
+                                        </option>
                                         <option value="RATED" ${ (status=='RATED') ? 'selected' : ''}>Rated</option>
-                                        <option value="EMERGENCY" ${ (status=='EMERGENCY') ? 'selected' : ''}>Emergency</option>
+                                        <option value="EMERGENCY" ${ (status=='EMERGENCY') ? 'selected' : ''}>
+                                            Emergency
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -47,8 +51,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>
