@@ -99,6 +99,12 @@
                                             </span>
 
                                                         </c:when>
+                                                        <c:when test="${item.status =='RATED'}">
+     <span class="badge bg-secondary text-wrap" style="width: 5rem; color:white">
+                                                rated
+                                            </span>
+
+                                                        </c:when>
                                                         <c:otherwise>
 
                                             <span class="badge bg-danger text-wrap" style="width: 5rem; color:white">
@@ -114,7 +120,7 @@
                                             <div class="form-col">
                                                 <p><b>Start date:</b> <c:out value="${item.startDate}"/></p>
                                                 <p><b>End date:</b> <c:out value="${item.endDate}"/></p>
-                                                <c:if test="${item.status =='FINISHED' }">
+                                                <c:if test="${item.status =='RATED' }">
                                                     <div class="form-group px-0">
 
                                                         <label for="rating"><b>Rating:</b> <c:out

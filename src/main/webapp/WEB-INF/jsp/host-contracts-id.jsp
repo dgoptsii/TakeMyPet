@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                <c:if test="${contract.status =='FINISHED' }">
+                                <c:if test="${contract.status =='RATED' }">
                                     <div class="form-col">
                                         <div class="form-group">
                                             <label for="rating"><b>Rating:</b> <c:out value="${contract.rating}"/></label>
@@ -98,29 +98,13 @@
                                                  finished
                                              </span>
                                             </c:when>
-                                            <%--<c:when test="${contract.status =='ACTIVE'}">--%>
-                                            <%--<span class="badge bg-success text-wrap"--%>
-                                            <%--style="width: 5rem;">in process</span>--%>
-                                            <%--</c:when>--%>
-                                            <%--<c:when test="${contract.status ==''}">--%>
-                                            <%--<span class="badge bg-success text-wrap"--%>
-                                            <%--style="width: 5rem;">in process</span>--%>
-                                            <%--</c:when>--%>
+
                                         </c:choose>
-                                        <%--<span class="badge bg-info text-wrap" style="width: 5rem;">new</span>--%>
-                                    </p>
+                                              </p>
                                 </div>
                             </div>
                         </div>
-<%--                        <div class="row">--%>
-<%--                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">--%>
-<%--                                <div class="text-right">--%>
-<%--                                    <a href="#"><button type="button" id="submit1" name="submit" class="btn btn-success mx-1 mt-1">Accept</button></a>--%>
-<%--                                    <a href="#"><button type="button" id="submit2" name="submit" class="btn btn-danger mx-1 mt-1">Reject</button></a>--%>
-<%--                                    <a href="#"><button type="button" id="submit3" name="submit" class="btn btn-outline-danger mx-1 mt-1">Error</button></a>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
+
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
@@ -139,11 +123,6 @@
                                                 data-toggle="modal"  data-target="#edit-file-modal">
                                             Cancel
                                         </button>
-<%--                                        <button type="button"--%>
-<%--                                                id="submit2" name="submit2" class="btn btn-success mx-1 mt-1"--%>
-<%--                                                data-toggle="modal"  data-target="#edit-file-modal">--%>
-<%--                                            Accept--%>
-<%--                                        </button>--%>
                                     </c:if>
                                     <button type="button"
                                             id="submit2" name="submit" class="btn btn-outline-danger mx-1 mt-1"
@@ -152,12 +131,31 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <%@ include file="/WEB-INF/jspf/cancel_dialog.jspf" %>
+                            <%@ include file="/WEB-INF/jspf/error_dialog.jspf" %>
+                            <%@ include file="/WEB-INF/jspf/rate_dialog.jspf" %>
                         </div>
                     </div>
                 </div>
 
         </div>
     </div>
+        <script type="text/javascript">
+            <%--$('#confirm-rate-button').on("click", function () {--%>
+            <%--    // $("#request").submit();--%>
+            <%--    location.href = "${pageContext.request.contextPath}/contract/rate/${contractInfo.id}";--%>
+            <%--});--%>
+            <%--$('#confirm-cancel-button').on("click", function () {--%>
+            <%--    location.href = "${pageContext.request.contextPath}/contracts/cancel/${contractInfo.id}";--%>
+            <%--});--%>
+            $('#confirm-error-button').on("click", function () {
+                $("#error-alert").show(1000);
+                $("#error-alert").show().delay(5000).fadeOut();
+                location.href = "${pageContext.request.contextPath}/host/contracts/emergency/${contractInfo.id}";
+            });
+
+        </script>
         <footer class="container text-center py-3 pt-3 " id="foot">
             <div class="form-group text-center pb-0">
 

@@ -120,7 +120,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
 //                newState = "CANCELED";
 //                contractRepository.delete(c);
 //            }else
-                if((currentState.equals("RATED")) && newState.equals("FINISHED")){
+                if((currentState.equals("RATED")) || currentState.equals("FINISHED")||currentState.equals("EMERGENCY")){
                 // do nothing
             } else if (!c.getStatus().equalsIgnoreCase(newState)) {
                 try {

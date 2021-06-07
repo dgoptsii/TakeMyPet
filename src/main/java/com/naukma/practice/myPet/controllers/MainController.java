@@ -72,12 +72,20 @@ public class MainController {
         return "owner";
     }
 
-    @GetMapping(path = {"/contracts/{state}/{id}"})
+    @GetMapping(path = {"/contractsO/{state}/{id}"})
     public void ownerChangeContractStateAction(@PathVariable Long id, @PathVariable String state,
                                                HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
         System.out.println("Bla bla");
         operationServer.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
         response.sendRedirect(request.getContextPath() + "/owner/contracts");
+
+    }
+    @GetMapping(path = {"/host/contracts/{state}/{id}"})
+    public void hostChangeContractStateAction(@PathVariable Long id, @PathVariable String state,
+                                               HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
+        System.out.println("Bla bla");
+        operationServer.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
+        response.sendRedirect(request.getContextPath() + "/host/contracts");
 
     }
 
