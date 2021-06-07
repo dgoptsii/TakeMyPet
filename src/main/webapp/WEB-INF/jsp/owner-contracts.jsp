@@ -81,8 +81,13 @@
                                             </span>
 
                                                         </c:when>
-                                                        <c:otherwise>
+                                                        <c:when test="${item.status =='RATED'}">
+     <span class="badge bg-secondary text-wrap" style="width: 5rem; color:white">
+                                                rated
+                                            </span>
 
+                                                        </c:when>
+                                                        <c:otherwise>
                                             <span class="badge bg-danger text-wrap" style="width: 5rem; color:white">
                                                 emergency
                                             </span>
@@ -95,7 +100,7 @@
                                             <div class="form-col">
                                                 <p><b>Start date:</b> <c:out value="${item.startDate}"/></p>
                                                 <p><b>End date:</b> <c:out value="${item.endDate}"/></p>
-                                                <c:if test="${item.status =='FINISHED' }">
+                                                <c:if test="${item.status =='RATED' }">
                                                     <div class="form-group">
                                                         <label for="rating"><b>Rating:</b> <c:out
                                                                 value="${item.rating}"/></label>
@@ -170,9 +175,6 @@
                 ratingFunc(rating, $(this).next().next().val());
             },
             rating: rating,
-            // starWidth: "20px",
-            // spacing: "5px",
-            // precision: 2,
         });
         $(this).rateYo('option', 'readOnly', true);
     });

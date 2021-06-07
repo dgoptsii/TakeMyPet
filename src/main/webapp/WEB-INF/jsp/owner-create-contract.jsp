@@ -121,12 +121,6 @@
                 name: 'startDate',
                 value: input
             }).appendTo('#request');
-            // $('<input>', {
-            //     // type: 'hidden',
-            //     name: 'update',
-            //     value: 'update'
-            // }).appendTo('#request');
-            // $("#request").submit();
         });
     }
 

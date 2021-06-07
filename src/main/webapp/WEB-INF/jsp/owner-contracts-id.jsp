@@ -108,17 +108,8 @@
                                                  finished
                                              </span>
                                             </c:when>
-                                            <%--                                        <c:when test="${contract.status =='ACTIVE'}">--%>
-                                            <%--                                            <span class="badge bg-success text-wrap"--%>
-                                            <%--                                                  style="width: 5rem;">in process</span>--%>
-                                            <%--                                        </c:when>--%>
-                                            <%--                                        <c:when test="${contract.status ==''}">--%>
-                                            <%--                                            <span class="badge bg-success text-wrap"--%>
-                                            <%--                                                  style="width: 5rem;">in process</span>--%>
-                                            <%--                                        </c:when>--%>
-                                        </c:choose>
-                                        <%--                                    <span class="badge bg-info text-wrap" style="width: 5rem;">new</span>--%>
-                                    </p>
+                                               </c:choose>
+                                      </p>
                                 </div>
                             </div>
                         </div>
@@ -135,20 +126,10 @@
                                         <%--</a>--%>
                                     </c:if>
                                     <c:if test="${contract.status =='FINISHED'}">
-                                        <%--                                    <a href="#">--%>
-<%--                                        <a href="${pageContext.request.contextPath}/contract/rate/${contract.id}">--%>
-                                            <input type="submit"
+                                             <input type="submit"
                                                     id="rate" name="submit" class="btn btn-warning mx-1 mt-1"
                                                     data-toggle="modal" data-target="#rate-file-modal" value="Rate">
-<%--                                            >--%>
-
                                         </a>
-                                        <%--                                    <button type="button"--%>
-                                        <%--                                            id="rate" name="submit" class="btn btn-warning mx-1 mt-1">--%>
-                                        <%--                                            &lt;%&ndash;                                            data-toggle="modal" data-target="#cancel-file-modal"&ndash;%&gt;--%>
-                                        <%--                                        Rate--%>
-                                        <%--                                    </button>--%>
-                                        <%--                                    </a>--%>
                                     </c:if>
 
                                     <button type="button"
@@ -173,8 +154,8 @@
 
     <script type="text/javascript">
         $('#confirm-rate-button').on("click", function () {
-            $("#request").submit();
-           // location.href = "${pageContext.request.contextPath}/contract/rate/${contractInfo.id}";
+           // $("#request").submit();
+            location.href = "${pageContext.request.contextPath}/contract/rate/${contractInfo.id}";
         });
         $('#confirm-cancel-button').on("click", function () {
             location.href = "${pageContext.request.contextPath}/contracts/cancel/${contractInfo.id}";
@@ -183,7 +164,7 @@
 
             $("#error-alert").show(1000);
             $("#error-alert").show().delay(5000).fadeOut();
-            <%--location.href = "${pageContext.request.contextPath}/owner/contracts/cancel/${contractInfo.id}";--%>
+            location.href = "${pageContext.request.contextPath}/contracts/emergency/${contractInfo.id}";
         });
 
     </script>
