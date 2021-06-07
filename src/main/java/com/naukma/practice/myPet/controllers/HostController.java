@@ -238,6 +238,7 @@ public class HostController {
     @GetMapping(path = {"/contracts"})
     public String hostContractsPage(@RequestParam(defaultValue = "0") int page,
                                     @RequestParam(defaultValue = "3") int size,
+                                    @RequestParam(defaultValue = "ALL") String status,
                                     Model model, HttpServletRequest request) throws Exception {
         String login = (String) request.getSession().getAttribute("userLogin");
         if (page > 0) {
@@ -246,6 +247,7 @@ public class HostController {
         try {
             List<Contract> contracts;
             Pageable paging = PageRequest.of(page, size);
+
 
             Page<Contract> pageContracts = null;
             pageContracts = contractRepository.findAllByHostLoginOrderByStartDateAsc(login, paging);

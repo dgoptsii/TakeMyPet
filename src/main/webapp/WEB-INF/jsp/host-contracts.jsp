@@ -19,6 +19,39 @@
                 <b><h5 class="mt-2 mb-2 text-success">List of contracts</h5></b>
             </div>
 
+            <div class="card pt-3">
+                <div class="card-body">
+                    <form id="request"
+                          action="${pageContext.request.contextPath}/host/contracts?status=${status}">
+
+                        <div class="row gutters row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4  col-12">
+                                <div class="form-group">
+                                    <select class="form-control text-center" name="status">
+                                        <%--                                <option value="" disabled selected>Animal</option>--%>
+                                        <option value="ALL">All</option>
+                                        <option value="NEW">New</option>
+                                        <option value="WAITING">Waiting</option>
+                                        <option value="FINISHED">Finished</option>
+                                        <option value="RATED">Rated</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <div class="text-center" id="searchB">
+                                        <input type="submit" class="btn btn-success" value='Search'/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+
+
             <c:choose>
                 <c:when test="${(not empty message)}">
                     <p> ${message} </p>
@@ -82,9 +115,12 @@
                                                 <c:if test="${item.status =='FINISHED' }">
                                                     <div class="form-group px-0">
 
-                                                        <label for="rating"><b>Rating:</b> <c:out value="${item.rating}"/></label>
+                                                        <label for="rating"><b>Rating:</b> <c:out
+                                                                value="${item.rating}"/></label>
                                                         <div id="rating" class="str_Rating_detail">
-                                                            <div data-rating="<c:out value="${item.rating}"/>" data-rateyo-read-only="false" class="rateYo bookrating px-0" ></div>
+                                                            <div data-rating="<c:out value="${item.rating}"/>"
+                                                                 data-rateyo-read-only="false"
+                                                                 class="rateYo bookrating px-0"></div>
                                                         </div>
                                                     </div>
                                                 </c:if>
@@ -160,13 +196,15 @@
         });
         $(this).rateYo('option', 'readOnly', true);
     });
-    function ratingFunc(rating){}
+
+    function ratingFunc(rating) {
+    }
 </script>
 
 <footer class="container text-center py-3 pt-3 " id="foot">
     <div class="form-group text-center pb-0">
         <img src="https://cdn1.savepice.ru/uploads/2021/6/1/df08565d31e0a625add74d94afbf176b-full.png"
-      width="170" height="170">
+             width="170" height="170">
         <p>&copy; 2021 FrogProg Inc.</p>
     </div>
 </footer>
