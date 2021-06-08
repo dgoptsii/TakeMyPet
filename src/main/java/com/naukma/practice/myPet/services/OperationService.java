@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @Service
 @Slf4j
-public class OperationServer {
+public class OperationService {
 
     @Autowired
     private ContractRepository contractRepository;
