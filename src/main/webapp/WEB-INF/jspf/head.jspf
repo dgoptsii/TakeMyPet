@@ -1,6 +1,7 @@
 <title>TakeMyPet</title>
 <link rel="stylesheet" href="/css/main-style.css">
 <link rel="stylesheet" href="/css/nav-style.css">
+<%--<link rel="stylesheet" href="/css/background.css">--%>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
 
