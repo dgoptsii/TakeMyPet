@@ -13,8 +13,8 @@
         <div class="card-body pt-0">
             <div class="d-flex justify-content-center">
                 <form role="form" id="registration_form" name="registration_form"
-                      action="${pageContext.request.contextPath}/registration" method="POST">
-                    <%--    onsubmit="return validate(this);">--%>
+                      action="${pageContext.request.contextPath}/registration" method="POST"
+                        onsubmit="return validate(this);">
                     <div class="form-outline mb-4 text-center">
                         <i class="fa fa-user-circle green-color " style="color:#28a745; font-size:70px"></i>
                         <h3 class="d-flex justify-content-center">Registration</h3>

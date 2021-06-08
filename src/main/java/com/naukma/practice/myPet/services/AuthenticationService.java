@@ -153,8 +153,9 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         log.trace("Request parameter: city --> " + city);
         log.trace("Request parameter: role --> " + role);
 
-//        if (!validateData(login, password, email, password_confirm))
-//            throw new InvalidDataException("Input data is invalid or empty");
+        if (!validateData(login,password,email,password_confirm,
+                name, surname, telephone, country, city, role))
+            throw new InvalidDataException("Input data is invalid or empty");
 
         if (userRepository.findUserByLogin(login).isPresent()
                 || userRepository.findUserByEmail(email).isPresent()
