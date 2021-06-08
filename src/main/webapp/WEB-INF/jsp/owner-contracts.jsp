@@ -13,7 +13,7 @@
 
 <c:if test="${not empty getAlert and getAlert=='success'}">
     <c:set var="getAlert" value="" scope="session"/>
-    <c:set var="message" value="" scope="session"/>
+<%--    <c:set var="message" value="" scope="session"/>--%>
     <script>
         $(document).ready(function () {
             $("#success").show(1000);
@@ -25,8 +25,8 @@
 <div class="container">
     <div class="row gutters d-flex justify-content-center">
         <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
-            <c:if test="${not empty message}">
-                <c:out value="${message}"/>
+            <c:if test="${not empty SuccessMessage}">
+                <c:out value="${SuccessMessage}"/>
             </c:if>
         </div>
 

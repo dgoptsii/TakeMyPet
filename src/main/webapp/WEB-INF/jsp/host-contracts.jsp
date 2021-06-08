@@ -12,11 +12,11 @@
 <%@ include file="/WEB-INF/jspf/host-profile-nav.jspf" %>
 <c:if test="${not empty getAlert and getAlert=='success'}">
     <c:set var="getAlert" value="" scope="session"/>
-    <c:set var="message" value="" scope="session"/>
+    <%--    <c:set var="message" value="" scope="session"/>--%>
     <script>
         $(document).ready(function () {
-            $("#success").show(1000);
-            $("#success").show().delay(5000).fadeOut();
+            $("#success-alert").show(1000);
+            $("#success-alert").show().delay(5000).fadeOut();
         });
     </script>
 </c:if>
@@ -24,12 +24,15 @@
 <%--<c:set var="host" value="${hostInfo}"/>--%>
 <div class="container">
     <div class="row gutters d-flex justify-content-center">
-        <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
-            <c:if test="${not empty message}">
-                <c:out value="${message}"/>
-            </c:if>
-        </div>
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
+
+            <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
+                <c:if test="${not empty SuccessMessage}">
+                    <c:out value="${SuccessMessage}"/>
+                </c:if>
+<%--                <c:set var="SuccessMessage" value="" scope="session"/>--%>
+            </div>
+
             <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <b><h5 class="mt-2 mb-2 text-success">List of contracts</h5></b>
             </div>

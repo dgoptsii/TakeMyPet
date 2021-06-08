@@ -75,18 +75,23 @@ public class MainController {
     @GetMapping(path = {"/owner/contracts/{state}/{id}"})
     public void ownerChangeContractStateAction(@PathVariable Long id, @PathVariable String state,
                                                HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
-
+        System.out.println("OWNER EDIT CONTRACT STATUS TO "+state);
         operationServer.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
         response.sendRedirect(request.getContextPath() + "/owner/contracts");
 
     }
+
     @GetMapping(path = {"/host/contracts/{state}/{id}"})
     public void hostChangeContractStateAction(@PathVariable Long id, @PathVariable String state,
                                                HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
+        System.out.println("HOST EDIT CONTRACT STATUS TO "+state);
 
         operationServer.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
-        response.sendRedirect(request.getContextPath() + "/host/contracts");
 
+//        request.getSession().setAttribute("getAlert", "success");
+//        request.getSession().setAttribute("message", "Post blocked!");
+
+        response.sendRedirect(request.getContextPath() + "/host/contracts");
     }
     @GetMapping(path = {"/posts/edit/{id}"})
     public void postChangeStatus(@PathVariable Long id,
@@ -161,7 +166,4 @@ public class MainController {
         response.sendRedirect(request.getContextPath() + "/owner/contracts");
     }
 
-    private void recountRating(String hostLogin) {
-
-    }
 }

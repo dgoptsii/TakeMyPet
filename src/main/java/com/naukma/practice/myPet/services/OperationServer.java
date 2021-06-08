@@ -24,11 +24,13 @@ public class OperationServer {
         if (contractRepository.findById(id).isPresent()) {
             if(state.equals("CANCEL")){
                 if(request!=null)
-                    request.getSession().setAttribute("message", "Contract cancelled");
+                    request.getSession().setAttribute("SuccessMessage", "Contract cancelled");
                 contractRepository.delete(contractRepository.findById(id).get());
             }else{
                 if(!contractRepository.findById(id).get().getStatus().equalsIgnoreCase(state)) {
                     contractRepository.updateStatus(id,state);
+                    if(state.equalsIgnoreCase("EMERGENCY"))
+                        request.getSession().setAttribute("SuccessMessage", "Send emergency message");
                     System.out.println("Contract #"+id+" state is changed to "+state.toUpperCase());
                 }
             }
