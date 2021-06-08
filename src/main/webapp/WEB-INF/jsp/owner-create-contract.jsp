@@ -37,7 +37,7 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
 
                 <div class="alert alert-danger" role="alert" id="error-alert" style="display:none;">
-                    Error: selected number of days is bigger than allowed
+                    Error:
                     <c:if test="${not empty errorMessage}">
                         <c:out value="${errorMessage}"/>
                     </c:if>
