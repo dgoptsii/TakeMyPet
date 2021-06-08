@@ -90,7 +90,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="rating"><b>Rating: <c:out value="${host.rating}"/></b></label>
-                                    <div id="rating" class="form-control-static">
+                                    <div id="rating" class="form-control-static px-0">
                                         <script>
                                             $(function () {
                                                 $("#rating").rateYo({
