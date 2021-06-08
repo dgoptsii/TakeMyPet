@@ -48,7 +48,7 @@
                                 <div class="form-group">
                                     <select class="form-control text-center" id="petCategory" name="animal">
                                         <%--                                <option value="" disabled selected>Animal</option>--%>
-                                        <option value="0" ${ (animal=='0') ? 'selected' : ''} >Choose animal</option>
+                                        <option value="0" ${ (animal=='0') ? 'selected' : ''} >All animals</option>
                                         <c:forEach var="item" items="${animals}">
                                             <option value="${item.id}" ${ (animal==item.id) ? 'selected' : ''} >${item.name}</option>
                                         </c:forEach>

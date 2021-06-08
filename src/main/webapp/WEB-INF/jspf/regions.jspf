@@ -1,5 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<select path="region" class="form-control" id="region" name="region"  placeholder="Region">
+<select path="region" class="form-control" id="region" name="region"  placeholder="Region" required>
     <option value="" disabled selected>Region</option>
     <option >Crimea</option>
     <option>Cherkasy Region</option>
