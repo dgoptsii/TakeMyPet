@@ -104,6 +104,11 @@
                                                 new
                                             </span>
                                             </c:when>
+                                            <c:when test="${contract.status =='EMERGENCY'}">
+                                            <span class="badge bg-danger text-wrap" style="width: 5rem; color:white">
+                                                emergency
+                                            </span>
+                                            </c:when>
 
                                             <c:when test="${contract.status =='WAITING'}">
                                              <span class="badge bg-warning text-wrap" style="width: 5rem;">
@@ -165,12 +170,13 @@
                                         <%--                                    </button>--%>
                                         <%--                                    </a>--%>
                                     </c:if>
-
+                                    <c:if test="${contract.status !='EMERGENCY' }">
                                     <button type="button"
                                             id="submit2" name="submit" class="btn btn-outline-danger mx-1 mt-1"
                                             data-toggle="modal" data-target="#error-file-modal">
                                         Error
                                     </button>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>

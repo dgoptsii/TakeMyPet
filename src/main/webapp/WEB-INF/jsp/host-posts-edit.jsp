@@ -74,7 +74,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-col text-right pt-3">
                                         <button type="button"
-                                                id="submit2" name="submit" class="btn btn-success"
+                                                id="submit2" name="submit" class="btn btn-outline-success"
                                                 data-toggle="modal" data-target="#edit-file-modal">
                                             Save
                                         </button>
