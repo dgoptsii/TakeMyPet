@@ -33,7 +33,7 @@
             </div>
 
             <div class="row gutters">
-                <c:if test="${numberOfAnimals >= totalItems}">
+                <c:if test="${totalItems >= numberOfAnimals}">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3 mt-3">
                         <div class="text-center">
                             <a href="${pageContext.request.contextPath}/host/createPost">
