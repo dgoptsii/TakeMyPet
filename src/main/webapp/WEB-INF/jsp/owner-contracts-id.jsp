@@ -105,6 +105,12 @@
                                                 new
                                             </span>
                                             </c:when>
+                                            <c:when test="${contract.status =='RATED'}">
+     <span class="badge bg-secondary text-wrap" style="width: 5rem; color:white">
+                                                rated
+                                            </span>
+
+                                            </c:when>
                                             <c:when test="${contract.status =='EMERGENCY'}">
                                             <span class="badge bg-danger text-wrap" style="width: 5rem; color:white">
                                                 emergency

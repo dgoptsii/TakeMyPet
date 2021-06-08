@@ -9,7 +9,7 @@
             </div>
             <form class="form-horizontal" method="post" id="edit_form">
                 <div class="modal-footer">
-                    <button data-dismiss="modal" class="btn btn-primary" id="confirm-cancel-button">
+                    <button data-dismiss="modal" class="btn btn-danger" id="confirm-cancel-button">
                         Yes
                     </button>
                     <button data-dismiss="modal" class="btn btn-default" name="in_confirm_insert"

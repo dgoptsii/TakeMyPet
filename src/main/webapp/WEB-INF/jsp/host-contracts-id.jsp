@@ -86,7 +86,12 @@
                                                 emergency
                                             </span>
                                         </c:when>
+                                        <c:when test="${contract.status =='RATED'}">
+     <span class="badge bg-secondary text-wrap" style="width: 5rem; color:white">
+                                                rated
+                                            </span>
 
+                                        </c:when>
                                         <c:when test="${contract.status =='WAITING'}">
                                              <span class="badge bg-warning text-wrap" style="width: 5rem;">
                                                  waiting
