@@ -65,12 +65,27 @@
                                 <c:if test="${contract.status =='FINISHED' }">
                                     <div class="form-col">
                                         <div class="form-group">
+                                            <label for="rating"><b>Rate:</b> </label>
+                                                <%--                                        <label for="rating"><b>Rating:</b> <span id="demo"></span></label>--%>
+                                            <div class="str_Rating_detail">
+                                                <!--star rating-->
+                                                <div id="rating" data-rating="0" data-rateyo-read-only="false"
+                                                     class="rateYo bookrating"></div>
+                                                <input type="hidden" name="rating" class="bookrating">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </c:if>
+                                <c:if test="${contract.status =='FINISHED' }">
+                                    <div class="form-col">
+                                        <div class="form-group">
                                             <label for="rating"><b>Rating:</b> <c:out
                                                     value="${contract.rating}"/></label>
                                                 <%--                                        <label for="rating"><b>Rating:</b> <span id="demo"></span></label>--%>
                                             <div class="str_Rating_detail">
                                                 <!--star rating-->
-                                                <div id="rating" data-rating="0" data-rateyo-read-only="false"
+                                                <div id="rated" data-rating="0" data-rateyo-read-only="false"
                                                      class="rateYo bookrating"></div>
                                                 <input type="hidden" name="rating" class="bookrating">
                                             </div>
@@ -108,8 +123,17 @@
                                                  finished
                                              </span>
                                             </c:when>
-                                               </c:choose>
-                                      </p>
+                                            <%--                                        <c:when test="${contract.status =='ACTIVE'}">--%>
+                                            <%--                                            <span class="badge bg-success text-wrap"--%>
+                                            <%--                                                  style="width: 5rem;">in process</span>--%>
+                                            <%--                                        </c:when>--%>
+                                            <%--                                        <c:when test="${contract.status ==''}">--%>
+                                            <%--                                            <span class="badge bg-success text-wrap"--%>
+                                            <%--                                                  style="width: 5rem;">in process</span>--%>
+                                            <%--                                        </c:when>--%>
+                                        </c:choose>
+                                        <%--                                    <span class="badge bg-info text-wrap" style="width: 5rem;">new</span>--%>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -126,10 +150,20 @@
                                         <%--</a>--%>
                                     </c:if>
                                     <c:if test="${contract.status =='FINISHED'}">
-                                             <input type="submit"
+                                        <%--                                    <a href="#">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/contract/rate/${contract.id}">--%>
+                                            <input type="submit"
                                                     id="rate" name="submit" class="btn btn-warning mx-1 mt-1"
                                                     data-toggle="modal" data-target="#rate-file-modal" value="Rate">
+<%--                                            >--%>
+
                                         </a>
+                                        <%--                                    <button type="button"--%>
+                                        <%--                                            id="rate" name="submit" class="btn btn-warning mx-1 mt-1">--%>
+                                        <%--                                            &lt;%&ndash;                                            data-toggle="modal" data-target="#cancel-file-modal"&ndash;%&gt;--%>
+                                        <%--                                        Rate--%>
+                                        <%--                                    </button>--%>
+                                        <%--                                    </a>--%>
                                     </c:if>
 
                                     <button type="button"
@@ -155,16 +189,16 @@
     <script type="text/javascript">
         $('#confirm-rate-button').on("click", function () {
            // $("#request").submit();
-            location.href = "${pageContext.request.contextPath}/contract/rate/${contractInfo.id}";
+            location.href = "${pageContext.request.contextPath}/owner/contract/rate/${contractInfo.id}";
         });
         $('#confirm-cancel-button').on("click", function () {
-            location.href = "${pageContext.request.contextPath}/contracts/cancel/${contractInfo.id}";
+            location.href = "${pageContext.request.contextPath}/owner/contracts/cancel/${contractInfo.id}";
         });
         $('#confirm-error-button').on("click", function () {
 
-            $("#error-alert").show(1000);
-            $("#error-alert").show().delay(5000).fadeOut();
-            location.href = "${pageContext.request.contextPath}/contracts/emergency/${contractInfo.id}";
+            // $("#error-alert").show(1000);
+            // $("#error-alert").show().delay(5000).fadeOut();
+            location.href = "${pageContext.request.contextPath}/owner/contracts/emergency/${contractInfo.id}";
         });
 
     </script>

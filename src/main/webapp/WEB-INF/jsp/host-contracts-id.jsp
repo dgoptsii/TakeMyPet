@@ -76,8 +76,13 @@
                                     <p><b>Status: </b>
                                         <c:choose>
                                             <c:when test="${contract.status =='NEW'}">
-                                            <span class="badge bg-info text-wrap" style="width: 5rem;">
+                                        <span class="badge bg-info text-wrap" style="width: 5rem; color:white">
                                                 new
+                                            </span>
+                                            </c:when>
+                                            <c:when test="${contract.status =='EMERGENCY'}">
+                                            <span class="badge bg-danger text-wrap" style="width: 5rem;">
+                                                emergency
                                             </span>
                                             </c:when>
 
@@ -112,7 +117,7 @@
                                         <%--<a href="#">--%>
                                         <button type="button"
                                                 id="submit1" name="submit" class="btn btn-success mx-1 mt-1"
-                                                data-toggle="modal"  data-target="#edit-file-modal">
+                                                data-toggle="modal"  data-target="#accept-file-modal">
                                             Accept
                                         </button>
                                     </c:if>
@@ -120,19 +125,22 @@
                                         <%--<a href="#">--%>
                                         <button type="button"
                                                 id="submit1" name="submit" class="btn btn-danger mx-1 mt-1"
-                                                data-toggle="modal"  data-target="#edit-file-modal">
+                                                data-toggle="modal"  data-target="#cancel-file-modal">
                                             Cancel
                                         </button>
                                     </c:if>
+                                    <c:if test="${contract.status !='EMERGENCY'}">
                                     <button type="button"
                                             id="submit2" name="submit" class="btn btn-outline-danger mx-1 mt-1"
                                             data-toggle="modal"  data-target="#error-file-modal">
                                         Error
                                     </button>
+                                    </c:if>
                                 </div>
                             </div>
 
-                            <%@ include file="/WEB-INF/jspf/cancel_dialog.jspf" %>
+                            <%@ include file="/WEB-INF/jspf/accept_dialog.jspf" %>
+                         //   <%@ include file="/WEB-INF/jspf/cancel_dialog.jspf" %>
                             <%@ include file="/WEB-INF/jspf/error_dialog.jspf" %>
                             <%@ include file="/WEB-INF/jspf/rate_dialog.jspf" %>
                         </div>
@@ -146,15 +154,16 @@
             <%--    // $("#request").submit();--%>
             <%--    location.href = "${pageContext.request.contextPath}/contract/rate/${contractInfo.id}";--%>
             <%--});--%>
-            <%--$('#confirm-cancel-button').on("click", function () {--%>
-            <%--    location.href = "${pageContext.request.contextPath}/contracts/cancel/${contractInfo.id}";--%>
-            <%--});--%>
+
             $('#confirm-error-button').on("click", function () {
-                $("#error-alert").show(1000);
-                $("#error-alert").show().delay(5000).fadeOut();
                 location.href = "${pageContext.request.contextPath}/host/contracts/emergency/${contractInfo.id}";
             });
-
+            $('#confirm-accept-button').on("click", function () {
+                location.href = "${pageContext.request.contextPath}/host/contracts/waiting/${contractInfo.id}";
+            });
+            $('#confirm-cancel-button').on("click", function () {
+                location.href = "${pageContext.request.contextPath}/host/contracts/cancel/${contractInfo.id}";
+            });
         </script>
         <footer class="container text-center py-3 pt-3 " id="foot">
             <div class="form-group text-center pb-0">

@@ -22,7 +22,7 @@ public class OperationServer {
         System.out.println("change wow");
         //delete canceled contracts
         if (contractRepository.findById(id).isPresent()) {
-            if(state.equals("cancel")){
+            if(state.equals("CANCEL")){
                 if(request!=null)
                     request.getSession().setAttribute("message", "Contract cancelled");
                 contractRepository.delete(contractRepository.findById(id).get());
