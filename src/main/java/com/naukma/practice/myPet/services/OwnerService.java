@@ -24,10 +24,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
-/**
- * Service class with methods to work with owner's entities
- */
-
 @Service
 @Slf4j
 public class OwnerService implements OwnerServiceInterface{

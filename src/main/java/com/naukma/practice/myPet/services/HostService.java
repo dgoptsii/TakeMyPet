@@ -21,9 +21,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
-/**
- * Service class with methods to work with host's entities
- */
 @Service
 @Slf4j
 public class HostService implements HostServiceInterface {

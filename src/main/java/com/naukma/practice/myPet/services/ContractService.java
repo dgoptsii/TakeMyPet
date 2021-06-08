@@ -14,12 +14,6 @@ import org.springframework.ui.Model;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * Service class with methods to work with contract's entities
- */
-
-
-
 @Service
 @Slf4j
 public class ContractService implements ContractServiceInterface{
