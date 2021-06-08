@@ -31,6 +31,8 @@ public class OperationServer {
                     contractRepository.updateStatus(id,state);
                     if(state.equalsIgnoreCase("EMERGENCY"))
                         request.getSession().setAttribute("SuccessMessage", "Send emergency message");
+                    if(state.equalsIgnoreCase("WAITING"))
+                        request.getSession().setAttribute("SuccessMessage", "Contract accepted!");
                     System.out.println("Contract #"+id+" state is changed to "+state.toUpperCase());
                 }
             }
