@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -46,84 +45,87 @@ public class HostController {
     @Autowired
     private ContractRepository contractRepository;
 
-    @GetMapping(path = {"/profile"})
-    public String hostProfilePage(Model model, HttpServletRequest request) {
-
+    private HostDTO getHostInfo(HttpServletRequest request) throws NotFoundException {
         String login = (String) request.getSession().getAttribute("userLogin");
+        Host host;
+        User user;
+        if(!hostRepository.findHostByLogin(login).isPresent() || !userRepository.findUserByLogin(login).isPresent() ){
+            throw new NotFoundException("Not found user with this login!");
+        }else{
+            host = hostRepository.findHostByLogin(login).get();
+            user = userRepository.findUserByLogin(login).get();
+        }
+        return HostDTO.createHost(host, user);
+    }
 
-        Host host = hostRepository.findHostByLogin(login).get();
-        User user = userRepository.findUserByLogin(login).get();
+    @GetMapping(path = {"/profile"})
+    public String hostProfilePage(Model model, HttpServletRequest request) throws NotFoundException {
 
-        model.addAttribute("hostInfo", HostDTO.createHost(host, user));
+        model.addAttribute("hostInfo", getHostInfo(request));
         return "host-profile";
     }
 
     @GetMapping(path = {"/profile/edit"})
-    public ModelAndView hostProfileEditPage(Model model, HttpServletRequest request) {
-        log.info("owner profile edit");
-
-        String login = (String) request.getSession().getAttribute("userLogin");
-        Host host = hostRepository.findHostByLogin(login).get();
-        User user = userRepository.findUserByLogin(login).get();
-
-//        model.addAttribute("hostInfo", HostDTO.createHost(host, user));
-        return new ModelAndView("host-profile-edit", "host", HostDTO.createHost(host, user));
-//        return "host-profile-edit";
+    public ModelAndView hostProfileEditPage(Model model, HttpServletRequest request) throws NotFoundException {
+        return new ModelAndView("host-profile-edit", "host", getHostInfo(request));
     }
 
 
     @PostMapping(path = {"/profile/edit"})
     public void hostProfileEditAction(@Valid @ModelAttribute("host") HostDTO hostNew,
                                       BindingResult result,
-                                      HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("dodod");
+                                      HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
+
         if (result.hasErrors()) {
-            System.out.println("tototot");
             request.getSession().setAttribute("getAlert", "error");
             request.getSession().setAttribute("errorMessage", "Invalid input!");
             response.sendRedirect(request.getContextPath() + "/host/profile/edit");
         } else {
-            System.out.println(hostNew);
-            String login = (String) request.getSession().getAttribute("userLogin");
-
-            Host host = hostRepository.findHostByLogin(login).get();
-            User user = userRepository.findUserByLogin(login).get();
-
-            HostDTO currentInfo = HostDTO.createHost(host, user);
-
-            if (currentInfo.equals(hostNew)) {
-                request.getSession().setAttribute("getAlert", "error");
-                request.getSession().setAttribute("errorMessage", "You don't change nothing!");
-                response.sendRedirect(request.getContextPath() + "/host/profile/edit");
-            } else if (
-                    (userRepository.findUserByLogin(hostNew.getLogin()).isPresent() && !currentInfo.getLogin().equals(hostNew.getLogin()))
-                            || (userRepository.findUserByEmail(hostNew.getEmail()).isPresent() && !currentInfo.getEmail().equals(hostNew.getEmail()))
-            ) {
-                request.getSession().setAttribute("getAlert", "error");
-                request.getSession().setAttribute("errorMessage", "User with this login/e-mail is already exist!");
-                response.sendRedirect(request.getContextPath() + "/host/profile/edit");
-            } else if (hostRepository.findHostByPhone(hostNew.getPhone()).isPresent() && !currentInfo.getPhone().equals(hostNew.getPhone())) {
-                request.getSession().setAttribute("getAlert", "error");
-                request.getSession().setAttribute("errorMessage", "User with this phone number is already exist!");
-                response.sendRedirect(request.getContextPath() + "/host/profile/edit");
-            } else {
-                user.setLogin(hostNew.getLogin());
-                user.setEmail(hostNew.getEmail());
-
-                System.out.println("Updated user -> " + userRepository.save(user));
-                host = HostDTO.createHostFromDTO(hostNew);
-                System.out.println("Updated host -> " + hostRepository.save(host));
-                request.getSession().setAttribute("userLogin", hostNew.getLogin());
-
-                request.getSession().setAttribute("getAlert", "success");
-                response.sendRedirect(request.getContextPath() + "/host/profile");
-            }
+            editHostProfile(hostNew, request, response);
         }
-//        model.addAttribute("hostInfo", HostDTO.createHost(host, user));
-//        return "host-profile-edit";
-
     }
 
+    private void editHostProfile(HostDTO hostNew, HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
+        String login = (String) request.getSession().getAttribute("userLogin");
+        Host host;
+        User user;
+        if(!hostRepository.findHostByLogin(login).isPresent() || !userRepository.findUserByLogin(login).isPresent() ){
+            throw new NotFoundException("Not found user with this login!");
+        }else{
+            host = hostRepository.findHostByLogin(login).get();
+            user = userRepository.findUserByLogin(login).get();
+        }
+
+        HostDTO currentInfo =HostDTO.createHost(host, user);
+
+        if (currentInfo.equals(hostNew)) {
+            request.getSession().setAttribute("getAlert", "error");
+            request.getSession().setAttribute("errorMessage", "You don't change nothing!");
+            response.sendRedirect(request.getContextPath() + "/host/profile/edit");
+        } else if (
+                (userRepository.findUserByLogin(hostNew.getLogin()).isPresent() && !currentInfo.getLogin().equals(hostNew.getLogin()))
+                        || (userRepository.findUserByEmail(hostNew.getEmail()).isPresent() && !currentInfo.getEmail().equals(hostNew.getEmail()))
+        ) {
+            request.getSession().setAttribute("getAlert", "error");
+            request.getSession().setAttribute("errorMessage", "User with this login/e-mail is already exist!");
+            response.sendRedirect(request.getContextPath() + "/host/profile/edit");
+        } else if (hostRepository.findHostByPhone(hostNew.getPhone()).isPresent() && !currentInfo.getPhone().equals(hostNew.getPhone())) {
+            request.getSession().setAttribute("getAlert", "error");
+            request.getSession().setAttribute("errorMessage", "User with this phone number is already exist!");
+            response.sendRedirect(request.getContextPath() + "/host/profile/edit");
+        } else {
+            user.setLogin(hostNew.getLogin());
+            user.setEmail(hostNew.getEmail());
+
+            System.out.println("Updated user -> " + userRepository.save(user));
+            host = HostDTO.createHostFromDTO(hostNew);
+            System.out.println("Updated host -> " + hostRepository.save(host));
+            request.getSession().setAttribute("userLogin", hostNew.getLogin());
+
+            request.getSession().setAttribute("getAlert", "success");
+            response.sendRedirect(request.getContextPath() + "/host/profile");
+        }
+    }
 
     @GetMapping(path = {"/posts"})
     public String hostPostsPage(@RequestParam(defaultValue = "0") int page,
@@ -133,11 +135,16 @@ public class HostController {
         if (page > 0) {
             page -= 1;
         }
+        getPostsInfo(page, size, model, login);
+        return "host-posts";
+    }
+
+    private void getPostsInfo(int page, int size, Model model, String login) throws Exception {
         try {
             List<Post> posts;
             Pageable paging = PageRequest.of(page, size);
 
-            Page<Post> pagePosts = null;
+            Page<Post> pagePosts;
 
             pagePosts = postRepository.findAllByHostLogin(login, paging);
 
@@ -153,29 +160,28 @@ public class HostController {
             model.addAttribute("totalItems", pagePosts.getTotalElements());
             model.addAttribute("totalPages", pagePosts.getTotalPages());
 
-            System.out.println(pagePosts.getTotalElements() + " " + animalRepository.count() + " " + posts.size());
         } catch (Exception e) {
             //TODO add custom exception
             throw new Exception("ERROR");
         }
-        return "host-posts";
     }
 
     @GetMapping(path = {"/posts/edit/{id}"})
     public String hostPostsEditPage(Model model, @PathVariable Long id) throws NotFoundException {
+        editPost(model, id);
+        return "host-posts-edit";
+    }
+
+    private void editPost(Model model, Long id) throws NotFoundException {
         Post post;
         if (postRepository.findById(id).isPresent()) {
             post = postRepository.findById(id).get();
         } else {
-            //TODO add custom exception
             throw new NotFoundException("Post with this id doesn't exist");
         }
         model.addAttribute("animals", animalRepository.findAll());
         model.addAttribute("post", post);
-//        return new ModelAndView("host-posts-edit", "post", post);
-        return "host-posts-edit";
     }
-
 
     @PostMapping(path = {"/posts/edit/{id}"})
     public void hostPostsEditAction(@PathVariable Long id,

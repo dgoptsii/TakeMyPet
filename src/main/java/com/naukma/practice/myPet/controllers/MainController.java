@@ -97,7 +97,6 @@ public class MainController {
                                  @RequestParam(defaultValue = "0", name = "animal") String animal,
                                  @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId,
                                  HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException, InvalidDataException {
-        System.out.println("edit post status");
         if (postRepository.findById(id).isPresent()) {
             if (status.equals("active")) {
                 postRepository.setStatus(id, "BLOCKED");
@@ -135,7 +134,7 @@ public class MainController {
     @PostMapping(path = {"/contract/rate/{id}"})
     public void rateContract(@PathVariable Long id, @RequestParam(name = "rating") String rating,
                              HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
-        System.out.println("rating");
+
         int rate = 0;
         //add catch if rate not number (ariphmetic error or smth)
         try {
@@ -157,7 +156,7 @@ public class MainController {
             double resRating = Math.round(((double) (sumOfRatings) / (double) (amountOfRatedContracts)) * 100.) / 100.;
             hostRepository.updateRating(contract.getHost().getId(), resRating);
             request.getSession().setAttribute("getAlert", "success");
-            request.getSession().setAttribute("message", "Contract Rated!");
+            request.getSession().setAttribute("SuccessMessage", "Contract Rated!");
         } else {
             throw new NotFoundException("No contract with this id! ");
         }

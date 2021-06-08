@@ -42,7 +42,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z]).{8,32}$";
     private static final String EMAIL_PATTERN = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
-//    TODO add patterns for registration
+    //    TODO add patterns for registration
     private static final String TELEPHONE_PATTERN = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$";
 
 //    pattern for name,surname,city,country
@@ -100,7 +100,6 @@ public class AuthenticationService implements AuthenticationServiceInterface {
 
             String currentState = c.getStatus();
 
-            System.out.println(c.getId() + " " + currentState + " date - " + contractStartDate + " " + contractEndDate);
             String newState = c.getStatus();
 
             int todayToStart = today.compareTo(contractStartDate);
@@ -112,13 +111,9 @@ public class AuthenticationService implements AuthenticationServiceInterface {
                 newState = "ACTIVE";
 
             }
-//            else if (today.before(contractStartDate) && c.getStatus().) {
-//                newState = "WAITING";
-//            }
-            System.out.println(newState);
 
-                if((currentState.equals("RATED")) || currentState.equals("FINISHED")|| currentState.equals("NEW")||currentState.equals("EMERGENCY")){
-               return;
+            if ((currentState.equals("RATED")) || currentState.equals("FINISHED") || currentState.equals("NEW") || currentState.equals("EMERGENCY")) {
+                return;
             } else if (!c.getStatus().equalsIgnoreCase(newState)) {
                 try {
                     contractRepository.updateStatus(c.getId(), newState);
@@ -153,7 +148,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         log.info("Request parameter: city --> " + city);
         log.info("Request parameter: role --> " + role);
 
-        if (!validateData(login,password,email,password_confirm,
+        if (!validateData(login, password, email, password_confirm,
                 name, surname, telephone, country, city, role))
             throw new InvalidDataException("Input data is invalid or empty");
 

@@ -45,13 +45,6 @@ public class RegistrationController {
 
                                HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-//        String springRole = Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication().
-//                getAuthorities().stream().
-//                findAny().orElse(null)).
-//                toString();
-
-//        System.out.println(springRole+" "+role);
-
         serviceInterface.registrationUser(login, password, email, password_confirm,
                                                 name,surname,telephone, region,city,role,
                                                       request);
