@@ -37,7 +37,7 @@
                                 <div class="form-col">
                                     <label for="daysRange">Term: <span id="demo"></span>  days</label>
                                     <div class="form-group">
-                                    <input type="range" class="slider" min="1" max="20" step="1.0"
+                                    <input type="range" class="slider" min="1" max="14" step="1.0"
                                            id="daysRange" name="days">
                                     <script>
                                         var slider = document.getElementById("daysRange");

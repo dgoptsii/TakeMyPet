@@ -99,11 +99,14 @@ public class MainController {
         if (postRepository.findById(id).isPresent()) {
             if (status.equals("active")) {
                 postRepository.setStatus(id, "BLOCKED");
+                request.getSession().setAttribute("message", "Post blocked!");
             } else if (status.equals("blocked")) {
                 postRepository.setStatus(id, "ACTIVE");
+                request.getSession().setAttribute("message", "Post now is active!");
             } else {
                 throw new InvalidDataException("Invalid status!");
             }
+            request.getSession().setAttribute("getAlert", "success");
             response.sendRedirect(request.getContextPath() + "/host/posts?page=" + page + "&animal=" + animal + "&maxDays=" + maxDaysId);
         } else {
             throw new NotFoundException("No post with this id! ");
@@ -114,6 +117,10 @@ public class MainController {
     public void deletePost(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
         if (postRepository.findById(id).isPresent()) {
             postRepository.delete(postRepository.getOne(id));
+
+            request.getSession().setAttribute("getAlert", "success");
+            request.getSession().setAttribute("message", "Post deleted!");
+
             response.sendRedirect(request.getContextPath() + "/host/posts");
         } else {
             throw new NotFoundException("No post with this id! ");

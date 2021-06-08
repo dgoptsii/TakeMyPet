@@ -15,7 +15,6 @@
 
 <c:if test="${not empty getAlert and getAlert=='success'}">
     <c:set var="getAlert" value="" scope="session"/>
-    <c:set var="message" value="" scope="session"/>
     <script>
         $(document).ready(function () {
             $("#success-alert").show(1000);
@@ -29,11 +28,14 @@
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
 
             <div class="alert alert-success" role="alert" id="success-alert" style="display:none;">
-                Post deleted!
+                <c:if test="${not empty message}">
+                    <c:out value="${message}"/>
+                </c:if>
+                <c:set var="message" value="" scope="session"/>
             </div>
 
             <div class="row gutters">
-                <c:if test="${totalItems >= numberOfAnimals}">
+                <c:if test="${totalItems < numberOfAnimals}">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3 mt-3">
                         <div class="text-center">
                             <a href="${pageContext.request.contextPath}/host/createPost">

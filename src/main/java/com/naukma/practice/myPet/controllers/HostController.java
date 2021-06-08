@@ -3,6 +3,7 @@ package com.naukma.practice.myPet.controllers;
 import com.naukma.practice.myPet.db.*;
 import com.naukma.practice.myPet.db.DTO.HostDTO;
 import com.naukma.practice.myPet.db.entity.*;
+import com.naukma.practice.myPet.exceptions.InvalidDataException;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,6 +153,7 @@ public class HostController {
             model.addAttribute("totalItems", pagePosts.getTotalElements());
             model.addAttribute("totalPages", pagePosts.getTotalPages());
 
+            System.out.println(pagePosts.getTotalElements() + " " + animalRepository.count() + " " + posts.size());
         } catch (Exception e) {
             //TODO add custom exception
             throw new Exception("ERROR");
@@ -181,13 +183,26 @@ public class HostController {
                                     HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
 
         int maxDays = Integer.parseInt(maxDaysId);
+        Post post;
+        if(postRepository.findById(id).isPresent()){
+            post = postRepository.findById(id).get();
+        }else {
 
-        if (maxDays > 0) {
+            throw new NotFoundException("Post with this id doesn't exist");
+        }
+
+        if (maxDays > 0 && maxDays < 15 && post.getMaxDays() != maxDays) {
             //error to page
             //redirect to /posts/edit/{id}
-
             postRepository.setMaxDays(id, maxDays);
+            request.getSession().setAttribute("getAlert", "success");
+            request.getSession().setAttribute("message", "Post edited!");
             response.sendRedirect(request.getContextPath() + "/host/posts");
+        }else{
+
+            request.getSession().setAttribute("getAlert", "error");
+            request.getSession().setAttribute("errorMessage", "You don't change nothing.");
+            response.sendRedirect(request.getContextPath() + "/host/posts/edit/"+id);
         }
         //redirect to posts page
     }
@@ -207,7 +222,7 @@ public class HostController {
     @PostMapping(path = {"/createPost"})
     public void hostCreatePostPageAction(@RequestParam(name = "days", defaultValue = "1") String days,
                                          @RequestParam(name = "pet") String pet,
-                                         HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
+                                         HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException, InvalidDataException {
         log.info("host created post");
 
         String hostLogin = (String) request.getSession().getAttribute("userLogin");
@@ -223,15 +238,20 @@ public class HostController {
             log.info("searching " + hostLogin);
             post.setHost(host.get());
             log.info("found host");
-            post.setAnimal(animalRepository.findByName(pet).get());
+            if(animalRepository.findByName(pet).isPresent()){
+                post.setAnimal(animalRepository.findByName(pet).get());
+            }else{
+                throw new InvalidDataException("Invalid animal");
+            }
             log.info("found animal");
             post.setMaxDays(maxDays);
             post.setStatus("ACTIVE");
             postRepository.save(post);
-            request.getSession().setAttribute("getAlert", "Created Post");
+            request.getSession().setAttribute("getAlert", "success");
+            request.getSession().setAttribute("message", "Post created!");
             response.sendRedirect(request.getContextPath() + "/host/posts");
         } else {
-            //TODO throw exception redirect to error page
+            throw new InvalidDataException("Invalid number of days");
         }
 
     }
@@ -251,7 +271,7 @@ public class HostController {
 
 
             Page<Contract> pageContracts = null;
-            if(status.equals("ALL")){
+            if (status.equals("ALL")) {
                 pageContracts
                         = contractRepository.findAllByHostLoginOrderByStartDateAsc(login, paging);
             } else {
