@@ -3,7 +3,6 @@ package com.naukma.practice.myPet.db;
 import com.naukma.practice.myPet.db.entity.Contract;
 import com.naukma.practice.myPet.db.entity.Host;
 import com.naukma.practice.myPet.db.entity.Owner;
-import com.naukma.practice.myPet.db.entity.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,11 +31,13 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
     //for /host/contracts
     Page<Contract> findAllByHostLogin(String login, Pageable pageable);
 
-    Page<Contract> findAllByHostLoginOrderByStartDateAsc(String login, Pageable pageable);
-    Page<Contract> findAllByOwnerLoginOrderByStartDateAsc(String login, Pageable pageable);
+    Page<Contract> findAllByHostLoginOrderByStartDateDesc(String login, Pageable pageable);
 
-    Page<Contract> findAllByHostLoginAndStatusOrderByStartDateAsc(String login, String status,  Pageable pageable);
-    Page<Contract> findAllByOwnerLoginAndStatusOrderByStartDateAsc(String login, String status,  Pageable pageable);
+    Page<Contract> findAllByOwnerLoginOrderByStartDateDesc(String login, Pageable pageable);
+
+    Page<Contract> findAllByHostLoginAndStatusOrderByStartDateDesc(String login, String status, Pageable pageable);
+
+    Page<Contract> findAllByOwnerLoginAndStatusOrderByStartDateDesc(String login, String status, Pageable pageable);
 
     //for /owner/contracts
     Page<Contract> findAllByOwnerLogin(String login, Pageable pageable);
