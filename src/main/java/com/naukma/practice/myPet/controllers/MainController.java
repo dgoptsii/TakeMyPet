@@ -5,7 +5,7 @@ import com.naukma.practice.myPet.db.HostRepository;
 import com.naukma.practice.myPet.db.PostRepository;
 import com.naukma.practice.myPet.db.entity.Contract;
 import com.naukma.practice.myPet.exceptions.InvalidDataException;
-import com.naukma.practice.myPet.services.OperationServer;
+import com.naukma.practice.myPet.services.OperationService;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class MainController {
 
 
     @Autowired
-    private OperationServer operationServer;
+    private OperationService operationService;
 
     @GetMapping(path = {"/hello"})
     public String helloPage() {
@@ -76,7 +76,7 @@ public class MainController {
     public void ownerChangeContractStateAction(@PathVariable Long id, @PathVariable String state,
                                                HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
         System.out.println("OWNER EDIT CONTRACT STATUS TO "+state);
-        operationServer.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
+        operationService.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
         response.sendRedirect(request.getContextPath() + "/owner/contracts");
 
     }
@@ -86,7 +86,7 @@ public class MainController {
                                                HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
         System.out.println("HOST EDIT CONTRACT STATUS TO "+state);
 
-        operationServer.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
+        operationService.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
 
         response.sendRedirect(request.getContextPath() + "/host/contracts");
     }
