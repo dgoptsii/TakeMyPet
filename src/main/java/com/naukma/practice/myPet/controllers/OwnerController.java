@@ -190,7 +190,6 @@ public class OwnerController {
             model.addAttribute("maxDays", maxDays);
             model.addAttribute("totalItems", pagePosts.getTotalElements());
             model.addAttribute("totalPages", pagePosts.getTotalPages());
-
         } catch (Exception e) {
             //TODO add custom exception
             throw new Exception("ERROR");
