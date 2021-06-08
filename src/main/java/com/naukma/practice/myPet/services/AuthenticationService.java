@@ -42,11 +42,11 @@ public class AuthenticationService implements AuthenticationServiceInterface {
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z]).{8,32}$";
     private static final String EMAIL_PATTERN = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
-    //TODO add patterns for registration
-    private static final String TELEPHONE_PATTERN = "";
+//    TODO add patterns for registration
+    private static final String TELEPHONE_PATTERN = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$";
 
-    //pattern for name,surname,city,country
-    private static final String TEXT_PATTERN = "";
+//    pattern for name,surname,city,country
+//    private static final String TEXT_PATTERN = ".*";
 
     @Override
     public String loginUser(String login,
@@ -141,17 +141,17 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         if (checkUserRole != null)
             throw new AuthenticationException("User is already signed in");
 
-        log.trace("Request parameter: login --> " + login);
-        log.trace("Request parameter: password --> " + password);
-        log.trace("Request parameter: email --> " + email);
-        log.trace("Request parameter: password_confirm --> " + password_confirm);
+        log.info("Request parameter: login --> " + login);
+        log.info("Request parameter: password --> " + password);
+        log.info("Request parameter: email --> " + email);
+        log.info("Request parameter: password_confirm --> " + password_confirm);
 
-        log.trace("Request parameter: name --> " + name);
-        log.trace("Request parameter: surname --> " + surname);
-        log.trace("Request parameter: telephone --> " + telephone);
-        log.trace("Request parameter: country --> " + country);
-        log.trace("Request parameter: city --> " + city);
-        log.trace("Request parameter: role --> " + role);
+        log.info("Request parameter: name --> " + name);
+        log.info("Request parameter: surname --> " + surname);
+        log.info("Request parameter: telephone --> " + telephone);
+        log.info("Request parameter: country --> " + country);
+        log.info("Request parameter: city --> " + city);
+        log.info("Request parameter: role --> " + role);
 
         if (!validateData(login,password,email,password_confirm,
                 name, surname, telephone, country, city, role))
@@ -211,11 +211,11 @@ public class AuthenticationService implements AuthenticationServiceInterface {
                     && isValid(password, PASSWORD_PATTERN)
                     && isValid(email, EMAIL_PATTERN)
                     && isValid(telephone, TELEPHONE_PATTERN)
-
-                    && isValid(name, TEXT_PATTERN)
-                    && isValid(surname, TEXT_PATTERN)
-                    && isValid(country, TEXT_PATTERN)
-                    && isValid(city, TEXT_PATTERN)
+//
+//                    && isValid(name, TEXT_PATTERN)
+//                    && isValid(surname, TEXT_PATTERN)
+//                    && isValid(country, TEXT_PATTERN)
+//                    && isValid(city, TEXT_PATTERN)
                     && (role.equals("HOST") || role.equals("OWNER"))
             );
     }
