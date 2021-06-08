@@ -52,6 +52,7 @@ public class WebSecurityConfig
             .formLogin()
             .loginPage("/login")
             .defaultSuccessUrl("/redirect_after_login")
+            .failureUrl("/login/invalidPassword")
             .permitAll();
 
   }

@@ -31,9 +31,9 @@
                     <div>
                         <h5>Exception: ${exception.message}</h5>
                     </div>
-                    <div>
-                        <p> ${exception.stackTrace}</p>
-                    </div>
+<%--                    <div>--%>
+<%--                        <p> ${exception.stackTrace}</p>--%>
+<%--                    </div>--%>
 
                 <%-- CONTENT --%>
             </td>
