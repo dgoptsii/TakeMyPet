@@ -49,9 +49,9 @@ public class HostController {
         String login = (String) request.getSession().getAttribute("userLogin");
         Host host;
         User user;
-        if(!hostRepository.findHostByLogin(login).isPresent() || !userRepository.findUserByLogin(login).isPresent() ){
+        if (!hostRepository.findHostByLogin(login).isPresent() || !userRepository.findUserByLogin(login).isPresent()) {
             throw new NotFoundException("Not found user with this login!");
-        }else{
+        } else {
             host = hostRepository.findHostByLogin(login).get();
             user = userRepository.findUserByLogin(login).get();
         }
@@ -69,7 +69,6 @@ public class HostController {
     public ModelAndView hostProfileEditPage(Model model, HttpServletRequest request) throws NotFoundException {
         return new ModelAndView("host-profile-edit", "host", getHostInfo(request));
     }
-
 
     @PostMapping(path = {"/profile/edit"})
     public void hostProfileEditAction(@Valid @ModelAttribute("host") HostDTO hostNew,
@@ -89,14 +88,14 @@ public class HostController {
         String login = (String) request.getSession().getAttribute("userLogin");
         Host host;
         User user;
-        if(!hostRepository.findHostByLogin(login).isPresent() || !userRepository.findUserByLogin(login).isPresent() ){
+        if (!hostRepository.findHostByLogin(login).isPresent() || !userRepository.findUserByLogin(login).isPresent()) {
             throw new NotFoundException("Not found user with this login!");
-        }else{
+        } else {
             host = hostRepository.findHostByLogin(login).get();
             user = userRepository.findUserByLogin(login).get();
         }
 
-        HostDTO currentInfo =HostDTO.createHost(host, user);
+        HostDTO currentInfo = HostDTO.createHost(host, user);
 
         if (currentInfo.equals(hostNew)) {
             request.getSession().setAttribute("getAlert", "error");
@@ -168,11 +167,11 @@ public class HostController {
 
     @GetMapping(path = {"/posts/edit/{id}"})
     public String hostPostsEditPage(Model model, @PathVariable Long id) throws NotFoundException {
-        editPost(model, id);
+        getPostInfo(model, id);
         return "host-posts-edit";
     }
 
-    private void editPost(Model model, Long id) throws NotFoundException {
+    private void getPostInfo(Model model, Long id) throws NotFoundException {
         Post post;
         if (postRepository.findById(id).isPresent()) {
             post = postRepository.findById(id).get();
@@ -189,10 +188,14 @@ public class HostController {
                                     HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
 
         int maxDays = Integer.parseInt(maxDaysId);
+        editPost(id, request, response, maxDays);
+    }
+
+    private void editPost(Long id, HttpServletRequest request, HttpServletResponse response, int maxDays) throws NotFoundException, IOException {
         Post post;
-        if(postRepository.findById(id).isPresent()){
+        if (postRepository.findById(id).isPresent()) {
             post = postRepository.findById(id).get();
-        }else {
+        } else {
 
             throw new NotFoundException("Post with this id doesn't exist");
         }
@@ -204,38 +207,46 @@ public class HostController {
             request.getSession().setAttribute("getAlert", "success");
             request.getSession().setAttribute("message", "Post edited!");
             response.sendRedirect(request.getContextPath() + "/host/posts");
-        }else{
+        } else {
 
             request.getSession().setAttribute("getAlert", "error");
             request.getSession().setAttribute("errorMessage", "You don't change nothing.");
-            response.sendRedirect(request.getContextPath() + "/host/posts/edit/"+id);
+            response.sendRedirect(request.getContextPath() + "/host/posts/edit/" + id);
         }
-        //redirect to posts page
     }
 
     @GetMapping(path = {"/createPost"})
-    public String hostCreatePostPage(HttpServletRequest request) throws NotFoundException {
-        log.info("host create post");
+    public String hostCreatePostPage(HttpServletRequest request) {
+        List<Animal> animals = getAnimalsList(request);
+        request.setAttribute("animals", animals);
+        return "host-create-post";
+    }
+
+    private List<Animal> getAnimalsList(HttpServletRequest request) {
         String hostLogin = (String) request.getSession().getAttribute("userLogin");
         List<Animal> postAnimals = postRepository.findAllByHostLogin(hostLogin)
                 .stream().map(Post::getAnimal).collect(Collectors.toList());
         List<Animal> animals = animalRepository.findAll();
         animals = animals.stream().filter(a -> !postAnimals.contains(a)).collect(Collectors.toList());
-        request.setAttribute("animals", animals);
-        return "host-create-post";
+        return animals;
     }
 
     @PostMapping(path = {"/createPost"})
     public void hostCreatePostPageAction(@RequestParam(name = "days", defaultValue = "1") String days,
                                          @RequestParam(name = "pet") String pet,
-                                         HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException, InvalidDataException {
-        log.info("host created post");
+                                         HttpServletRequest request, HttpServletResponse response) throws IOException, InvalidDataException {
 
         String hostLogin = (String) request.getSession().getAttribute("userLogin");
-        List<String> postAnimals = postRepository.findAllByHostLogin(hostLogin)
-                .stream().map(p -> p.getAnimal().getName()).collect(Collectors.toList());
-        List<String> animals = animalRepository.findAll().stream().map(Animal::getName).collect(Collectors.toList());
-        animals = animals.stream().filter(a -> !postAnimals.contains(a)).collect(Collectors.toList());
+
+        List<String> animals = getAnimalsList(request).stream().map(Animal::getName).collect(Collectors.toList());
+
+        createPost(days, pet, request, response, hostLogin, animals);
+
+    }
+
+
+    private void createPost(String days, String pet, HttpServletRequest request, HttpServletResponse response,
+                            String hostLogin, List<String> animals) throws InvalidDataException, IOException {
         int maxDays = Integer.parseInt(days);
         Optional<Host> host = hostRepository.findHostByLogin(hostLogin);
         if (host.isPresent() && pet != null && animals.contains(pet) && maxDays > 0 && maxDays < 15) {
@@ -244,9 +255,9 @@ public class HostController {
             log.info("searching " + hostLogin);
             post.setHost(host.get());
             log.info("found host");
-            if(animalRepository.findByName(pet).isPresent()){
+            if (animalRepository.findByName(pet).isPresent()) {
                 post.setAnimal(animalRepository.findByName(pet).get());
-            }else{
+            } else {
                 throw new InvalidDataException("Invalid animal");
             }
             log.info("found animal");
@@ -259,7 +270,6 @@ public class HostController {
         } else {
             throw new InvalidDataException("Invalid number of days");
         }
-
     }
 
     @GetMapping(path = {"/contracts"})
@@ -271,12 +281,18 @@ public class HostController {
         if (page > 0) {
             page -= 1;
         }
+        hostContractsInfo(page, size, status, model, login);
+        return "host-contracts";
+    }
+
+
+    private void hostContractsInfo(int page, int size, String status, Model model, String login) throws Exception {
         try {
             List<Contract> contracts;
             Pageable paging = PageRequest.of(page, size);
 
 
-            Page<Contract> pageContracts = null;
+            Page<Contract> pageContracts;
             if (status.equals("ALL")) {
                 pageContracts
                         = contractRepository.findAllByHostLoginOrderByStartDateDesc(login, paging);
@@ -301,24 +317,25 @@ public class HostController {
             //TODO add custom exception
             throw new Exception("ERROR");
         }
-        return "host-contracts";
     }
-
 
     @GetMapping(path = {"/contracts/{id}"})
     public String hostContractsIdPage(@PathVariable Long id, Model model) throws NotFoundException {
-        log.info("host contracts " + id);
 
+        getContractInfo(id, model);
+
+        return "host-contracts-id";
+    }
+
+    private void getContractInfo(Long id, Model model) throws NotFoundException {
         Contract contract;
         if (contractRepository.findById(id).isPresent()) {
             contract = contractRepository.findById(id).get();
         } else {
             //TODO add custom exception
-            throw new NotFoundException("Error. Contract not exist! ");
+            throw new NotFoundException("Error. Contract not exist!");
         }
         model.addAttribute("contractInfo", contract);
-
-        return "host-contracts-id";
     }
 
 }
