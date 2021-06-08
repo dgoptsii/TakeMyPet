@@ -21,7 +21,6 @@
         });
     </script>
 
-
 </c:if>
 
 <div class="container">
