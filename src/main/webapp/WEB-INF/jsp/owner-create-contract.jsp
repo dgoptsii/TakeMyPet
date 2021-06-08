@@ -20,7 +20,7 @@
 
     <c:if test="${not empty getAlert and getAlert=='error'}">
         <c:set var="getAlert" value="" scope="session"/>
-        <c:set var="errorMessage" value="" scope="session"/>
+
         <script>
             $(document).ready(function () {
                 $("#error-alert").show(1000);
@@ -40,6 +40,7 @@
                     Error:
                     <c:if test="${not empty errorMessage}">
                         <c:out value="${errorMessage}"/>
+                        <c:set var="errorMessage" value="" scope="session"/>
                     </c:if>
                 </div>
                 <form id="request"

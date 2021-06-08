@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class OwnerService implements OwnerServiceInterface{
+public class OwnerService implements OwnerServiceInterface {
 
     @Autowired
     private OwnerRepository ownerRepository;
@@ -82,7 +82,7 @@ public class OwnerService implements OwnerServiceInterface{
     }
 
     public void createContract(String startDate, String endDate, Long id,
-                                HttpServletRequest request, HttpServletResponse response)
+                               HttpServletRequest request, HttpServletResponse response)
             throws NotFoundException, IOException {
         Post post;
         if (postRepository.findById(id).isPresent()) {
@@ -98,22 +98,33 @@ public class OwnerService implements OwnerServiceInterface{
 
         List<Contract> list = contractRepository.findAllDistinctByHostAndEndDateAfterOrStartDateBefore(host, start, end);
         int days = countDays(start, end);
+        if (start.before(end)) {
+            if (days <= post.getMaxDays()) {
+                if (countInter(list, start, end, host.getMaxAnimals())) {
+                    String login = (String) request.getSession().getAttribute("userLogin");
+                    Owner owner = ownerRepository.findOwnerByLogin(login).get();
+                    Contract contract = Contract.createContract(post, owner, start, end, days);
+                    Contract result = contractRepository.save(contract);
 
-        if (start.before(end) && days <= post.getMaxDays() && countInter(list, start, end, host.getMaxAnimals())) {
-            String login = (String) request.getSession().getAttribute("userLogin");
-            Owner owner = ownerRepository.findOwnerByLogin(login).get();
-            Contract contract = Contract.createContract(post, owner, start, end, days);
-            Contract result = contractRepository.save(contract);
+                    request.getSession().setAttribute("getAlert", "success");
+                    response.sendRedirect(request.getContextPath() + "/owner/posts");
 
-            request.getSession().setAttribute("getAlert", "success");
-            response.sendRedirect(request.getContextPath() + "/owner/posts");
-
+                } else {
+                    request.getSession().setAttribute("getAlert", "error");
+                    request.getSession().setAttribute("errorMessage", "Maximum number of animals for this host. Please, select other dates.");
+                    response.sendRedirect(request.getContextPath() + "/owner/createContract/" + id + "?startDate=" + startDate + "&endDate=" + endDate);
+                }
+            } else {
+                request.getSession().setAttribute("getAlert", "error");
+                request.getSession().setAttribute("errorMessage", "Selected number of days is bigger than allowed");
+                response.sendRedirect(request.getContextPath() + "/owner/createContract/" + id + "?startDate=" + startDate + "&endDate=" + endDate);
+            }
         } else {
-            //TODO add custom exception (errorSchedule)
             request.getSession().setAttribute("getAlert", "error");
-            request.getSession().setAttribute("errorMessage", "Maximum number of animals for this host. Please, select other dates.");
+            request.getSession().setAttribute("errorMessage", "Contract should be at least one day long");
             response.sendRedirect(request.getContextPath() + "/owner/createContract/" + id + "?startDate=" + startDate + "&endDate=" + endDate);
         }
+
     }
 
     public int countDays(Date start, Date end) {
@@ -178,6 +189,7 @@ public class OwnerService implements OwnerServiceInterface{
 
     /**
      * Finds and creates DTO entity of owner from database
+     *
      * @param login of owner
      * @return DTO entity of owner
      */
