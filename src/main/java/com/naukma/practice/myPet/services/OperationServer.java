@@ -19,7 +19,6 @@ public class OperationServer {
     private ContractRepository contractRepository;
 
     public void changeContractStatus(Long id,String state,HttpServletRequest request) throws NotFoundException {
-        System.out.println("change wow");
         //delete canceled contracts
         if (contractRepository.findById(id).isPresent()) {
             if(state.equals("CANCEL")){

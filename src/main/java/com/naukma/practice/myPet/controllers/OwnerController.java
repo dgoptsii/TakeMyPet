@@ -70,9 +70,7 @@ public class OwnerController {
         Owner owner = ownerRepository.findOwnerByLogin(login).get();
         User user = userRepository.findUserByLogin(login).get();
 
-//        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
         return new ModelAndView("owner-profile-edit", "owner", OwnerDTO.createOwner(owner, user));
-//        return "owner-profile-edit";
     }
 
     //TODO KATE
@@ -80,14 +78,13 @@ public class OwnerController {
     public void ownerProfileEditAction(@Valid @ModelAttribute("owner") OwnerDTO ownerNew,
                                        BindingResult result,
                                        HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("dodod");
+
         if (result.hasErrors()) {
-            System.out.println("tototot");
+
             request.getSession().setAttribute("getAlert", "error");
             request.getSession().setAttribute("errorMessage", "Invalid input!");
             response.sendRedirect(request.getContextPath() + "/owner/profile/edit");
         } else {
-            System.out.println(ownerNew);
             String login = (String) request.getSession().getAttribute("userLogin");
 
             Owner owner = ownerRepository.findOwnerByLogin(login).get();
@@ -138,7 +135,6 @@ public class OwnerController {
 
 
         String login = (String) request.getSession().getAttribute("userLogin");
-        System.out.println(login);
         Owner owner = ownerRepository.findOwnerByLogin(login).get();
 
         String region = owner.getRegion();
@@ -166,7 +162,7 @@ public class OwnerController {
             } else if (animalId != 0) {
                 pagePosts = postRepository.findDistinctByAnimalIdAndStatus(animalId, "ACTIVE", paging);
             } else if (maxDays != 0) {
-                pagePosts = postRepository.findByMaxDaysGreaterThanEqualAndStatus(maxDays,"ACTIVE", paging);
+                pagePosts = postRepository.findByMaxDaysGreaterThanEqualAndStatus(maxDays, "ACTIVE", paging);
             } else {
                 pagePosts = postRepository.findAllByStatus("ACTIVE", paging);
             }
@@ -255,7 +251,6 @@ public class OwnerController {
                     (c.getStartDate().compareTo(start) >= 0 && c.getStartDate().compareTo(end) <= 0)) i++;
 
             if (i > maxInter - 1) {
-                System.out.println("i: " + i);
                 return false;
             }
 
@@ -288,7 +283,6 @@ public class OwnerController {
         Host host = post.getHost();
 
         List<Contract> list = contractRepository.findAllDistinctByHostAndEndDateAfterOrStartDateBefore(host, start, end);
-        System.out.println(list.toString());
         int days = countDays(start, end);
 
         if (start.before(end) && days <= post.getMaxDays() && countInter(list, start, end, host.getMaxAnimals())) {
@@ -296,7 +290,6 @@ public class OwnerController {
             Owner owner = ownerRepository.findOwnerByLogin(login).get();
             Contract contract = Contract.createContract(post, owner, start, end, days);
             Contract result = contractRepository.save(contract);
-            System.out.println(result);
 
             request.getSession().setAttribute("getAlert", "success");
             response.sendRedirect(request.getContextPath() + "/owner/posts");
@@ -330,8 +323,7 @@ public class OwnerController {
 
             Pageable paging = PageRequest.of(page, size);
 
-            Page<Contract> pageContracts = null;
-            System.out.println("Status" + status);
+            Page<Contract> pageContracts;
             if (status.equals("ALL")) {
                 pageContracts
                         = contractRepository.findAllByOwnerLoginOrderByStartDateDesc(login, paging);
