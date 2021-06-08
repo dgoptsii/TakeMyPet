@@ -43,9 +43,10 @@
                           action="${pageContext.request.contextPath}/host/contracts?status=${status}">
 
                         <div class="row gutters row row-cols-1 row-cols-sm-2 row-cols-md-4">
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4  col-12">
-                                <div class="form-group">
-                                    <select class="form-control text-center" name="status">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 d-flex justify-content-end">
+                                <div class="form-group pr-3">
+                                    <select class="form-control"
+                                            name="status">
 
                                         <option value="ALL" ${ (status=='ALL') ? 'selected' : ''}>All</option>
                                         <option value="NEW" ${ (status=='NEW') ? 'selected' : ''}>New</option>

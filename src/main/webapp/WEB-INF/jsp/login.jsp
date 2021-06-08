@@ -11,6 +11,8 @@
 <html lang="en">
 
 <%@ include file="/WEB-INF/jspf/head.jspf" %>
+<link rel="stylesheet" href="/css/background.css">
+
 <body>
 <%@ include file="/WEB-INF/jspf/simple-nav.jspf" %>
 
