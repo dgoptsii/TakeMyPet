@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                 </c:if>
-                                <c:if test="${contract.status =='FINISHED' }">
+                                <c:if test="${contract.status =='RATED' }">
                                     <div class="form-col">
                                         <div class="form-group">
                                             <label for="rating"><b>Rating:</b> <c:out
@@ -100,7 +100,7 @@
                                     <p><b>Status: </b>
                                         <c:choose>
                                             <c:when test="${contract.status =='NEW'}">
-                                            <span class="badge bg-info text-wrap" style="width: 5rem;">
+                                          <span class="badge bg-info text-wrap" style="width: 5rem; color:white">
                                                 new
                                             </span>
                                             </c:when>
