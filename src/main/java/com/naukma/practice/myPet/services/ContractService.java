@@ -10,11 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -81,13 +78,13 @@ public class ContractService implements ContractServiceInterface{
         }
     }
 
-    public void getContractInfo(Long id, Model model) throws NotFoundException {
+    public Contract getContractInfo(Long id) throws NotFoundException {
         Contract contract;
         if (contractRepository.findById(id).isPresent()) {
             contract = contractRepository.findById(id).get();
         } else {
             throw new NotFoundException("Error. Contract not exist!");
         }
-        model.addAttribute("contractInfo", contract);
+        return contract;
     }
 }

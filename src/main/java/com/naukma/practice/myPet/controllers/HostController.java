@@ -1,7 +1,7 @@
 package com.naukma.practice.myPet.controllers;
 
 import com.naukma.practice.myPet.db.DTO.HostDTO;
-import com.naukma.practice.myPet.db.entity.*;
+import com.naukma.practice.myPet.db.entity.Animal;
 import com.naukma.practice.myPet.exceptions.InvalidDataException;
 import com.naukma.practice.myPet.services.ContractServiceInterface;
 import com.naukma.practice.myPet.services.HostServiceInterface;
@@ -123,7 +123,7 @@ public class HostController {
     @GetMapping(path = {"/contracts/{id}"})
     public String hostContractsIdPage(@PathVariable Long id, Model model) throws NotFoundException {
 
-        contractService.getContractInfo(id, model);
+        model.addAttribute("contractInfo", contractService.getContractInfo(id));
         return "host-contracts-id";
     }
 

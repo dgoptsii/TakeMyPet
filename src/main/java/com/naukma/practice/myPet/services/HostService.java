@@ -66,7 +66,7 @@ public class HostService implements HostServiceInterface {
 
         if (currentInfo.equals(hostNew)) {
             request.getSession().setAttribute("getAlert", "error");
-            request.getSession().setAttribute("errorMessage", "You don't change nothing!");
+            request.getSession().setAttribute("errorMessage", "You didn't change anything!");
             response.sendRedirect(request.getContextPath() + "/host/profile/edit");
         } else if (
                 (userRepository.findUserByLogin(hostNew.getLogin()).isPresent() && !currentInfo.getLogin().equals(hostNew.getLogin()))
@@ -150,7 +150,7 @@ public class HostService implements HostServiceInterface {
         } else {
 
             request.getSession().setAttribute("getAlert", "error");
-            request.getSession().setAttribute("errorMessage", "You don't change nothing.");
+            request.getSession().setAttribute("errorMessage", "You didn't change anything.");
             response.sendRedirect(request.getContextPath() + "/host/posts/edit/" + id);
         }
     }
