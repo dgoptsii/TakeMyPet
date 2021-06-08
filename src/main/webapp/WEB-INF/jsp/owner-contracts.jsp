@@ -20,6 +20,8 @@
             $("#success-alert").show().delay(5000).fadeOut();
         });
     </script>
+
+
 </c:if>
 
 <div class="container">
