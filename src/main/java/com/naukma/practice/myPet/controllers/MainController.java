@@ -88,9 +88,6 @@ public class MainController {
 
         operationServer.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
 
-//        request.getSession().setAttribute("getAlert", "success");
-//        request.getSession().setAttribute("message", "Post blocked!");
-
         response.sendRedirect(request.getContextPath() + "/host/contracts");
     }
     @GetMapping(path = {"/posts/edit/{id}"})

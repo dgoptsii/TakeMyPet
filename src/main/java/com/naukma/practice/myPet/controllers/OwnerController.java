@@ -162,13 +162,13 @@ public class OwnerController {
             Page<Post> pagePosts = null;
 
             if (animalId != 0 && maxDays != 0) {
-                pagePosts = postRepository.findDistinctByAnimalIdAndMaxDaysGreaterThanEqual(animalId, maxDays, paging);
+                pagePosts = postRepository.findDistinctByAnimalIdAndMaxDaysGreaterThanEqualAndStatus(animalId, maxDays, "ACTIVE", paging);
             } else if (animalId != 0) {
-                pagePosts = postRepository.findDistinctByAnimalId(animalId, paging);
+                pagePosts = postRepository.findDistinctByAnimalIdAndStatus(animalId, "ACTIVE", paging);
             } else if (maxDays != 0) {
-                pagePosts = postRepository.findByMaxDaysGreaterThanEqual(maxDays, paging);
+                pagePosts = postRepository.findByMaxDaysGreaterThanEqualAndStatus(maxDays,"ACTIVE", paging);
             } else {
-                pagePosts = postRepository.findAll(paging);
+                pagePosts = postRepository.findAllByStatus("ACTIVE", paging);
             }
 
             posts = pagePosts.getContent();
@@ -190,7 +190,6 @@ public class OwnerController {
             model.addAttribute("maxDays", maxDays);
             model.addAttribute("totalItems", pagePosts.getTotalElements());
             model.addAttribute("totalPages", pagePosts.getTotalPages());
-
         } catch (Exception e) {
             //TODO add custom exception
             throw new Exception("ERROR");
@@ -335,10 +334,10 @@ public class OwnerController {
             System.out.println("Status" + status);
             if (status.equals("ALL")) {
                 pageContracts
-                        = contractRepository.findAllByOwnerLoginOrderByStartDateAsc(login, paging);
+                        = contractRepository.findAllByOwnerLoginOrderByStartDateDesc(login, paging);
             } else {
                 pageContracts
-                        = contractRepository.findAllByOwnerLoginAndStatusOrderByStartDateAsc(login, status.toUpperCase(), paging);
+                        = contractRepository.findAllByOwnerLoginAndStatusOrderByStartDateDesc(login, status.toUpperCase(), paging);
             }
 
             contracts = pageContracts.getContent();

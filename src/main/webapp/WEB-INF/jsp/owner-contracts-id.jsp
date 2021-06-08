@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                 </c:if>
-                                <c:if test="${contract.status =='FINISHED' }">
+                                <c:if test="${contract.status =='RATED' }">
                                     <div class="form-col">
                                         <div class="form-group">
                                             <label for="rating"><b>Rating:</b> <c:out
@@ -100,8 +100,13 @@
                                     <p><b>Status: </b>
                                         <c:choose>
                                             <c:when test="${contract.status =='NEW'}">
-                                            <span class="badge bg-info text-wrap" style="width: 5rem;">
+                                          <span class="badge bg-info text-wrap" style="width: 5rem; color:white">
                                                 new
+                                            </span>
+                                            </c:when>
+                                            <c:when test="${contract.status =='EMERGENCY'}">
+                                            <span class="badge bg-danger text-wrap" style="width: 5rem; color:white">
+                                                emergency
                                             </span>
                                             </c:when>
 
@@ -165,12 +170,13 @@
                                         <%--                                    </button>--%>
                                         <%--                                    </a>--%>
                                     </c:if>
-
+                                    <c:if test="${contract.status !='EMERGENCY' }">
                                     <button type="button"
                                             id="submit2" name="submit" class="btn btn-outline-danger mx-1 mt-1"
                                             data-toggle="modal" data-target="#error-file-modal">
                                         Error
                                     </button>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>

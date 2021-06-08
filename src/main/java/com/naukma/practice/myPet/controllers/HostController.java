@@ -273,10 +273,10 @@ public class HostController {
             Page<Contract> pageContracts = null;
             if (status.equals("ALL")) {
                 pageContracts
-                        = contractRepository.findAllByHostLoginOrderByStartDateAsc(login, paging);
+                        = contractRepository.findAllByHostLoginOrderByStartDateDesc(login, paging);
             } else {
                 pageContracts
-                        = contractRepository.findAllByHostLoginAndStatusOrderByStartDateAsc(login, status.toUpperCase(), paging);
+                        = contractRepository.findAllByHostLoginAndStatusOrderByStartDateDesc(login, status.toUpperCase(), paging);
             }
 
 
