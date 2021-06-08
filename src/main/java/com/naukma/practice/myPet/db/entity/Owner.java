@@ -4,7 +4,9 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-
+/**
+ * Representation of Owner table's field in database
+ */
 @Entity
 @Data
 @DynamicUpdate

@@ -18,6 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 
+
+
+
+/**
+ * Controller with methods to handle action of owner in web-app
+ */
 @Controller
 @Slf4j
 @RequestMapping("owner")
@@ -61,9 +67,6 @@ public class OwnerController {
         } else {
             ownerService.editOwnerProfile(ownerNew, request, response);
         }
-//        model.addAttribute("ownerInfo", OwnerDTO.createOwner(owner, user));
-//        return "owner-profile-edit";
-
     }
 
 

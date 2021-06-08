@@ -1,6 +1,5 @@
 package com.naukma.practice.myPet.exceptions;
 
-//importua.kolokhina.controllers.InvalidDataException;
 
 
 import lombok.extern.slf4j.Slf4j;

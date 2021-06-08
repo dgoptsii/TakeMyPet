@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Objects;
 
+
+/**
+ * Entity of merged owner and host
+ */
 @Data
 public class OwnerDTO {
 
@@ -26,6 +30,9 @@ public class OwnerDTO {
     private String city;
     private String region;
 
+    /**
+     * Method to merge owner and user entities to OwnerDto
+     */
     public static OwnerDTO createOwner(Owner owner, User user) {
         OwnerDTO ownerInfo = new OwnerDTO();
 
@@ -42,6 +49,9 @@ public class OwnerDTO {
         return ownerInfo;
     }
 
+    /**
+     * Extracts owner from ownerDto
+     */
     public static Owner createOwnerFromDTO(OwnerDTO owner) {
         Owner newUser = new Owner();
 

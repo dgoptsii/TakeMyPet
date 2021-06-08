@@ -15,6 +15,10 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * Repository access interface for Contract
+ */
 public interface ContractRepository extends JpaRepository<Contract, Long> {
 
     @Override

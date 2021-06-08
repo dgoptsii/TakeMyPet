@@ -8,8 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface ContractServiceInterface {
 
-    public void changeContractStatus(Long id, String state, HttpServletRequest request) throws NotFoundException;
+    void changeContractStatus(Long id, String state, HttpServletRequest request) throws NotFoundException;
 
+
+
+    /**
+     * Finds and creates entity of contract from database
+     * @param id of your contract
+     * @return DTO entity of host
+     */
     Contract getContractInfo(Long id) throws NotFoundException;
 
     void hostContractsInfo(int page, int size, String status, Model model, String login) throws Exception;

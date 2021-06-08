@@ -19,15 +19,27 @@ public interface OwnerServiceInterface {
 
     void createOwnerContractPage(int page, int size, String status, Model model, String login) throws Exception;
 
+
+    /**
+     * Finds contract in paging form
+     */
     Page<Contract> getContracts(String status, String login, Pageable paging);
 
     void createContractPage(@PathVariable Long id, Model model) throws NotFoundException;
 
     void createPostPage(@PathVariable Long id, Model model) throws NotFoundException;
 
+    /**
+     * Creates new contract in db
+     */
     void createContract(String startDate, String endDate, Long id,
                         HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException;
 
+    /**
+     * Finds and creates DTO entity of owner from database
+     * @param login of owner
+     * @return DTO entity of owner
+     */
     OwnerDTO findOwnerDto(String login);
 
     void editOwnerProfile(OwnerDTO ownerNew, HttpServletRequest request, HttpServletResponse response) throws IOException;

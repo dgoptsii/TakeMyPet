@@ -10,6 +10,10 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * Repository access interface for Host
+ */
 public interface HostRepository extends JpaRepository<Host, Long> {
     @Override
     <S extends Host> S save(S s);

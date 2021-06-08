@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 
+/**
+ * Repository access interface for User
+ */
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Override
@@ -23,17 +26,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Override
     List<User> findAll();
 
-    Optional<User> findDistinctByIdAndStatus(Long id, String status);
-
-//    Integer countById();
-
-//    @Query(value = "SELECT COUNT(id) from account WHERE role='USER' ", nativeQuery = true)
-//    Integer countUsers();
-//
-//    @Query(value = "SELECT COUNT(id) from account", nativeQuery = true)
-//    Integer countById();
-//
-//    @Query(value = "SELECT * FROM account WHERE role ='USER' limit ?1,?2", nativeQuery = true)
-//    List<User> findUsersForAdmin(int one,int two);
 
 }

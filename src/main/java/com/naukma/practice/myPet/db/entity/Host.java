@@ -4,7 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-
+/**
+ * Representation of Host table's field in database
+ */
 @Entity
 @Data
 @Table(name="host")
