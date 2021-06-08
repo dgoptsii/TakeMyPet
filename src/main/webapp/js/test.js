@@ -18,7 +18,7 @@ function validate(form) {
         alert("Invalid login");
         return false;
     } else if (!rePassword.test(password) || password == "" || password == null) {
-        alert("Password is non valid!");
+        alert("Password is non valid! Should contain at least 8 symbols, letters of upper and lower key, numbers.");
         return false;
     } else if (!reEmail.test(mail) || mail == "" || mail == null) {
         alert("Email is non valid!");

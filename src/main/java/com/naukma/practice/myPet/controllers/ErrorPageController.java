@@ -15,6 +15,6 @@ public class ErrorPageController {
     }
     @GetMapping("/login/invalidPassword")
     public void loginPasswordError() throws Exception {
-        throw new InvalidDataException("Password is not correct");
+        throw new InvalidDataException("Password or login is not correct");
     }
 }

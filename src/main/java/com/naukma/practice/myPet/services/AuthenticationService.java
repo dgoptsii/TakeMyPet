@@ -157,7 +157,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
                 || hostRepository.findHostByPhone(telephone).isPresent()
                 || ownerRepository.findOwnerByLogin(telephone).isPresent()
         ) {
-            throw new InvalidDataException("User with this login or e-mail is already registered");
+            throw new InvalidDataException("User with this login, telephone or e-mail is already registered");
         } else {
             String bcryptHashString = passwordEncoder.encode(password);
             User insertUser = User.createUser(login, email, bcryptHashString, role);

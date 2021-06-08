@@ -140,7 +140,8 @@ public class MainController {
         try {
             rate = Integer.parseInt(rating);
         } catch (NumberFormatException ex) {
-           // throw new NumberFormatException();
+
+          // throw new NumberFormatException();
         }
         Contract contract;
         if (contractRepository.findById(id).isPresent()) {
