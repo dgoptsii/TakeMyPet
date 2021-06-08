@@ -1,15 +1,37 @@
-c<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark" id="menu">
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
     <a href="#" class="navbar-brand">Take<b>My</b>Pet</a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-        <div class="navbar-nav">
-            <a href="#tag1" class="nav-item nav-link">About</a>
-            <a href="#tag2" class="nav-item nav-link">Our team</a>
-            <a href="#tag3" class="nav-item nav-link">Join us</a>
-            <a href="#tag4" class="nav-item nav-link">Contacts</a>
-        </div>
+    <div id="navbarCollapse" class="collapse navbar-collapse ">
+
+            <ul class="navbar-nav mr-auto"  id="menu">
+                <li class="nav-item">  <a href="#tag1" class="nav-item nav-link">About</a>  </li>
+                <li class="nav-item">  <a href="#tag2" class="nav-item nav-link">Our team</a>  </li>
+                <li class="nav-item"> <a href="#tag3" class="nav-item nav-link">Join us</a>  </li>
+                <li class="nav-item"> <a href="#tag4" class="nav-item nav-link">Contacts</a>  </li>
+            </ul>
+            <div class="navbar-nav my-2 my-md-0 ">
+            <c:if test="${(not empty sessionScope.userRole) and (not empty sessionScope.userRole)}">
+                <c:if test="${not empty sessionScope.userRole}">
+                    <c:choose>
+                        <c:when test="${sessionScope.userRole == 'HOST' }">
+                            <a href="/host/profile" class="nav-item nav-link">My profile</a>
+
+                        </c:when>
+
+                        <c:when test="${sessionScope.userRole == 'OWNER' }">
+                            <a href="/owner/profile" class="nav-item nav-link">My profile</a>
+
+                        </c:when>
+                    </c:choose>
+                    <a href="/logout" class="nav-item nav-link"><i class="fa fa-user-times"></i> Logout</a>
+                </c:if>
+
+            </c:if>
+            </div>
+
     </div>
 </nav>
