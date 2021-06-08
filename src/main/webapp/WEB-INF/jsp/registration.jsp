@@ -4,8 +4,11 @@
 <html lang="en">
 
 <%@ include file="/WEB-INF/jspf/head.jspf" %>
+<link rel="stylesheet" href="/css/background.css">
+
 <body>
 <%@ include file="/WEB-INF/jspf/simple-nav.jspf" %>
+
 <div class="mt-5 row gutters d-flex justify-content-center">
     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
         <div class="row gutters d-flex justify-content-center">
