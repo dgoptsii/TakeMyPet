@@ -34,10 +34,21 @@
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="daysRange">Term: n days</label>
-                                    <input type="range" class="form-range form-control" min="1" max="20" step="1.0"
+                                <div class="form-col">
+                                    <label for="daysRange">Term: <span id="demo"></span>  days</label>
+                                    <div class="form-group">
+                                    <input type="range" class="slider" min="1" max="20" step="1.0"
                                            id="daysRange" name="days">
+                                    <script>
+                                        var slider = document.getElementById("daysRange");
+                                        var output = document.getElementById("demo");
+                                        output.innerHTML = slider.value;
+
+                                        slider.oninput = function() {
+                                            output.innerHTML = this.value;
+                                        }
+                                    </script>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

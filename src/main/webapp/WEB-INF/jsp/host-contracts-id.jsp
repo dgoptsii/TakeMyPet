@@ -140,7 +140,7 @@
                             </div>
 
                             <%@ include file="/WEB-INF/jspf/accept_dialog.jspf" %>
-                         //   <%@ include file="/WEB-INF/jspf/cancel_dialog.jspf" %>
+<%--                            <%@ include file="/WEB-INF/jspf/cancel_dialog.jspf" %>--%>
                             <%@ include file="/WEB-INF/jspf/error_dialog.jspf" %>
                             <%@ include file="/WEB-INF/jspf/rate_dialog.jspf" %>
                         </div>
