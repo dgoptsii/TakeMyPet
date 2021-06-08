@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @Service
 @Slf4j
 public class HostService implements HostServiceInterface {
@@ -35,7 +36,6 @@ public class HostService implements HostServiceInterface {
 
     @Autowired
     private PostRepository postRepository;
-
 
     public HostDTO getHostInfo(HttpServletRequest request) throws NotFoundException {
         String login = (String) request.getSession().getAttribute("userLogin");

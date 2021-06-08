@@ -5,6 +5,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+/**
+ * Representation of Animal table's field in database
+ */
 @Entity
 @Data
 @Table(name="animal")

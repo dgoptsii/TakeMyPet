@@ -80,19 +80,7 @@
                                         </button>
                                     </div>
                             </div>
-<%--                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">--%>
-<%--                                <div class="text-right">--%>
-<%--&lt;%&ndash;                                    <a href="#">&ndash;%&gt;--%>
-<%--                                        <button type="button"--%>
-<%--                                                id="submit2" name="submit" class="btn btn-success"--%>
-<%--                                                data-toggle="modal" data-target="#edit-file-modal">--%>
-<%--                                            Save--%>
-<%--                                        </button>--%>
-<%--&lt;%&ndash;                                        <button type="button" id="submit" name="submit" class="btn btn-success">Save&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        </button>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                    </a>&ndash;%&gt;--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
+
                         </div>
                     </div>
                     <%@ include file="/WEB-INF/jspf/edit_dialog.jspf" %>

@@ -5,6 +5,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+
+/**
+ * Representation of Post table's field in database
+ */
 @Entity
 @Data
 @Table(name = "post")

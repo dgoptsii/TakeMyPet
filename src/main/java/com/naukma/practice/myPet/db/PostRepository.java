@@ -12,6 +12,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Repository access interface for Post
+ */
 public interface PostRepository extends JpaRepository<Post, Long> {
     @Override
     <S extends Post> S save(S s);

@@ -1,19 +1,14 @@
 package com.naukma.practice.myPet.controllers;
 
-import com.naukma.practice.myPet.db.entity.Contract;
 import com.naukma.practice.myPet.services.AuthenticationServiceInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -23,6 +18,9 @@ public class LoginController {
     @Autowired
     private AuthenticationServiceInterface service;
 
+    /**
+     * Get Method for logging of user
+     */
     @GetMapping(path = "/redirect_after_login")
     public void test(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -33,6 +31,9 @@ public class LoginController {
         response.sendRedirect(route);
     }
 
+    /**
+     * Get Method for login's page
+     */
     @GetMapping(path = {"/login"})
     public String loginPage() {
         return "login";

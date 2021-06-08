@@ -11,50 +11,59 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.sql.DataSource;
 
 
+/**
+ * Config file for security purposes in Spring framework
+ */
 @EnableWebSecurity
 public class WebSecurityConfig
         extends WebSecurityConfigurerAdapter {
 
-  @Autowired
-  private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
-  @Bean
-  public BCryptPasswordEncoder passwordEncoder() {
 
-    return new BCryptPasswordEncoder();
-  }
+    /**
+     * Encoder of password
+     */
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
 
-  @Override
-  public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//    auth.inMemoryAuthentication()
-//            .withUser("owner").password(passwordEncoder().encode("ownerPass")).authorities("OWNER")
-//            .and()
-//            .withUser("host").password(passwordEncoder().encode("hostPass")).authorities("HOST");
-    auth.jdbcAuthentication()
-            .dataSource(dataSource)
-            .usersByUsernameQuery(
-                    "select login, password, 'true' from user " +
-                            "where login=?")
-            .authoritiesByUsernameQuery(
-                    "select login, role from user " +
-                            "where login=?");
-  }
+        return new BCryptPasswordEncoder();
+    }
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http
-            .csrf().disable()
-            .authorizeRequests()
-            .antMatchers("/owner/**").hasAuthority("OWNER")
-            .antMatchers("/host/**").hasAuthority("HOST")
-            .antMatchers("/**").permitAll()
-            .and()
-            .formLogin()
-            .loginPage("/login")
-            .defaultSuccessUrl("/redirect_after_login")
-            .failureUrl("/login/invalidPassword")
-            .permitAll();
+    /**
+     * Method builder for security configuration
+     */
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery(
+                        "select login, password, 'true' from user " +
+                                "where login=?")
+                .authoritiesByUsernameQuery(
+                        "select login, role from user " +
+                                "where login=?");
+    }
 
-  }
-  
+    /**
+     * Method for security configuration
+     */
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/owner/**").hasAuthority("OWNER")
+                .antMatchers("/host/**").hasAuthority("HOST")
+                .antMatchers("/**").permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/redirect_after_login")
+                .failureUrl("/login/invalidPassword")
+                .permitAll();
+
+    }
+
 }

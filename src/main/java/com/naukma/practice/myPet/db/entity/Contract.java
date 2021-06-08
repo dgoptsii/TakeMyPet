@@ -6,6 +6,10 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import java.sql.Date;
 
+
+/**
+ * Representation of Contract table's field in database
+ */
 @Entity
 @Data
 @DynamicUpdate
