@@ -32,7 +32,7 @@ public class ContractService implements ContractServiceInterface{
                 if(!contractRepository.findById(id).get().getStatus().equalsIgnoreCase(state)) {
                     contractRepository.updateStatus(id,state);
                     if(state.equalsIgnoreCase("EMERGENCY"))
-                        request.getSession().setAttribute("SuccessMessage", "Send emergency message");
+                        request.getSession().setAttribute("SuccessMessage", "Sent emergency message");
                     if(state.equalsIgnoreCase("WAITING"))
                         request.getSession().setAttribute("SuccessMessage", "Contract accepted!");
                     System.out.println("Contract #"+id+" state is changed to "+state.toUpperCase());
