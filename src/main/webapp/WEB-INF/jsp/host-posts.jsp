@@ -33,13 +33,16 @@
             </div>
 
             <div class="row gutters">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3 mt-3">
-                    <div class="text-center">
-                        <a href="${pageContext.request.contextPath}/host/createPost">
-                            <button type="button" id="submit1" name="submit" class="btn btn-success">+ Add post</button>
-                        </a>
+                <c:if test="${numberOfAnimals >= totalItems}">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3 mt-3">
+                        <div class="text-center">
+                            <a href="${pageContext.request.contextPath}/host/createPost">
+                                <button type="button" id="submit1" name="submit" class="btn btn-success">+ Add post</button>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </c:if>
+
                 <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <b> <h5 class="mt-2 mb-2 text-inverse">List of posts</h5></b>
                 </div>
