@@ -30,7 +30,4 @@ public interface HostServiceInterface {
     void createPost(String days, String pet, HttpServletRequest request, HttpServletResponse response,
                     String hostLogin, List<String> animals) throws InvalidDataException, IOException;
 
-    void hostContractsInfo(int page, int size, String status, Model model, String login) throws Exception;
-
-    void getContractInfo(Long id, Model model) throws NotFoundException;
 }

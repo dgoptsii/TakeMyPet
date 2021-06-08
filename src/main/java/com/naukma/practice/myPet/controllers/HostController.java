@@ -3,6 +3,7 @@ package com.naukma.practice.myPet.controllers;
 import com.naukma.practice.myPet.db.DTO.HostDTO;
 import com.naukma.practice.myPet.db.entity.*;
 import com.naukma.practice.myPet.exceptions.InvalidDataException;
+import com.naukma.practice.myPet.services.ContractServiceInterface;
 import com.naukma.practice.myPet.services.HostServiceInterface;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,9 @@ public class HostController {
 
     @Autowired
     private HostServiceInterface hostService;
+
+    @Autowired
+    private ContractServiceInterface contractService;
 
     @GetMapping(path = {"/profile"})
     public String hostProfilePage(Model model, HttpServletRequest request) throws NotFoundException {
@@ -112,14 +116,14 @@ public class HostController {
         if (page > 0) {
             page -= 1;
         }
-        hostService.hostContractsInfo(page, size, status, model, login);
+        contractService.hostContractsInfo(page, size, status, model, login);
         return "host-contracts";
     }
 
     @GetMapping(path = {"/contracts/{id}"})
     public String hostContractsIdPage(@PathVariable Long id, Model model) throws NotFoundException {
 
-        hostService.getContractInfo(id, model);
+        contractService.getContractInfo(id, model);
         return "host-contracts-id";
     }
 

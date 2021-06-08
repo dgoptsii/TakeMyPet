@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class HostService implements HostServiceInterface{
+public class HostService implements HostServiceInterface {
 
     @Autowired
     private AnimalRepository animalRepository;
@@ -36,8 +36,6 @@ public class HostService implements HostServiceInterface{
     @Autowired
     private PostRepository postRepository;
 
-    @Autowired
-    private ContractRepository contractRepository;
 
     public HostDTO getHostInfo(HttpServletRequest request) throws NotFoundException {
         String login = (String) request.getSession().getAttribute("userLogin");
@@ -53,7 +51,7 @@ public class HostService implements HostServiceInterface{
     }
 
     public void editHostProfile(HostDTO hostNew,
-                                 HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
+                                HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
         String login = (String) request.getSession().getAttribute("userLogin");
         Host host;
         User user;
@@ -132,6 +130,7 @@ public class HostService implements HostServiceInterface{
         model.addAttribute("animals", animalRepository.findAll());
         model.addAttribute("post", post);
     }
+
     public void editPost(Long id, HttpServletRequest request, HttpServletResponse response, int maxDays) throws NotFoundException, IOException {
         Post post;
         if (postRepository.findById(id).isPresent()) {
@@ -164,8 +163,9 @@ public class HostService implements HostServiceInterface{
         animals = animals.stream().filter(a -> !postAnimals.contains(a)).collect(Collectors.toList());
         return animals;
     }
+
     public void createPost(String days, String pet, HttpServletRequest request, HttpServletResponse response,
-                            String hostLogin, List<String> animals) throws InvalidDataException, IOException {
+                           String hostLogin, List<String> animals) throws InvalidDataException, IOException {
         int maxDays = Integer.parseInt(days);
         Optional<Host> host = hostRepository.findHostByLogin(hostLogin);
         if (host.isPresent() && pet != null && animals.contains(pet) && maxDays > 0 && maxDays < 15) {
@@ -189,49 +189,6 @@ public class HostService implements HostServiceInterface{
         } else {
             throw new InvalidDataException("Invalid number of days");
         }
-    }
-
-    public void hostContractsInfo(int page, int size, String status, Model model, String login) throws Exception {
-        try {
-            List<Contract> contracts;
-            Pageable paging = PageRequest.of(page, size);
-
-
-            Page<Contract> pageContracts;
-            if (status.equals("ALL")) {
-                pageContracts
-                        = contractRepository.findAllByHostLoginOrderByStartDateDesc(login, paging);
-            } else {
-                pageContracts
-                        = contractRepository.findAllByHostLoginAndStatusOrderByStartDateDesc(login, status.toUpperCase(), paging);
-            }
-
-
-            contracts = pageContracts.getContent();
-            if (contracts.size() == 0) {
-                model.addAttribute("message", "Oops. No contracts...");
-            } else {
-                model.addAttribute("contractsList", contracts);
-            }
-            model.addAttribute("currentPage", page + 1);
-            model.addAttribute("totalItems", pageContracts.getTotalElements());
-            model.addAttribute("totalPages", pageContracts.getTotalPages());
-            model.addAttribute("status", status);
-
-        } catch (Exception e) {
-            //TODO add custom exception
-            throw new Exception("ERROR");
-        }
-    }
-
-    public void getContractInfo(Long id, Model model) throws NotFoundException {
-        Contract contract;
-        if (contractRepository.findById(id).isPresent()) {
-            contract = contractRepository.findById(id).get();
-        } else {
-            throw new NotFoundException("Error. Contract not exist!");
-        }
-        model.addAttribute("contractInfo", contract);
     }
 
 }

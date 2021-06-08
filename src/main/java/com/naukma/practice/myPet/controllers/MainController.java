@@ -5,7 +5,7 @@ import com.naukma.practice.myPet.db.HostRepository;
 import com.naukma.practice.myPet.db.PostRepository;
 import com.naukma.practice.myPet.db.entity.Contract;
 import com.naukma.practice.myPet.exceptions.InvalidDataException;
-import com.naukma.practice.myPet.services.OperationService;
+import com.naukma.practice.myPet.services.ContractService;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class MainController {
 
 
     @Autowired
-    private OperationService operationService;
+    private ContractService operationService;
 
     @GetMapping(path = {"/hello"})
     public String helloPage() {
