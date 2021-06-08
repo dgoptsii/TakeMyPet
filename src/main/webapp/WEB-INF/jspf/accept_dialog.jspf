@@ -1,0 +1,23 @@
+<div class="modal fade" id="accept-file-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> You want to accept contract? </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form-horizontal" method="post" id="accept_form">
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-success" id="confirm-accept-button">
+                        Accept
+                    </button>
+
+                    <button data-dismiss="modal" class="btn btn-default" name="in_confirm_insert"
+                            id="cancel-delete-button">
+                        Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
