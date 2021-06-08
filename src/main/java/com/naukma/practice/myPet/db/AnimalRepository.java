@@ -5,7 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Repository access interface for Animal
+ */
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
     @Override
     <S extends Animal> S save(S s);

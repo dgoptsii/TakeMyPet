@@ -19,6 +19,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Locale;
 
+
+/**
+ * Controller with methods to handle action of owner and host in web-app
+ */
 @Controller
 @Slf4j
 public class MainController {

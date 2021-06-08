@@ -22,9 +22,15 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+/**
+ * Service class with methods for authentication purposes
+ */
+
 @Service
 @Slf4j
 public class AuthenticationService implements AuthenticationServiceInterface {
+
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -42,12 +48,14 @@ public class AuthenticationService implements AuthenticationServiceInterface {
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z]).{8,32}$";
     private static final String EMAIL_PATTERN = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
-    //    TODO add patterns for registration
     private static final String TELEPHONE_PATTERN = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$";
 
-//    pattern for name,surname,city,country
-//    private static final String TEXT_PATTERN = ".*";
-
+    /**
+     * Checks identity of user
+     * @param request where data contains
+     * @param login of logged user
+     * @return where to forward
+     */
     @Override
     public String loginUser(String login,
                             HttpServletRequest request) throws Exception {
@@ -82,6 +90,12 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         return request.getContextPath() + forward;
     }
 
+
+    /**
+     * Changes user's role in db
+     * @param login user's login
+     * @param userRole user's new role
+     */
     public void updateStatusesOfContracts(String login, String userRole) {
 
         Date today = new Date(System.currentTimeMillis());
@@ -124,6 +138,11 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         }
     }
 
+
+    /**
+     * Register new user
+     * @param request where data lies
+     */
     @Override
     public void registrationUser(String login, String password, String email, String password_confirm,
                                  String name, String surname, String telephone, String country, String city, String role,
@@ -175,6 +194,12 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         }
     }
 
+    /**
+     * Sets user to session
+     * @param session session where to insert user
+     * @param insertUser user to add to session
+     * @param userRole role of user
+     */
     static void setUserToSession(HttpSession session, User insertUser, String userRole) {
 //      save only user id in session (for next queries)
         session.setAttribute("userLogin", insertUser.getLogin());
@@ -182,11 +207,21 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         log.info("User " + insertUser + " logged as " + userRole.toLowerCase());
     }
 
+
+    /**
+     * Checks if login and password valid
+     * @param login user's login
+     * @param password user's password
+     */
     @Override
     public boolean validateData(String login, String password) {
         return login != null && password != null && !login.isEmpty() && !password.isEmpty();
     }
 
+
+    /**
+     * Checks if user's data is valid
+     */
     @Override
     public boolean validateData(String login, String password, String email, String password_confirm,
                                 String name, String surname, String telephone, String country, String city, String role) {
@@ -215,6 +250,12 @@ public class AuthenticationService implements AuthenticationServiceInterface {
             );
     }
 
+
+    /**
+     * Checks string by regex
+     * @param value string to check
+     * @param regex regex to check with
+     */
     private static boolean isValid(final String value, String regex) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(value);

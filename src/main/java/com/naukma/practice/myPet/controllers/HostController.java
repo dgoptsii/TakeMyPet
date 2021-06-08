@@ -22,6 +22,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+
+/**
+ * Controller with methods to handle action of host user in web-app
+ */
 @Controller
 @Slf4j
 @RequestMapping("/host")

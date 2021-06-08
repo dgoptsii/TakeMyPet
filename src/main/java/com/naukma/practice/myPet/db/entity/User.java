@@ -5,6 +5,10 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
+
+/**
+ * Representation of User table's field in database
+ */
 @Entity
 @Data
 @DynamicUpdate

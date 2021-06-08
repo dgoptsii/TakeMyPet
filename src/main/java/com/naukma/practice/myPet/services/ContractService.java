@@ -14,6 +14,12 @@ import org.springframework.ui.Model;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * Service class with methods to work with contract's entities
+ */
+
+
+
 @Service
 @Slf4j
 public class ContractService implements ContractServiceInterface{
@@ -21,6 +27,13 @@ public class ContractService implements ContractServiceInterface{
     @Autowired
     private ContractRepository contractRepository;
 
+
+    /**
+     * Updates contract's status in db
+     * @param id contract's id
+     * @param state new status of contract
+     * @param request where data contains
+     */
     public void changeContractStatus(Long id,String state,HttpServletRequest request) throws NotFoundException {
         //delete canceled contracts
         if (contractRepository.findById(id).isPresent()) {
@@ -77,6 +90,7 @@ public class ContractService implements ContractServiceInterface{
             throw new Exception("ERROR");
         }
     }
+
 
     public Contract getContractInfo(Long id) throws NotFoundException {
         Contract contract;

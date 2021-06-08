@@ -24,6 +24,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
+/**
+ * Service class with methods to work with owner's entities
+ */
+
 @Service
 @Slf4j
 public class OwnerService implements OwnerServiceInterface{
@@ -36,7 +40,6 @@ public class OwnerService implements OwnerServiceInterface{
 
     @Autowired
     private UserRepository userRepository;
-
 
     @Autowired
     private PostRepository postRepository;
@@ -177,12 +180,16 @@ public class OwnerService implements OwnerServiceInterface{
         model.addAttribute("postInfo", post);
     }
 
+    /**
+     * Finds and creates DTO entity of owner from database
+     * @param login of owner
+     * @return DTO entity of owner
+     */
     public OwnerDTO findOwnerDto(String login) {
         Owner owner = ownerRepository.findOwnerByLogin(login).get();
         User user = userRepository.findUserByLogin(login).get();
         return OwnerDTO.createOwner(owner, user);
     }
-
 
     public void editOwnerProfile(OwnerDTO ownerNew, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String login = (String) request.getSession().getAttribute("userLogin");

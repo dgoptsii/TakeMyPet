@@ -4,6 +4,10 @@ import com.naukma.practice.myPet.db.entity.Host;
 import com.naukma.practice.myPet.db.entity.User;
 import lombok.Data;
 
+
+/**
+ * Entity of merged user and host
+ */
 @Data
 public class HostDTO {
 
@@ -22,6 +26,9 @@ public class HostDTO {
     private String phone;
 
 
+    /**
+     * Method to merge owner and user entities to OwnerDto
+     */
     public static HostDTO createHost(Host host, User user) {
         HostDTO hostInfo = new HostDTO();
 
@@ -42,6 +49,9 @@ public class HostDTO {
         return hostInfo;
     }
 
+    /**
+     * Extracts host from hostDto
+     */
     public static Host createHostFromDTO(HostDTO host) {
         Host newHost = new Host();
 

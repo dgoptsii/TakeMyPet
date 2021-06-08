@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.rmi.AccessException;
-
+/**
+ * Controller with methods to handle errors from web-app
+ */
 @Controller
 public class ErrorPageController {
 
@@ -13,6 +15,7 @@ public class ErrorPageController {
     public void doError() throws Exception {
         throw new AccessException("You do not have permission to access the requested resource");
     }
+
     @GetMapping("/login/invalidPassword")
     public void loginPasswordError() throws Exception {
         throw new InvalidDataException("Password or login is not correct");
