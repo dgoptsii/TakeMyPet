@@ -145,7 +145,7 @@
                                                                 value="${item.rating}"/></label>
                                                         <div id="rating" class="str_Rating_detail">
                                                             <div data-rating="<c:out value="${item.rating}"/>"
-                                                                 data-rateyo-read-only="false"
+                                                                 data-rateyo-read-only="true"
                                                                  class="rateYo bookrating px-0"></div>
                                                         </div>
                                                     </div>
@@ -156,7 +156,8 @@
                                             <div class="form-col text-right">
                                                 <a href="${pageContext.request.contextPath}/owner/contracts/${item.id}">
                                                     <button type="button" id="submit" name="submit"
-                                                            class="btn btn-outline-success mx-1 mt-1">See->
+                                                            class="btn btn-outline-success mx-1 mt-1" style="width:25%; min-width:80px"
+                                                    >See
                                                     </button>
                                                 </a>
                                             </div>

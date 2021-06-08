@@ -70,7 +70,7 @@
                                             <div class="str_Rating_detail">
                                                 <!--star rating-->
                                                 <div id="rating" data-rating="0" data-rateyo-read-only="false"
-                                                     class="rateYo bookrating"></div>
+                                                     class="rateYo bookrating px-0"></div>
                                                 <input type="hidden" name="rating" class="bookrating">
                                             </div>
 
@@ -85,8 +85,9 @@
                                                 <%--                                        <label for="rating"><b>Rating:</b> <span id="demo"></span></label>--%>
                                             <div class="str_Rating_detail">
                                                 <!--star rating-->
-                                                <div id="rated" data-rating="0" data-rateyo-read-only="false"
-                                                     class="rateYo bookrating"></div>
+                                                <div id="rated" data-rating="<c:out
+                                                    value="${contract.rating}"/>" data-rateyo-read-only="true"
+                                                     class="rateYo bookrating px-0"></div>
                                                 <input type="hidden" name="rating" class="bookrating">
                                             </div>
 

@@ -158,7 +158,9 @@
                                             <div class="form-col text-right">
                                                 <a href="${pageContext.request.contextPath}/host/contracts/${item.id}">
                                                     <button type="button" id="submit" name="submit"
-                                                            class="btn btn-outline-success mx-1 mt-1">See->
+                                                            class="btn btn-outline-success mx-1 mt-1"
+                                                            style="width:25%; min-width:80px"
+                                                    >See
                                                     </button>
                                                 </a>
                                             </div>
