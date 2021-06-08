@@ -142,7 +142,7 @@ public class MainController {
             double resRating = Math.round(((double) (sumOfRatings) / (double) (amountOfRatedContracts)) * 100.) / 100.;
             hostRepository.updateRating(contract.getHost().getId(), resRating);
             request.getSession().setAttribute("getAlert", "success");
-            request.getSession().setAttribute("SuccessMessage", "Contract Rated!");
+            request.getSession().setAttribute("SuccessMessage", "Contract rated!");
         } else {
             throw new NotFoundException("No contract with this id! ");
         }
