@@ -31,20 +31,13 @@ public class MainController {
     @Autowired
     private HostRepository hostRepository;
 
-
     @Autowired
-    private ContractService operationService;
+    private ContractService contractService;
 
-    @GetMapping(path = {"/hello"})
-    public String helloPage() {
-        log.info("hello");
-        return "index";
-    }
 
     @GetMapping(path = {"/logout"})
     public void execute(HttpSession session, HttpServletResponse response, HttpServletRequest request)
             throws IOException {
-
         if (session != null)
             session.invalidate();
         else {
@@ -60,36 +53,25 @@ public class MainController {
         return "homepage";
     }
 
-    @GetMapping(path = {"/host/info"})
-    public String hostPage() {
-        log.info("host");
-        return "host";
-    }
-
-    @GetMapping(path = {"/owner/info"})
-    public String ownerPage() {
-        log.info("owner");
-        return "owner";
-    }
-
     @GetMapping(path = {"/owner/contracts/{state}/{id}"})
     public void ownerChangeContractStateAction(@PathVariable Long id, @PathVariable String state,
                                                HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
-        System.out.println("OWNER EDIT CONTRACT STATUS TO "+state);
-        operationService.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
+        System.out.println("OWNER EDIT CONTRACT STATUS TO " + state);
+        contractService.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
         response.sendRedirect(request.getContextPath() + "/owner/contracts");
 
     }
 
     @GetMapping(path = {"/host/contracts/{state}/{id}"})
     public void hostChangeContractStateAction(@PathVariable Long id, @PathVariable String state,
-                                               HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
-        System.out.println("HOST EDIT CONTRACT STATUS TO "+state);
+                                              HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException {
+        System.out.println("HOST EDIT CONTRACT STATUS TO " + state);
 
-        operationService.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
+        contractService.changeContractStatus(id, state.toUpperCase(Locale.ROOT), request);
 
         response.sendRedirect(request.getContextPath() + "/host/contracts");
     }
+
     @GetMapping(path = {"/posts/edit/{id}"})
     public void postChangeStatus(@PathVariable Long id,
                                  @RequestParam(defaultValue = "0") int page,
@@ -97,6 +79,7 @@ public class MainController {
                                  @RequestParam(defaultValue = "0", name = "animal") String animal,
                                  @RequestParam(defaultValue = "1", name = "maxDays") String maxDaysId,
                                  HttpServletRequest request, HttpServletResponse response) throws IOException, NotFoundException, InvalidDataException {
+
         if (postRepository.findById(id).isPresent()) {
             if (status.equals("active")) {
                 postRepository.setStatus(id, "BLOCKED");
@@ -130,7 +113,6 @@ public class MainController {
 
     }
 
-
     @PostMapping(path = {"/contract/rate/{id}"})
     public void rateContract(@PathVariable Long id, @RequestParam(name = "rating") String rating,
                              HttpServletRequest request, HttpServletResponse response) throws NotFoundException, IOException {
@@ -140,8 +122,7 @@ public class MainController {
         try {
             rate = Integer.parseInt(rating);
         } catch (NumberFormatException ex) {
-
-          // throw new NumberFormatException();
+            // throw new NumberFormatException();
         }
         Contract contract;
         if (contractRepository.findById(id).isPresent()) {
