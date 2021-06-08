@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <form id="" role="form"
+                    <form id="request" role="form"
                           action="${pageContext.request.contextPath}/contract/rate/${contract.id}" method="post">
                         <div class="row mt-4">
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
@@ -146,29 +146,18 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
                                     <c:if test="${contract.status =='NEW' || contract.status =='WAITING'}">
-                                        <%--<a href="#">--%>
                                         <button type="button"
                                                 id="submit1" name="submit" class="btn btn-danger mx-1 mt-1"
                                                 data-toggle="modal" data-target="#cancel-file-modal">
                                             Cancel
                                         </button>
-                                        <%--</a>--%>
                                     </c:if>
                                     <c:if test="${contract.status =='FINISHED'}">
-                                        <%--                                    <a href="#">--%>
-<%--                                        <a href="${pageContext.request.contextPath}/contract/rate/${contract.id}">--%>
-                                            <input type="submit"
-                                                    id="rate" name="submit" class="btn btn-warning mx-1 mt-1"
-                                                    data-toggle="modal" data-target="#rate-file-modal" value="Rate">
-<%--                                            >--%>
-
-                                        </a>
-                                        <%--                                    <button type="button"--%>
-                                        <%--                                            id="rate" name="submit" class="btn btn-warning mx-1 mt-1">--%>
-                                        <%--                                            &lt;%&ndash;                                            data-toggle="modal" data-target="#cancel-file-modal"&ndash;%&gt;--%>
-                                        <%--                                        Rate--%>
-                                        <%--                                    </button>--%>
-                                        <%--                                    </a>--%>
+                                        <button type="button"
+                                                id="rate" name="submit" class="btn btn-warning mx-1 mt-1"
+                                                data-toggle="modal" data-target="#rate-file-modal">
+                                            Rate
+                                        </button>
                                     </c:if>
                                     <c:if test="${contract.status !='EMERGENCY' }">
                                     <button type="button"
@@ -180,12 +169,12 @@
                                 </div>
                             </div>
                         </div>
+                        <%@ include file="/WEB-INF/jspf/rate_dialog.jspf" %>
                     </form>
 
                 </div>
                 <%@ include file="/WEB-INF/jspf/cancel_dialog.jspf" %>
                 <%@ include file="/WEB-INF/jspf/error_dialog.jspf" %>
-                <%@ include file="/WEB-INF/jspf/rate_dialog.jspf" %>
             </div>
 
         </div>
@@ -193,17 +182,17 @@
 <%--    <%@ include file="/WEB-INF/jspf/footer.jspf" %>--%>
 
     <script type="text/javascript">
+
+
         $('#confirm-rate-button').on("click", function () {
-           // $("#request").submit();
-            location.href = "${pageContext.request.contextPath}/owner/contract/rate/${contractInfo.id}";
+            $("#request").submit();
         });
+
         $('#confirm-cancel-button').on("click", function () {
             location.href = "${pageContext.request.contextPath}/owner/contracts/cancel/${contractInfo.id}";
         });
         $('#confirm-error-button').on("click", function () {
 
-            // $("#error-alert").show(1000);
-            // $("#error-alert").show().delay(5000).fadeOut();
             location.href = "${pageContext.request.contextPath}/owner/contracts/emergency/${contractInfo.id}";
         });
 
