@@ -58,7 +58,7 @@
                                 <div class="form-col">
                                     <div class="form-group">
                                         <label for="rating"><b>Rating:</b> <c:out value="${contract.rating}"/></label>
-                                        <div id="rating" class="form-control-static">
+                                        <div id="rating" class="form-control-static px-0">
                                             <script>
                                                 $(function () {
                                                     $("#rating").rateYo({
@@ -82,7 +82,7 @@
                                             </span>
                                         </c:when>
                                         <c:when test="${contract.status =='EMERGENCY'}">
-                                            <span class="badge bg-danger text-wrap" style="width: 5rem;">
+                                            <span class="badge bg-danger text-wrap" style="width: 5rem; color:white">
                                                 emergency
                                             </span>
                                         </c:when>
