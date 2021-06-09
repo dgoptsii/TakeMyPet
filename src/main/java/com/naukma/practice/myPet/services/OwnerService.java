@@ -249,11 +249,13 @@ public class OwnerService implements OwnerServiceInterface{
             }
 
             posts = pagePosts.getContent();
+            System.out.println(posts);
             posts = posts
                     .stream()
                     .filter(p -> p.getHost().getRegion().equals(region))
                     .filter(p -> p.getStatus().equals("ACTIVE"))
                     .collect(Collectors.toList());
+
 
             if (posts.size() == 0) {
                 model.addAttribute("message", "Oops. No results founded ...");
