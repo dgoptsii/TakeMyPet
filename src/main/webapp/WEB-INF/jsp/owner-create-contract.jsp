@@ -20,7 +20,7 @@
 
     <c:if test="${not empty getAlert and getAlert=='error'}">
         <c:set var="getAlert" value="" scope="session"/>
-        <c:set var="errorMessage" value="" scope="session"/>
+
         <script>
             $(document).ready(function () {
                 $("#error-alert").show(1000);
@@ -37,9 +37,10 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-3">
 
                 <div class="alert alert-danger" role="alert" id="error-alert" style="display:none;">
-                    Error: selected number of days is bigger than allowed
+                    Error:
                     <c:if test="${not empty errorMessage}">
                         <c:out value="${errorMessage}"/>
+                        <c:set var="errorMessage" value="" scope="session"/>
                     </c:if>
                 </div>
                 <form id="request"
