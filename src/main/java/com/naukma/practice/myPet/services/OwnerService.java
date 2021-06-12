@@ -108,7 +108,6 @@ public class OwnerService implements OwnerServiceInterface {
 
                     request.getSession().setAttribute("getAlert", "success");
                     response.sendRedirect(request.getContextPath() + "/owner/posts");
-
                 } else {
                     request.getSession().setAttribute("getAlert", "error");
                     request.getSession().setAttribute("errorMessage", "Maximum number of animals for this host. Please, select other dates.");
@@ -163,6 +162,8 @@ public class OwnerService implements OwnerServiceInterface {
 
     public boolean countInter(List<Contract> list, Date start, Date end, int maxInter) {
         int i = 0;
+        list = list.stream().filter(p -> p.getStatus().equalsIgnoreCase("new") ||  p.getStatus().equalsIgnoreCase("waiting") ||  p.getStatus().equalsIgnoreCase("active")).
+                collect(Collectors.toList());
         for (Contract c : list) {
             if ((c.getStartDate().compareTo(start) <= 0 && c.getEndDate().compareTo(start) >= 0) ||
                     (c.getStartDate().compareTo(end) <= 0 && c.getEndDate().compareTo(end) >= 0) ||
@@ -251,28 +252,29 @@ public class OwnerService implements OwnerServiceInterface {
             Page<Post> pagePosts = null;
 
             if (animalId != 0 && maxDays != 0) {
-                pagePosts = postRepository.findDistinctByAnimalIdAndMaxDaysGreaterThanEqualAndStatus(animalId, maxDays, "ACTIVE", paging);
+                pagePosts = postRepository.findDistinctByAnimalIdAndMaxDaysGreaterThanEqualAndStatusAndHost_Region(animalId, maxDays, "ACTIVE",region, paging);
             } else if (animalId != 0) {
-                pagePosts = postRepository.findDistinctByAnimalIdAndStatus(animalId, "ACTIVE", paging);
+                pagePosts = postRepository.findDistinctByAnimalIdAndStatusAndHost_Region(animalId, "ACTIVE",region, paging);
             } else if (maxDays != 0) {
-                pagePosts = postRepository.findByMaxDaysGreaterThanEqualAndStatus(maxDays, "ACTIVE", paging);
+                pagePosts = postRepository.findByMaxDaysGreaterThanEqualAndStatusAndHost_Region(maxDays, "ACTIVE",region, paging);
             } else {
                 pagePosts = postRepository.findAllByStatus("ACTIVE", paging);
             }
-
             posts = pagePosts.getContent();
-            posts = posts
-                    .stream()
-                    .filter(p -> p.getHost().getRegion().equals(region))
-                    .filter(p -> p.getStatus().equals("ACTIVE"))
-                    .collect(Collectors.toList());
+//            System.out.println(posts);
+//            System.out.println("before ->"+posts.size()+" "+pagePosts.getTotalPages()+" "+pagePosts.getTotalElements());
+//            posts = posts
+//                    .stream()
+////                    .filter(p -> p.getHost().getRegion().equals(region))
+////                    .filter(p -> p.getStatus().equals("ACTIVE"))
+//                    .collect(Collectors.toList());
 
+            System.out.println("after ->"+posts.size()+" "+pagePosts.getTotalPages()+" "+pagePosts.getTotalElements());
             if (posts.size() == 0) {
                 model.addAttribute("message", "Oops. No results founded ...");
             } else {
                 model.addAttribute("posts", posts);
             }
-
             model.addAttribute("currentPage", page + 1);
             model.addAttribute("animals", animalRepository.findAll());
             model.addAttribute("animal", animal);
