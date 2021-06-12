@@ -108,7 +108,6 @@ public class OwnerService implements OwnerServiceInterface {
 
                     request.getSession().setAttribute("getAlert", "success");
                     response.sendRedirect(request.getContextPath() + "/owner/posts");
-
                 } else {
                     request.getSession().setAttribute("getAlert", "error");
                     request.getSession().setAttribute("errorMessage", "Maximum number of animals for this host. Please, select other dates.");
@@ -163,6 +162,8 @@ public class OwnerService implements OwnerServiceInterface {
 
     public boolean countInter(List<Contract> list, Date start, Date end, int maxInter) {
         int i = 0;
+        list = list.stream().filter(p -> p.getStatus().equalsIgnoreCase("new") ||  p.getStatus().equalsIgnoreCase("waiting") ||  p.getStatus().equalsIgnoreCase("active")).
+                collect(Collectors.toList());
         for (Contract c : list) {
             if ((c.getStartDate().compareTo(start) <= 0 && c.getEndDate().compareTo(start) >= 0) ||
                     (c.getStartDate().compareTo(end) <= 0 && c.getEndDate().compareTo(end) >= 0) ||
