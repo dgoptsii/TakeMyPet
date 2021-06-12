@@ -259,22 +259,21 @@ public class OwnerService implements OwnerServiceInterface {
             } else {
                 pagePosts = postRepository.findAllByStatus("ACTIVE", paging);
             }
-
             posts = pagePosts.getContent();
-            System.out.println(posts);
+//            System.out.println(posts);
+            System.out.println("before ->"+posts.size()+" "+pagePosts.getTotalPages()+" "+pagePosts.getTotalElements());
             posts = posts
                     .stream()
                     .filter(p -> p.getHost().getRegion().equals(region))
                     .filter(p -> p.getStatus().equals("ACTIVE"))
                     .collect(Collectors.toList());
 
-
+            System.out.println("after ->"+posts.size()+" "+pagePosts.getTotalPages()+" "+pagePosts.getTotalElements());
             if (posts.size() == 0) {
                 model.addAttribute("message", "Oops. No results founded ...");
             } else {
                 model.addAttribute("posts", posts);
             }
-
             model.addAttribute("currentPage", page + 1);
             model.addAttribute("animals", animalRepository.findAll());
             model.addAttribute("animal", animal);
