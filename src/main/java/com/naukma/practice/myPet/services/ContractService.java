@@ -69,6 +69,12 @@ public class ContractService implements ContractServiceInterface{
             }
 
             contracts = pageContracts.getContent();
+
+            System.out.println("-------- page "+page+1);
+            for (Contract c:contracts) {
+                System.out.println(c.getId()+" "+c.getStartDate()+" "+c.getEndDate()+" "+c.getStatus());
+            }
+            System.out.println("--------");
             if (contracts.size() == 0) {
                 model.addAttribute("message", "Oops. No contracts...");
             } else {
