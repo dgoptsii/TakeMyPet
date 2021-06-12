@@ -251,22 +251,22 @@ public class OwnerService implements OwnerServiceInterface {
             Page<Post> pagePosts = null;
 
             if (animalId != 0 && maxDays != 0) {
-                pagePosts = postRepository.findDistinctByAnimalIdAndMaxDaysGreaterThanEqualAndStatus(animalId, maxDays, "ACTIVE", paging);
+                pagePosts = postRepository.findDistinctByAnimalIdAndMaxDaysGreaterThanEqualAndStatusAndHost_Region(animalId, maxDays, "ACTIVE",region, paging);
             } else if (animalId != 0) {
-                pagePosts = postRepository.findDistinctByAnimalIdAndStatus(animalId, "ACTIVE", paging);
+                pagePosts = postRepository.findDistinctByAnimalIdAndStatusAndHost_Region(animalId, "ACTIVE",region, paging);
             } else if (maxDays != 0) {
-                pagePosts = postRepository.findByMaxDaysGreaterThanEqualAndStatus(maxDays, "ACTIVE", paging);
+                pagePosts = postRepository.findByMaxDaysGreaterThanEqualAndStatusAndHost_Region(maxDays, "ACTIVE",region, paging);
             } else {
                 pagePosts = postRepository.findAllByStatus("ACTIVE", paging);
             }
             posts = pagePosts.getContent();
 //            System.out.println(posts);
-            System.out.println("before ->"+posts.size()+" "+pagePosts.getTotalPages()+" "+pagePosts.getTotalElements());
-            posts = posts
-                    .stream()
-                    .filter(p -> p.getHost().getRegion().equals(region))
-                    .filter(p -> p.getStatus().equals("ACTIVE"))
-                    .collect(Collectors.toList());
+//            System.out.println("before ->"+posts.size()+" "+pagePosts.getTotalPages()+" "+pagePosts.getTotalElements());
+//            posts = posts
+//                    .stream()
+////                    .filter(p -> p.getHost().getRegion().equals(region))
+////                    .filter(p -> p.getStatus().equals("ACTIVE"))
+//                    .collect(Collectors.toList());
 
             System.out.println("after ->"+posts.size()+" "+pagePosts.getTotalPages()+" "+pagePosts.getTotalElements());
             if (posts.size() == 0) {

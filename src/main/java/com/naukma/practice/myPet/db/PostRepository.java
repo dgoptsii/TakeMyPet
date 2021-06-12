@@ -29,11 +29,11 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> findAll(Pageable pageable);
     Page<Post> findAllByStatus(String status, Pageable pageable);
 
-    Page<Post> findDistinctByAnimalIdAndStatus(Long animal_id, String status, Pageable pageable);
+    Page<Post> findDistinctByAnimalIdAndStatusAndHost_Region(Long animal_id, String status,String region, Pageable pageable);
 
-    Page<Post> findDistinctByAnimalIdAndMaxDaysGreaterThanEqualAndStatus(Long animal_id, Integer maxDays, String status, Pageable pageable);
+    Page<Post> findDistinctByAnimalIdAndMaxDaysGreaterThanEqualAndStatusAndHost_Region(Long animal_id, Integer maxDays, String status,String region, Pageable pageable);
 
-    Page<Post> findByMaxDaysGreaterThanEqualAndStatus(Integer maxDays,String status, Pageable pageable);
+    Page<Post> findByMaxDaysGreaterThanEqualAndStatusAndHost_Region(Integer maxDays,String status,String region, Pageable pageable);
 
 
     @Modifying(flushAutomatically = true)
