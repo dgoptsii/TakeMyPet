@@ -9,7 +9,6 @@
 
             <ul class="navbar-nav mr-auto"  id="menu">
                 <li class="nav-item">  <a href="#tag1" class="nav-item nav-link">About</a>  </li>
-                <li class="nav-item">  <a href="#tag2" class="nav-item nav-link">Our team</a>  </li>
                 <li class="nav-item"> <a href="#tag3" class="nav-item nav-link">Join us</a>  </li>
                 <li class="nav-item"> <a href="#tag4" class="nav-item nav-link">Contacts</a>  </li>
             </ul>

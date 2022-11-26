@@ -128,7 +128,7 @@
 </script>
 <footer class="container text-center py-3 pt-3 " id="foot">
     <div class="form-group text-center pb-0">
-        <img src="https://cdn1.savepice.ru/uploads/2021/6/1/df08565d31e0a625add74d94afbf176b-full.png"
+        <img src="https://i.postimg.cc/02rdGf8J/Picture1.png"
              width="160" height="160">
         <p>&copy; 2021 FrogProg Inc.</p>
     </div>

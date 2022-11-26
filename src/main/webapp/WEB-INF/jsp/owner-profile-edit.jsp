@@ -141,7 +141,7 @@
 </div>
 <footer class="container text-center py-3 pt-3 " id="foot" >
     <div class="form-group text-center pb-0">
-        <img src="https://cdn1.savepice.ru/uploads/2021/6/1/6ff0a9e27c95d25ab8d339685dc69b80-full.png"
+        <img src="https://i.postimg.cc/02rdGf8J/Picture1.png"
              width="160" height="160">
         <p>&copy; 2021 FrogProg Inc.</p>
     </div>

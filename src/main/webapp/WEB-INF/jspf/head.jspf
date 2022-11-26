@@ -22,6 +22,7 @@
 <%-- rating --%>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+<link rel="shortcut icon" type="image/png" href="https://i.postimg.cc/L6Q6z4nT/logo3.png" />
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script src="js/test.js"></script>

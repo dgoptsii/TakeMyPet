@@ -50,8 +50,7 @@
     </script>
     <style>
         .carousel-inner img {
-            width: 100%;
-            height: 100%;
+            width: 60%;
             margin: auto;
         }
 
@@ -88,6 +87,11 @@ p{
 <section id="tag0">
     <%@ include file="/WEB-INF/jspf/welcome-nav.jspf" %>
 </section>
+<br>
+<br><br>
+<br>
+<br>
+
 <section id="tag1">
     <div id="demo" class="carousel slide text-center" data-ride="carousel">
         <!-- Indicators -->
@@ -97,38 +101,32 @@ p{
             <li data-target="#demo" data-slide-to="2"></li>
             <li data-target="#demo" data-slide-to="3"></li>
             <li data-target="#demo" data-slide-to="4"></li>
-            <li data-target="#demo" data-slide-to="5"></li>
-
         </ul>
 
         <!-- The slideshow -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://cdn1.savepice.ru/uploads/2021/5/29/dc7a234d00614274353d1808e945684f-full.jpg"
+                <img src="https://i.postimg.cc/MGS4H4yS/Screenshot-6.jpg"
                      alt="Slide1">
                 <%--                    <div class="carousel-caption">--%>
                 <%--&lt;%&ndash;                        <h3>Собака раз</h3>&ndash;%&gt;--%>
                 <%--                    </div>--%>
             </div>
             <div class="carousel-item">
-                <img src="https://cdn1.savepice.ru/uploads/2021/5/29/334e01a10c27c303a1faed6649aac9cc-full.jpg"
+                <img src="https://i.postimg.cc/cCky8mdc/Screenshot-1.jpg"
                      alt="Slide2">
             </div>
             <div class="carousel-item">
-                <img src="https://cdn1.savepice.ru/uploads/2021/5/29/860f3aed6feb2e58445a8391c171a579-full.jpg"
+                <img src="https://i.postimg.cc/0NYTCx8j/Screenshot-2.jpg"
                      alt="Slide3">
             </div>
             <div class="carousel-item">
-                <img src="https://cdn1.savepice.ru/uploads/2021/5/29/a560c60ac516a6617f571c58f81e8218-full.jpg"
+                <img src="https://i.postimg.cc/mDVK0w1G/Screenshot-3.jpg"
                      alt="Slide4">
             </div>
             <div class="carousel-item">
-                <img src="https://cdn1.savepice.ru/uploads/2021/5/29/b01a01a8de3c4d99ec1355567302a5e1-full.jpg"
+                <img src="https://i.postimg.cc/WpWQ85PG/Screenshot-4.jpg"
                      alt="Slide5">
-            </div>
-            <div class="carousel-item">
-                <img src="https://cdn1.savepice.ru/uploads/2021/5/29/faf29e628dcfa7c90f682fb8124ce11e-full.jpg"
-                     alt="Slide6">
             </div>
             <!-- Left and right controls -->
             <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -143,51 +141,6 @@ p{
 <!-- Marketing messaging and featurettes
    ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
-
-<section >
-    <div class="container">
-
-        <div id="tag2" class="form-outline mb-4 pt-4 text-center">
-            <h2 class="d-flex justify-content-center">OUR TEAM</h2>
-            <p class="text-muted d-flex justify-content-center" >Happy to serve you and your pet!</p>
-        </div>
-        <!-- Three columns of text below the carousel -->
-        <div class="row text-center">
-            <div class="col">
-                <img class="rounded-circle"
-                     src="https://cdn1.savepice.ru/uploads/2021/5/29/5be8323e73f66d11b0b1c52b400fc3b8-full.jpg"
-                     alt="Generic placeholder image" width="140" height="140">
-                <h3>Daria Goptsii</h3>
-                <p  class="text-muted">the Knight of Saint Frontend</p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col">
-                <img class="rounded-circle"
-                     src="https://cdn1.savepice.ru/uploads/2021/5/29/75398b7053fecb2f04ba7f2f03557342-full.jpg"
-                     alt="Generic placeholder image" width="140" height="140">
-                <h3>Kateryna Kolokhina</h3>
-                <p  class="text-muted">Java Guru</p>
-            </div><!-- /.col-lg-4 -->
-        </div>
-
-        <div class="row text-center">
-            <div class="col">
-                <img class="rounded-circle"
-                     src="https://cdn1.savepice.ru/uploads/2021/5/29/63db1f0ddf00efa3a5d176b565b42039-full.jpg"
-                     alt="Generic placeholder image" width="140" height="140">
-                <h3>Iryna Zubrytska</h3>
-                <p  class="text-muted">Frontend Paladin</p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col">
-                <img class="rounded-circle"
-                     src="https://cdn1.savepice.ru/uploads/2021/5/29/b827a909f3f5a793dabeda220b9b9bc9-full.jpg"
-                     alt="Generic placeholder image" width="140" height="140">
-                <h3>Andrii Tkachenko</h3>
-                <p  class="text-muted">the Master of Database</p>
-            </div><!-- /.col-lg-4 -->
-        </div>
-    </div>
-
-</section>
 
 <section>
     <div class="container">

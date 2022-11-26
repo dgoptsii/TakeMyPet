@@ -36,7 +36,7 @@
                     <div class="card-body">
                         <div class="container text-center pb-3 pt-1">
                             <img class="rounded-circle "
-                                 src="https://cdn1.savepice.ru/uploads/2021/5/30/67c93a93c80bfeee7030f77fa17d81e1-full.png"
+                                 src="https://i.postimg.cc/L6Q6z4nT/logo3.png   "
                                  width="140" height="140">
                         </div>
                 <div class="row gutters">
@@ -99,7 +99,7 @@
 </div>
 <footer class="container text-center py-3 pt-3 " id="foot" >
     <div class="form-group text-center pb-0">
-        <img src="https://cdn1.savepice.ru/uploads/2021/6/1/668b9296ab01c33d699e77f73c97989b-full.png"
+        <img src="https://i.postimg.cc/02rdGf8J/Picture1.png"
              width="160" height="160">
         <p>&copy; 2021 FrogProg Inc.</p>
     </div>
