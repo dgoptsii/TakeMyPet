@@ -41,6 +41,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("UPDATE Post p set p.status = :status where p.id = :id")
     void setStatus(@Param(value = "id") Long id, @Param(value = "status") String status);
 
+
     @Modifying(flushAutomatically = true)
     @Transactional
     @Query("UPDATE Post p set p.maxDays = :maxDays where p.id = :id")
